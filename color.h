@@ -23,5 +23,17 @@ void color_writetoaddr(char address, char value);
  *	Returns a 16 bit ADC value representing colour intensity
  ***********************************************/
 unsigned int color_read_Red(void);
+unsigned int color_read_Green(void);
+unsigned int color_read_Blue(void);
+
+typedef struct RGB { //definition of DC_motor structure
+    unsigned int R;
+    unsigned int G;
+    unsigned int B;
+    unsigned int C;
+} RGB;
+
+void getColor(RGB *v);
+
 
 #endif

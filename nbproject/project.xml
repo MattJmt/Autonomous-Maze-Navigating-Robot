@@ -14,6 +14,7 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>.</sourceRootElem>
+                <sourceRootElem>../lab-5-serial-communication-hudson-matthias</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

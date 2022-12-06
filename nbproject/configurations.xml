@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>color.h</itemPath>
       <itemPath>i2c.h</itemPath>
+      <itemPath>dc_motor.h</itemPath>
+      <itemPath>serialTest.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,6 +18,9 @@
                    projectFiles="true">
       <itemPath>color.c</itemPath>
       <itemPath>i2c.c</itemPath>
+      <itemPath>newmain.c</itemPath>
+      <itemPath>dc_motor.c</itemPath>
+      <itemPath>serialTest.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -25,6 +30,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
+    <Elem>../lab-5-serial-communication-hudson-matthias</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -34,7 +40,7 @@
         <targetDevice>PIC18F67K40</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.40</languageToolchainVersion>
         <platform>3</platform>
