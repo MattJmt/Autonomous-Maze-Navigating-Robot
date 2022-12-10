@@ -24521,9 +24521,17 @@ void main(void){
     color_click_init();
     initUSART4();
     initDCmotorsPWM(199);
-# 35 "newmain.c"
+
+
+
+
+
+
     LATDbits.LATD7=0;
     TRISDbits.TRISD7=0;
+
+    LATHbits.LATH3=0;
+    TRISHbits.TRISH3=0;
 
     LATDbits.LATD4 = 0;
     TRISDbits.TRISD4 = 0;
@@ -24550,19 +24558,27 @@ void main(void){
 
 
 
-    LATGbits.LATG0=0;
-    LATEbits.LATE7=0;
-    LATAbits.LATA3=0;
+    LATGbits.LATG0=1;
+    LATEbits.LATE7=1;
+    LATAbits.LATA3=1;
 
     TRISGbits.TRISG0=0;
     TRISEbits.TRISE7=0;
     TRISAbits.TRISA3=0;
+
+
+    TRISFbits.TRISF2=1;
+    ANSELFbits.ANSELF2=0;
+
+    TRISFbits.TRISF3=1;
+    ANSELFbits.ANSELF3=0;
 
     char testString[20];
     char string1[20];
     char string2[20];
     char string3[20];
     char string4[20];
+    char string5[20];
 
 
     RGB RGBVal;
@@ -24575,7 +24591,7 @@ void main(void){
     unsigned int ambientR = 30;
     unsigned int ambientG = 12;
     unsigned int ambientB = 10;
-    float ambientC = 56;
+    float ambientC = 56.0;
 
     float whiteR = 68.0;
     float whiteG = 57.0;
@@ -24583,18 +24599,115 @@ void main(void){
     float whiteC = 195.0;
 
 
+    float redPrint = 0.0;
+    float bluePrint = 0.0;
+    float greenPrint = 0.0;
+
+
     while(1){
 
 
+        if (!PORTFbits.RF2){
 
+            for(int i = 0;i<20;i++){
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            }
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            getColor(&RGBVal);
+            ambientR = RGBVal.R;
+            ambientG = RGBVal.G;
+            ambientB = RGBVal.B;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD7 = !LATDbits.LATD7;
+        }
+
+        if (!PORTFbits.RF3){
+
+            for(int i = 0;i<20;i++){
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            }
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            getColor(&RGBVal);
+            whiteR = RGBVal.R;
+            whiteG = RGBVal.G;
+            whiteB = RGBVal.B;
+            whiteC = RGBVal.C;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD7 = !LATDbits.LATD7;
+        }
 
         getColor(&RGBVal);
-        LATDbits.LATD7=!LATDbits.LATD7;
+        LATHbits.LATH3=!LATHbits.LATH3;
 
         clearRef = RGBVal.C/whiteC;
 
 
-        sprintf(string4,"C:  %f ",clearRef);
+        redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
+        greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
+        bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
+
+
+        if (clearRef > 0.12){
+
+        if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
+        sprintf(string5,"White");
+        TxBufferedString(string5);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+        if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
+        sprintf(string5,"Red");
+        TxBufferedString(string5);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+        if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
+        sprintf(string5,"Orange");
+        TxBufferedString(string5);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+        if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+        sprintf(string5,"Yellow");
+        TxBufferedString(string5);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+        if ((bluePrint - redPrint > 0.5 & redPrint < 0.5) & (bluePrint - greenPrint > 0.5) & (bluePrint > 0.8 )){
+        sprintf(string5,"Blue");
+        TxBufferedString(string5);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+        if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+        sprintf(string5,"Green");
+        TxBufferedString(string5);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+        if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
+        sprintf(string5,"Light Blue");
+        TxBufferedString(string5);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+
+
+        }
+
+        sprintf(string4,"  C:  %f ",clearRef);
         TxBufferedString(string4);
         sendTxBuf();
         _delay((unsigned long)((2)*(64000000/4000.0)));
@@ -24616,7 +24729,7 @@ void main(void){
 
 
 
-        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        _delay((unsigned long)((300)*(64000000/4000.0)));
 
 
 
