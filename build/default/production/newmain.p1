@@ -1,7 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"12 ./color.h
-[; ;./color.h: 12: void color_click_init(void);
+"13 ./color.h
+[; ;./color.h: 13: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
 "23 ./serialTest.h
 [; ;./serialTest.h: 23: void initUSART4(void);
@@ -192,10 +192,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12320
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 12320: extern volatile ANSELFbits_t ANSELFbits __attribute__((address(0xEB4)));
 [v _ANSELFbits `VS567 ~T0 @X0 0 e@3764 ]
-"29 ./color.h
-[; ;./color.h: 29: typedef struct RGB {
+"30 ./color.h
+[; ;./color.h: 30: typedef struct RGB {
 [s S2018 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2018 RGB R G B C ]
+"8 ./dc_motor.h
+[; ;./dc_motor.h: 8: typedef struct DC_motor {
+[s S2017 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
+[n S2017 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
+"19
+[; ;./dc_motor.h: 19: void DCmotorsInit(DC_motor *mL, DC_motor *mR);
+[v _DCmotorsInit `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"37 ./color.h
+[; ;./color.h: 37: void getColor(RGB *v);
+[v _getColor `(v ~T0 @X0 0 ef1`*S2018 ]
 "30586 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30586:     struct {
 [s S1412 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -211,13 +221,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30602
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30602: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
 [v _PORTFbits `VS1411 ~T0 @X0 0 e@3982 ]
+"38 ./color.h
+[; ;./color.h: 38: void ambientCal(RGB *v);
+[v _ambientCal `(v ~T0 @X0 0 ef1`*S2018 ]
+"39
+[; ;./color.h: 39: void whiteCal(RGB *v);
+[v _whiteCal `(v ~T0 @X0 0 ef1`*S2018 ]
+"40
+[; ;./color.h: 40: void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+[v _colorDetect `(v ~T0 @X0 0 ef5`d`*S2018`*S2018`*S2017`*S2017 ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
-"36 ./color.h
-[; ;./color.h: 36: void getColor(RGB *v);
-[v _getColor `(v ~T0 @X0 0 ef1`*S2018 ]
+"21 ./dc_motor.h
+[; ;./dc_motor.h: 21: void stop(DC_motor *mL, DC_motor *mR);
+[v _stop `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
 "109 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
 [; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
@@ -2365,416 +2384,109 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;newmain.c: 87:     RGB RGBVal;
 [v _RGBVal `S2018 ~T0 @X0 1 a ]
 "88
-[; ;newmain.c: 88:     RGBVal.R = 0;
-[e = . _RGBVal 0 -> -> 0 `i `ui ]
+[; ;newmain.c: 88:     RGB ambientRGBVal;
+[v _ambientRGBVal `S2018 ~T0 @X0 1 a ]
 "89
-[; ;newmain.c: 89:     RGBVal.G = 0;
-[e = . _RGBVal 1 -> -> 0 `i `ui ]
+[; ;newmain.c: 89:     RGB whiteRGBVal;
+[v _whiteRGBVal `S2018 ~T0 @X0 1 a ]
 "90
-[; ;newmain.c: 90:     RGBVal.B = 0;
-[e = . _RGBVal 2 -> -> 0 `i `ui ]
-"91
-[; ;newmain.c: 91:     RGBVal.C = 0;
-[e = . _RGBVal 3 -> -> 0 `i `ui ]
-"92
-[; ;newmain.c: 92:     double clearRef = 0.0;
+[; ;newmain.c: 90:     double clearRef = 0.0;
 [v _clearRef `d ~T0 @X0 1 a ]
 [e = _clearRef .0.0 ]
+"91
+[; ;newmain.c: 91:     double whiteC = 0.0;
+[v _whiteC `d ~T0 @X0 1 a ]
+[e = _whiteC .0.0 ]
+"93
+[; ;newmain.c: 93:     DC_motor motorLeft,motorRight;
+[v _motorLeft `S2017 ~T0 @X0 1 a ]
+[v _motorRight `S2017 ~T0 @X0 1 a ]
 "94
-[; ;newmain.c: 94:     unsigned int ambientR = 30;
-[v _ambientR `ui ~T0 @X0 1 a ]
-[e = _ambientR -> -> 30 `i `ui ]
-"95
-[; ;newmain.c: 95:     unsigned int ambientG = 12;
-[v _ambientG `ui ~T0 @X0 1 a ]
-[e = _ambientG -> -> 12 `i `ui ]
-"96
-[; ;newmain.c: 96:     unsigned int ambientB = 10;
-[v _ambientB `ui ~T0 @X0 1 a ]
-[e = _ambientB -> -> 10 `i `ui ]
-"97
-[; ;newmain.c: 97:     float ambientC = 56.0;
-[v _ambientC `f ~T0 @X0 1 a ]
-[e = _ambientC -> .56.0 `f ]
-"99
-[; ;newmain.c: 99:     float whiteR = 68.0;
-[v _whiteR `f ~T0 @X0 1 a ]
-[e = _whiteR -> .68.0 `f ]
-"100
-[; ;newmain.c: 100:     float whiteG = 57.0;
-[v _whiteG `f ~T0 @X0 1 a ]
-[e = _whiteG -> .57.0 `f ]
-"101
-[; ;newmain.c: 101:     float whiteB = 54.0;
-[v _whiteB `f ~T0 @X0 1 a ]
-[e = _whiteB -> .54.0 `f ]
-"102
-[; ;newmain.c: 102:     float whiteC = 195.0;
-[v _whiteC `f ~T0 @X0 1 a ]
-[e = _whiteC -> .195.0 `f ]
-"105
-[; ;newmain.c: 105:     float redPrint = 0.0;
-[v _redPrint `f ~T0 @X0 1 a ]
-[e = _redPrint -> .0.0 `f ]
-"106
-[; ;newmain.c: 106:     float bluePrint = 0.0;
-[v _bluePrint `f ~T0 @X0 1 a ]
-[e = _bluePrint -> .0.0 `f ]
-"107
-[; ;newmain.c: 107:     float greenPrint = 0.0;
-[v _greenPrint `f ~T0 @X0 1 a ]
-[e = _greenPrint -> .0.0 `f ]
-"110
-[; ;newmain.c: 110:     while(1){
+[; ;newmain.c: 94:     DCmotorsInit(&motorLeft,&motorRight);
+[e ( _DCmotorsInit (2 , &U _motorLeft &U _motorRight ]
+"114
+[; ;newmain.c: 114:     while(1){
 [e :U 2021 ]
 {
-"113
-[; ;newmain.c: 113:         if (!PORTFbits.RF2){
+"115
+[; ;newmain.c: 115:         getColor(&RGBVal);
+[e ( _getColor (1 &U _RGBVal ]
+"118
+[; ;newmain.c: 118:         if (!PORTFbits.RF2){
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2023  ]
 {
-"115
-[; ;newmain.c: 115:             for(int i = 0;i<20;i++){
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 20 `i 2024  ]
-[e $U 2025  ]
-[e :U 2024 ]
-{
-"116
-[; ;newmain.c: 116:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"117
-[; ;newmain.c: 117:             _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"118
-[; ;newmain.c: 118:             }
-}
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 20 `i 2024  ]
-[e :U 2025 ]
-}
 "119
-[; ;newmain.c: 119:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
+[; ;newmain.c: 119:             ambientCal (&ambientRGBVal);
+[e ( _ambientCal (1 &U _ambientRGBVal ]
 "120
-[; ;newmain.c: 120:             _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"121
-[; ;newmain.c: 121:             getColor(&RGBVal);
-[e ( _getColor (1 &U _RGBVal ]
-"122
-[; ;newmain.c: 122:             ambientR = RGBVal.R;
-[e = _ambientR . _RGBVal 0 ]
-"123
-[; ;newmain.c: 123:             ambientG = RGBVal.G;
-[e = _ambientG . _RGBVal 1 ]
-"124
-[; ;newmain.c: 124:             ambientB = RGBVal.B;
-[e = _ambientB . _RGBVal 2 ]
-"125
-[; ;newmain.c: 125:             _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"126
-[; ;newmain.c: 126:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"127
-[; ;newmain.c: 127:         }
+[; ;newmain.c: 120:         }
 }
 [e :U 2023 ]
-"129
-[; ;newmain.c: 129:         if (!PORTFbits.RF3){
-[e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2027  ]
+"122
+[; ;newmain.c: 122:         if (!PORTFbits.RF3){
+[e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2024  ]
 {
+"123
+[; ;newmain.c: 123:             whiteCal (&whiteRGBVal);
+[e ( _whiteCal (1 &U _whiteRGBVal ]
+"124
+[; ;newmain.c: 124:         }
+}
+[e :U 2024 ]
+"127
+[; ;newmain.c: 127:         LATHbits.LATH3=!LATHbits.LATH3;
+[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
+"130
+[; ;newmain.c: 130:         whiteC = whiteRGBVal.C;
+[e = _whiteC -> . _whiteRGBVal 3 `d ]
 "131
-[; ;newmain.c: 131:             for(int i = 0;i<20;i++){
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 20 `i 2028  ]
-[e $U 2029  ]
-[e :U 2028 ]
-{
-"132
-[; ;newmain.c: 132:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
+[; ;newmain.c: 131:         clearRef = RGBVal.C/whiteC;
+[e = _clearRef / -> . _RGBVal 3 `d _whiteC ]
 "133
-[; ;newmain.c: 133:             _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;newmain.c: 133:         if (clearRef > 0.12){
+[e $ ! > _clearRef .0.12 2025  ]
+{
 "134
-[; ;newmain.c: 134:             }
-}
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 20 `i 2028  ]
-[e :U 2029 ]
-}
-"135
-[; ;newmain.c: 135:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
+[; ;newmain.c: 134:             colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
+[e ( _colorDetect (4 , , , , _clearRef &U _ambientRGBVal &U _whiteRGBVal &U _motorLeft &U _motorRight ]
 "136
 [; ;newmain.c: 136:             _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "137
-[; ;newmain.c: 137:             getColor(&RGBVal);
-[e ( _getColor (1 &U _RGBVal ]
+[; ;newmain.c: 137:         }
+}
+[e $U 2026  ]
 "138
-[; ;newmain.c: 138:             whiteR = RGBVal.R;
-[e = _whiteR -> . _RGBVal 0 `f ]
-"139
-[; ;newmain.c: 139:             whiteG = RGBVal.G;
-[e = _whiteG -> . _RGBVal 1 `f ]
+[; ;newmain.c: 138:         else{stop(&motorLeft,&motorRight);}
+[e :U 2025 ]
+{
+[e ( _stop (2 , &U _motorLeft &U _motorRight ]
+}
+[e :U 2026 ]
 "140
-[; ;newmain.c: 140:             whiteB = RGBVal.B;
-[e = _whiteB -> . _RGBVal 2 `f ]
-"141
-[; ;newmain.c: 141:             whiteC = RGBVal.C;
-[e = _whiteC -> . _RGBVal 3 `f ]
-"142
-[; ;newmain.c: 142:             _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;newmain.c: 140:         _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "143
-[; ;newmain.c: 143:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
+[; ;newmain.c: 143:         sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
+[e ( _sprintf (1 , , , (. , &U _string4 :s 1C . _RGBVal 3 . _whiteRGBVal 3 _clearRef ]
 "144
-[; ;newmain.c: 144:         }
-}
-[e :U 2027 ]
-"146
-[; ;newmain.c: 146:         getColor(&RGBVal);
-[e ( _getColor (1 &U _RGBVal ]
-"147
-[; ;newmain.c: 147:         LATHbits.LATH3=!LATHbits.LATH3;
-[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
-"149
-[; ;newmain.c: 149:         clearRef = RGBVal.C/whiteC;
-[e = _clearRef -> / -> . _RGBVal 3 `f _whiteC `d ]
-"152
-[; ;newmain.c: 152:         redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
-[e = _redPrint -> / -> - . _RGBVal 0 _ambientR `d * -> - _whiteR -> _ambientR `f `d _clearRef `f ]
-"153
-[; ;newmain.c: 153:         greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
-[e = _greenPrint -> / -> - . _RGBVal 1 _ambientG `d * -> - _whiteG -> _ambientG `f `d _clearRef `f ]
-"154
-[; ;newmain.c: 154:         bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
-[e = _bluePrint -> / -> - . _RGBVal 2 _ambientB `d * -> - _whiteB -> _ambientB `f `d _clearRef `f ]
-"157
-[; ;newmain.c: 157:         if (clearRef > 0.12){
-[e $ ! > _clearRef .0.12 2031  ]
-{
-"159
-[; ;newmain.c: 159:         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
-[e $ ! & & > -> _redPrint `d .0.9 > -> _greenPrint `d .0.9 > -> _bluePrint `d .0.9 2032  ]
-{
-"160
-[; ;newmain.c: 160:         sprintf(string5,"White");
-[e ( _sprintf (1 , &U _string5 :s 1C ]
-"161
-[; ;newmain.c: 161:         TxBufferedString(string5);
-[e ( _TxBufferedString (1 &U _string5 ]
-"162
-[; ;newmain.c: 162:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"163
-[; ;newmain.c: 163:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"164
-[; ;newmain.c: 164:         }
-}
-[e :U 2032 ]
-"166
-[; ;newmain.c: 166:         if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
-[e $ ! & & > -> _redPrint `d .1.5 > -> - _redPrint _greenPrint `d .0.8 > -> - _redPrint _bluePrint `d .0.8 2033  ]
-{
-"167
-[; ;newmain.c: 167:         sprintf(string5,"Red");
-[e ( _sprintf (1 , &U _string5 :s 2C ]
-"168
-[; ;newmain.c: 168:         TxBufferedString(string5);
-[e ( _TxBufferedString (1 &U _string5 ]
-"169
-[; ;newmain.c: 169:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"170
-[; ;newmain.c: 170:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"171
-[; ;newmain.c: 171:         }
-}
-[e :U 2033 ]
-"173
-[; ;newmain.c: 173:         if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
-[e $ ! & & > -> _redPrint `d .1.3 > -> _greenPrint `d .0.5 > -> _bluePrint `d .0.5 2034  ]
-{
-"174
-[; ;newmain.c: 174:         sprintf(string5,"Orange");
-[e ( _sprintf (1 , &U _string5 :s 3C ]
-"175
-[; ;newmain.c: 175:         TxBufferedString(string5);
-[e ( _TxBufferedString (1 &U _string5 ]
-"176
-[; ;newmain.c: 176:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"177
-[; ;newmain.c: 177:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"178
-[; ;newmain.c: 178:         }
-}
-[e :U 2034 ]
-"180
-[; ;newmain.c: 180:         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
-[e $ ! & & > -> _redPrint `d .1.0 > -> _greenPrint `d .0.8 < -> _bluePrint `d .0.8 2035  ]
-{
-"181
-[; ;newmain.c: 181:         sprintf(string5,"Yellow");
-[e ( _sprintf (1 , &U _string5 :s 4C ]
-"182
-[; ;newmain.c: 182:         TxBufferedString(string5);
-[e ( _TxBufferedString (1 &U _string5 ]
-"183
-[; ;newmain.c: 183:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"184
-[; ;newmain.c: 184:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"185
-[; ;newmain.c: 185:         }
-}
-[e :U 2035 ]
-"187
-[; ;newmain.c: 187:         if ((bluePrint - redPrint > 0.5 & redPrint < 0.5) & (bluePrint - greenPrint > 0.5) & (bluePrint > 0.8 )){
-[e $ ! & & & > -> - _bluePrint _redPrint `d .0.5 < -> _redPrint `d .0.5 > -> - _bluePrint _greenPrint `d .0.5 > -> _bluePrint `d .0.8 2036  ]
-{
-"188
-[; ;newmain.c: 188:         sprintf(string5,"Blue");
-[e ( _sprintf (1 , &U _string5 :s 5C ]
-"189
-[; ;newmain.c: 189:         TxBufferedString(string5);
-[e ( _TxBufferedString (1 &U _string5 ]
-"190
-[; ;newmain.c: 190:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"191
-[; ;newmain.c: 191:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"192
-[; ;newmain.c: 192:         }
-}
-[e :U 2036 ]
-"194
-[; ;newmain.c: 194:         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
-[e $ ! & & > -> - _greenPrint _redPrint `d .0.4 > _greenPrint -> -> 1 `i `f > -> - _greenPrint _bluePrint `d .0.4 2037  ]
-{
-"195
-[; ;newmain.c: 195:         sprintf(string5,"Green");
-[e ( _sprintf (1 , &U _string5 :s 6C ]
-"196
-[; ;newmain.c: 196:         TxBufferedString(string5);
-[e ( _TxBufferedString (1 &U _string5 ]
-"197
-[; ;newmain.c: 197:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"198
-[; ;newmain.c: 198:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"199
-[; ;newmain.c: 199:         }
-}
-[e :U 2037 ]
-"201
-[; ;newmain.c: 201:         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
-[e $ ! & & < -> _redPrint `d .0.7 > -> _greenPrint `d .1.0 > -> _bluePrint `d .1.0 2038  ]
-{
-"202
-[; ;newmain.c: 202:         sprintf(string5,"Light Blue");
-[e ( _sprintf (1 , &U _string5 :s 7C ]
-"203
-[; ;newmain.c: 203:         TxBufferedString(string5);
-[e ( _TxBufferedString (1 &U _string5 ]
-"204
-[; ;newmain.c: 204:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"205
-[; ;newmain.c: 205:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"206
-[; ;newmain.c: 206:         }
-}
-[e :U 2038 ]
-"211
-[; ;newmain.c: 211:         }
-}
-[e :U 2031 ]
-"213
-[; ;newmain.c: 213:         sprintf(string4,"  C:  %f ",clearRef);
-[e ( _sprintf (1 , (. , &U _string4 :s 8C _clearRef ]
-"214
-[; ;newmain.c: 214:         TxBufferedString(string4);
+[; ;newmain.c: 144:         TxBufferedString(string4);
 [e ( _TxBufferedString (1 &U _string4 ]
-"215
-[; ;newmain.c: 215:         sendTxBuf();
+"145
+[; ;newmain.c: 145:         sendTxBuf();
 [e ( _sendTxBuf ..  ]
-"216
-[; ;newmain.c: 216:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"146
+[; ;newmain.c: 146:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"218
-[; ;newmain.c: 218:         sprintf(string1,"Red: %f %d ",(RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef)), RGBVal.R-ambientR);
-[e ( _sprintf (1 , , (. , &U _string1 :s 9C / -> - . _RGBVal 0 _ambientR `d * -> - _whiteR -> _ambientR `f `d _clearRef - . _RGBVal 0 _ambientR ]
-"219
-[; ;newmain.c: 219:         TxBufferedString(string1);
-[e ( _TxBufferedString (1 &U _string1 ]
-"220
-[; ;newmain.c: 220:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"221
-[; ;newmain.c: 221:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"223
-[; ;newmain.c: 223:         sprintf(string2,"Green: %f ",(RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef)));
-[e ( _sprintf (1 , (. , &U _string2 :s 10C / -> - . _RGBVal 1 _ambientG `d * -> - _whiteG -> _ambientG `f `d _clearRef ]
-"224
-[; ;newmain.c: 224:         TxBufferedString(string2);
-[e ( _TxBufferedString (1 &U _string2 ]
-"225
-[; ;newmain.c: 225:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"226
-[; ;newmain.c: 226:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"228
-[; ;newmain.c: 228:         sprintf(string3,"Blue:  %f \r",(RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef)));
-[e ( _sprintf (1 , (. , &U _string3 :s 11C / -> - . _RGBVal 2 _ambientB `d * -> - _whiteB -> _ambientB `f `d _clearRef ]
-"229
-[; ;newmain.c: 229:         TxBufferedString(string3);
-[e ( _TxBufferedString (1 &U _string3 ]
-"230
-[; ;newmain.c: 230:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"231
-[; ;newmain.c: 231:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"235
-[; ;newmain.c: 235:         _delay((unsigned long)((300)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"239
-[; ;newmain.c: 239:     }
+"249
+[; ;newmain.c: 249:     }
 }
 [e :U 2020 ]
 [e $U 2021  ]
 [e :U 2022 ]
-"240
-[; ;newmain.c: 240: }
+"250
+[; ;newmain.c: 250: }
 [e :UE 2019 ]
 }
 [p f _sprintf 8396928 ]
-[a 4C 89 101 108 108 111 119 0 ]
-[a 6C 71 114 101 101 110 0 ]
-[a 7C 76 105 103 104 116 32 66 108 117 101 0 ]
-[a 5C 66 108 117 101 0 ]
-[a 1C 87 104 105 116 101 0 ]
-[a 3C 79 114 97 110 103 101 0 ]
-[a 2C 82 101 100 0 ]
-[a 10C 71 114 101 101 110 58 32 37 102 32 0 ]
-[a 8C 32 32 67 58 32 32 37 102 32 0 ]
-[a 9C 82 101 100 58 32 37 102 32 37 100 32 0 ]
-[a 11C 66 108 117 101 58 32 32 37 102 32 13 0 ]
+[a 1C 32 32 67 58 32 37 100 32 32 37 100 32 32 37 102 32 13 0 ]

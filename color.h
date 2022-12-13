@@ -2,6 +2,7 @@
 #define _color_H
 
 #include <xc.h>
+#include "dc_motor.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
@@ -34,6 +35,9 @@ typedef struct RGB { //definition of DC_motor structure
 } RGB;
 
 void getColor(RGB *v);
+void ambientCal(RGB *v);
+void whiteCal(RGB *v);
+void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
 
 
 #endif

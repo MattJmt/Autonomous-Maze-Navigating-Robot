@@ -85,12 +85,16 @@ void main(void){
     
     
     RGB RGBVal;
-    RGBVal.R = 0;
-    RGBVal.G = 0;
-    RGBVal.B = 0;
-    RGBVal.C = 0;
+    RGB ambientRGBVal;
+    RGB whiteRGBVal;
     double clearRef = 0.0;
+    double whiteC = 0.0;
     
+    DC_motor motorLeft,motorRight;
+    DCmotorsInit(&motorLeft,&motorRight);
+    
+    
+    /*
     unsigned int ambientR = 30;
     unsigned int ambientG = 12;
     unsigned int ambientB = 10;
@@ -105,53 +109,55 @@ void main(void){
     float redPrint = 0.0;
     float bluePrint = 0.0;
     float greenPrint = 0.0;
-    
+    */
     
     while(1){
+        getColor(&RGBVal);
         
         //add something here to calibrate ambient
         if (!PORTFbits.RF2){
-            
-            for(int i = 0;i<20;i++){
-            LATDbits.LATD7 = !LATDbits.LATD7;
-            __delay_ms(100);
-            }
-            LATDbits.LATD7 = !LATDbits.LATD7; 
-            __delay_ms(500);
-            getColor(&RGBVal);
-            ambientR = RGBVal.R;
-            ambientG = RGBVal.G;
-            ambientB = RGBVal.B;
-            __delay_ms(500);
-            LATDbits.LATD7 = !LATDbits.LATD7;               
+            ambientCal (&ambientRGBVal);            
         }
         
         if (!PORTFbits.RF3){
-            
-            for(int i = 0;i<20;i++){
-            LATDbits.LATD7 = !LATDbits.LATD7;
-            __delay_ms(100);
-            }
-            LATDbits.LATD7 = !LATDbits.LATD7; 
-            __delay_ms(500);
-            getColor(&RGBVal);
-            whiteR = RGBVal.R;
-            whiteG = RGBVal.G;
-            whiteB = RGBVal.B;
-            whiteC = RGBVal.C;
-            __delay_ms(500);
-            LATDbits.LATD7 = !LATDbits.LATD7;               
+            whiteCal (&whiteRGBVal);           
         }
             
-        getColor(&RGBVal);
+        
         LATHbits.LATH3=!LATHbits.LATH3;
         
+        
+        whiteC = whiteRGBVal.C;
         clearRef = RGBVal.C/whiteC;
         
+        if (clearRef > 0.12){
+            colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);  
+            
+            __delay_ms(500);
+        }
+        else{stop(&motorLeft,&motorRight);}
+        
+        __delay_ms(100);
+        
+        
+        sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
+        TxBufferedString(string4);   // send to pc
+        sendTxBuf();
+        __delay_ms(2);
 
+        /*    
+     
+        FOR DEBUGGING
+          
+                
         redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
         greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
         bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
+        
+        if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
+        if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
+        if ((bluePrint < 0) | (bluePrint > 2)){ bluePrint = 0.0;}
+        
         
         
         if (clearRef > 0.12){
@@ -184,7 +190,7 @@ void main(void){
         __delay_ms(2);
         }    
         
-        if ((bluePrint - redPrint > 0.5 & redPrint < 0.5) & (bluePrint - greenPrint > 0.5) & (bluePrint > 0.8 )){
+        if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
         sprintf(string5,"Blue");
         TxBufferedString(string5);   // send to pc
         sendTxBuf();
@@ -203,10 +209,14 @@ void main(void){
         TxBufferedString(string5);   // send to pc
         sendTxBuf();
         __delay_ms(2);
-        }   
+        }          
         
-        
-        
+        if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint >  0.8 & bluePrint < 0.95)){
+        sprintf(string5,"Pink");
+        TxBufferedString(string5);   // send to pc
+        sendTxBuf();
+        __delay_ms(2);
+        } 
         
         }
         
@@ -215,24 +225,24 @@ void main(void){
         sendTxBuf();
         __delay_ms(2);
         
-        sprintf(string1,"Red: %f %d ",(RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef)), RGBVal.R-ambientR);
+        sprintf(string1,"Red: %f ",(redPrint));
         TxBufferedString(string1);   // send to pc
         sendTxBuf();
         __delay_ms(2);
         
-        sprintf(string2,"Green: %f ",(RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef)));
+        sprintf(string2,"Green: %f ",(greenPrint));
         TxBufferedString(string2);   // send to pc
         sendTxBuf();
         __delay_ms(2);
             
-        sprintf(string3,"Blue:  %f \r",(RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef)));
+        sprintf(string3,"Blue:  %f \r",(bluePrint));
         TxBufferedString(string3);   // send to pc
         sendTxBuf();
         __delay_ms(2);
         
+        */
         
         
-        __delay_ms(300);
             
         
         

@@ -24232,7 +24232,45 @@ unsigned char __t3rd16on(void);
 # 1 "color.c" 2
 
 # 1 "./color.h" 1
-# 12 "./color.h"
+
+
+
+
+# 1 "./dc_motor.h" 1
+
+
+
+
+
+
+
+typedef struct DC_motor {
+    char power;
+    char direction;
+    char brakemode;
+    unsigned int PWMperiod;
+    unsigned char *posDutyHighByte;
+    unsigned char *negDutyHighByte;
+} DC_motor;
+
+
+void initDCmotorsPWM(int PWMperiod);
+void DCmotorsInit(DC_motor *mL, DC_motor *mR);
+void setMotorPWM(DC_motor *m);
+void stop(DC_motor *mL, DC_motor *mR);
+void turnLeft(DC_motor *mL, DC_motor *mR);
+void turnRight(DC_motor *mL, DC_motor *mR);
+void right45(DC_motor *mL, DC_motor *mR);
+void fullSpeedAhead(DC_motor *mL, DC_motor *mR);
+# 5 "./color.h" 2
+
+
+
+
+
+
+
+
 void color_click_init(void);
 
 
@@ -24258,6 +24296,9 @@ typedef struct RGB {
 } RGB;
 
 void getColor(RGB *v);
+void ambientCal(RGB *v);
+void whiteCal(RGB *v);
+void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
 # 2 "color.c" 2
 
 # 1 "./i2c.h" 1
@@ -24386,4 +24427,106 @@ void getColor (RGB *v){
     v->G = color_read_Green();
     v->B = color_read_Blue();
     v->C = color_read_Clear();
+}
+
+
+void ambientCal (RGB *v){
+
+
+    for(int i = 0;i<20;i++){
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            }
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            getColor(v);
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD7 = !LATDbits.LATD7;
+
+}
+
+
+void whiteCal (RGB *v){
+
+    for(int i = 0;i<20;i++){
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            }
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            getColor(v);
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD7 = !LATDbits.LATD7;
+
+}
+
+
+void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
+
+
+        RGB RGBVal;
+        getColor(&RGBVal);
+
+        unsigned int ambientR = ambientRGBVal->R;
+        unsigned int ambientG = ambientRGBVal->G;
+        unsigned int ambientB = ambientRGBVal->B;
+
+        float whiteR = whiteRGBVal->R;
+        float whiteG = whiteRGBVal->G;
+        float whiteB = whiteRGBVal->B;
+        float whiteC = whiteRGBVal->C;
+
+        float redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
+        float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
+        float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
+
+        if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
+        if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
+        if ((bluePrint < 0) | (bluePrint > 2)){ bluePrint = 0.0;}
+
+
+        if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        fullSpeedAhead(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
+            right45(mL,mR);
+            _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+
 }

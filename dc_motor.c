@@ -62,28 +62,24 @@ void initDCmotorsPWM(int PWMperiod){
     CCP4CONbits.FMT=1; // left aligned
     CCP4CONbits.CCP4MODE=0b1100; //PWM mode  
     CCP4CONbits.EN=1; //turn on
-    
-    LRmotorsInit();
  
 }
 
-
-void LRmotorsInit(){
-    DC_motor motorLeft,motorRight;
+void DCmotorsInit(DC_motor *mL, DC_motor *mR){
     
-    motorLeft.power = 0;      //zero power to start
-    motorLeft.direction = 1;    //set default motor direction
-    motorLeft.brakemode = 1;    //brake mode (slow decay)
-    motorLeft.posDutyHighByte = (unsigned char *)(&CCPR1H);     //store address of CCP1 duty high byte
-    motorLeft.negDutyHighByte = (unsigned char *)(&CCPR2H);     //store address of CCP2 duty high byte
-    motorLeft.PWMperiod = 199 ;        // store PWMperiod for motor (value of T2PR in this case)
+    mL->power = 0;      //zero power to start
+    mL->direction = 1;    //set default motor direction
+    mL->brakemode = 1;    //brake mode (slow decay)
+    mL->posDutyHighByte = (unsigned char *)(&CCPR1H);     //store address of CCP1 duty high byte
+    mL->negDutyHighByte = (unsigned char *)(&CCPR2H);     //store address of CCP2 duty high byte
+    mL->PWMperiod = 199 ;        // store PWMperiod for motor (value of T2PR in this case)
     
-    motorRight.power = 0;      //zero power to start
-    motorRight.direction = 1;    //set default motor direction
-    motorRight.brakemode = 1;    //brake mode (slow decay)
-    motorRight.posDutyHighByte = (unsigned char *)(&CCPR3H);     //store address of CCP1 duty high byte
-    motorRight.negDutyHighByte = (unsigned char *)(&CCPR4H);     //store address of CCP2 duty high byte
-    motorRight.PWMperiod = 199 ;        // store PWMperiod for motor (value of T2PR in this case)
+    mR->power = 0;      //zero power to start
+    mR->direction = 1;    //set default motor direction
+    mR->brakemode = 1;    //brake mode (slow decay)
+    mR->posDutyHighByte = (unsigned char *)(&CCPR3H);     //store address of CCP1 duty high byte
+    mR->negDutyHighByte = (unsigned char *)(&CCPR4H);     //store address of CCP2 duty high byte
+    mR->PWMperiod = 199 ;        // store PWMperiod for motor (value of T2PR in this case)
 }
 
 // function to set CCP PWM output from the values in the motor structure
@@ -111,15 +107,20 @@ void setMotorPWM(DC_motor *m)
 
 //function to stop the robot gradually 
 void stop(DC_motor *mL, DC_motor *mR)
-{
-    mL->power = 0;
-    mR->power = 0;     
+{    
     
     mL->direction = 1;
     mR->direction = 1;
     
     mL->brakemode = 0;   
     mL->brakemode = 0; 
+    
+    
+    while (mL-> power > 0){
+    mL->power -= 1;
+    mR->power -= 1; 
+    }
+    
     
     setMotorPWM(mL);
     setMotorPWM(mR);
@@ -155,6 +156,39 @@ void turnRight(DC_motor *mL, DC_motor *mR)
     
     setMotorPWM(mL);
     setMotorPWM(mR);
+}
+
+void right45(DC_motor *mL, DC_motor *mR)
+{
+    mL->direction = 1;
+    mR->direction = 0;
+    
+    mL->brakemode = 1;   
+    mL->brakemode = 1; 
+    
+    while (mL->power < 10){
+    mL->power += 1;
+    mR->power += 1;  
+    
+    setMotorPWM(mL);
+    setMotorPWM(mR);
+    __delay_ms(2);
+    }
+    
+    __delay_ms(100);
+    
+    while (mL->power > 0){
+    mL->power -= 1;
+    mR->power -= 1;  
+    
+    setMotorPWM(mL);
+    setMotorPWM(mR);
+    __delay_ms(2);
+    }
+    
+
+    
+
 }
 
 //function to make the robot go straight

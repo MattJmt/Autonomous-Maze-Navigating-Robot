@@ -24442,11 +24442,12 @@ typedef struct DC_motor {
 
 
 void initDCmotorsPWM(int PWMperiod);
-void LRmotorsInit();
+void DCmotorsInit(DC_motor *mL, DC_motor *mR);
 void setMotorPWM(DC_motor *m);
 void stop(DC_motor *mL, DC_motor *mR);
 void turnLeft(DC_motor *mL, DC_motor *mR);
 void turnRight(DC_motor *mL, DC_motor *mR);
+void right45(DC_motor *mL, DC_motor *mR);
 void fullSpeedAhead(DC_motor *mL, DC_motor *mR);
 # 14 "newmain.c" 2
 
@@ -24483,7 +24484,7 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 # 15 "newmain.c" 2
 
 # 1 "./color.h" 1
-# 12 "./color.h"
+# 13 "./color.h"
 void color_click_init(void);
 
 
@@ -24509,6 +24510,9 @@ typedef struct RGB {
 } RGB;
 
 void getColor(RGB *v);
+void ambientCal(RGB *v);
+void whiteCal(RGB *v);
+void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
 # 16 "newmain.c" 2
 
 
@@ -24582,156 +24586,47 @@ void main(void){
 
 
     RGB RGBVal;
-    RGBVal.R = 0;
-    RGBVal.G = 0;
-    RGBVal.B = 0;
-    RGBVal.C = 0;
+    RGB ambientRGBVal;
+    RGB whiteRGBVal;
     double clearRef = 0.0;
+    double whiteC = 0.0;
 
-    unsigned int ambientR = 30;
-    unsigned int ambientG = 12;
-    unsigned int ambientB = 10;
-    float ambientC = 56.0;
-
-    float whiteR = 68.0;
-    float whiteG = 57.0;
-    float whiteB = 54.0;
-    float whiteC = 195.0;
-
-
-    float redPrint = 0.0;
-    float bluePrint = 0.0;
-    float greenPrint = 0.0;
-
-
+    DC_motor motorLeft,motorRight;
+    DCmotorsInit(&motorLeft,&motorRight);
+# 114 "newmain.c"
     while(1){
+        getColor(&RGBVal);
 
 
         if (!PORTFbits.RF2){
-
-            for(int i = 0;i<20;i++){
-            LATDbits.LATD7 = !LATDbits.LATD7;
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-            }
-            LATDbits.LATD7 = !LATDbits.LATD7;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            getColor(&RGBVal);
-            ambientR = RGBVal.R;
-            ambientG = RGBVal.G;
-            ambientB = RGBVal.B;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATDbits.LATD7 = !LATDbits.LATD7;
+            ambientCal (&ambientRGBVal);
         }
 
         if (!PORTFbits.RF3){
-
-            for(int i = 0;i<20;i++){
-            LATDbits.LATD7 = !LATDbits.LATD7;
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-            }
-            LATDbits.LATD7 = !LATDbits.LATD7;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            getColor(&RGBVal);
-            whiteR = RGBVal.R;
-            whiteG = RGBVal.G;
-            whiteB = RGBVal.B;
-            whiteC = RGBVal.C;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATDbits.LATD7 = !LATDbits.LATD7;
+            whiteCal (&whiteRGBVal);
         }
 
-        getColor(&RGBVal);
+
         LATHbits.LATH3=!LATHbits.LATH3;
 
+
+        whiteC = whiteRGBVal.C;
         clearRef = RGBVal.C/whiteC;
 
-
-        redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
-        greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
-        bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
-
-
         if (clearRef > 0.12){
+            colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
 
-        if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
-        sprintf(string5,"White");
-        TxBufferedString(string5);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
+            _delay((unsigned long)((500)*(64000000/4000.0)));
         }
+        else{stop(&motorLeft,&motorRight);}
 
-        if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
-        sprintf(string5,"Red");
-        TxBufferedString(string5);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-        if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
-        sprintf(string5,"Orange");
-        TxBufferedString(string5);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-        if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
-        sprintf(string5,"Yellow");
-        TxBufferedString(string5);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-        if ((bluePrint - redPrint > 0.5 & redPrint < 0.5) & (bluePrint - greenPrint > 0.5) & (bluePrint > 0.8 )){
-        sprintf(string5,"Blue");
-        TxBufferedString(string5);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-        if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
-        sprintf(string5,"Green");
-        TxBufferedString(string5);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-        if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
-        sprintf(string5,"Light Blue");
-        TxBufferedString(string5);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
+        _delay((unsigned long)((100)*(64000000/4000.0)));
 
 
-
-
-        }
-
-        sprintf(string4,"  C:  %f ",clearRef);
+        sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
         TxBufferedString(string4);
         sendTxBuf();
         _delay((unsigned long)((2)*(64000000/4000.0)));
-
-        sprintf(string1,"Red: %f %d ",(RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef)), RGBVal.R-ambientR);
-        TxBufferedString(string1);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-
-        sprintf(string2,"Green: %f ",(RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef)));
-        TxBufferedString(string2);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-
-        sprintf(string3,"Blue:  %f \r",(RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef)));
-        TxBufferedString(string3);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-
-
-
-        _delay((unsigned long)((300)*(64000000/4000.0)));
-
-
-
+# 249 "newmain.c"
     }
 }
