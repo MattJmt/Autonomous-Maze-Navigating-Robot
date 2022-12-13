@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "color.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,18 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL
-
-
-#pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = OFF
-
-
-
-
+# 1 "color.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24240,188 +24229,12 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 11 "main.c" 2
+# 1 "color.c" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 1 "./color.h" 1
 
 
 
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 12 "main.c" 2
-
-# 1 "./i2c.h" 1
-# 13 "./i2c.h"
-void I2C_2_Master_Init(void);
-
-
-
-
-void I2C_2_Master_Idle(void);
-
-
-
-
-void I2C_2_Master_Start(void);
-
-
-
-
-void I2C_2_Master_RepStart(void);
-
-
-
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 13 "main.c" 2
 
 # 1 "./dc_motor.h" 1
 
@@ -24458,42 +24271,15 @@ void turnRight_135(DC_motor *mL, DC_motor *mR);
 void turnLeft_135(DC_motor *mL, DC_motor *mR);
 void reverseSquareRight(DC_motor *mL, DC_motor *mR);
 void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
-# 14 "main.c" 2
-
-# 1 "./serialTest.h" 1
-# 13 "./serialTest.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
-
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
+# 5 "./color.h" 2
 
 
 
-void initUSART4(void);
-char getCharSerial4(void);
-void sendCharSerial4(char charToSend);
-void sendStringSerial4(char *string);
-void ADC2String(unsigned int valr, unsigned int valb, unsigned int valg, unsigned int valc);
 
 
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
 
 
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 15 "main.c" 2
 
-# 1 "./color.h" 1
-# 13 "./color.h"
 void color_click_init(void);
 
 
@@ -24522,149 +24308,234 @@ void getColor(RGB *v);
 void ambientCal(RGB *v);
 void whiteCal(RGB *v);
 void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
-# 16 "main.c" 2
+# 2 "color.c" 2
 
-# 1 "./interrupts.h" 1
-
-
-
-
-
-
-
-unsigned int on_period,off_period;
-
-void Interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 17 "main.c" 2
-
-# 1 "./timers.h" 1
+# 1 "./i2c.h" 1
+# 13 "./i2c.h"
+void I2C_2_Master_Init(void);
 
 
 
 
+void I2C_2_Master_Idle(void);
 
 
 
 
-unsigned int on_period,off_period;
-
-void Timer0_init(void);
-void write16bitTMR0val(unsigned int);
-# 18 "main.c" 2
+void I2C_2_Master_Start(void);
 
 
 
 
-
-
-void main(void){
-
-    color_click_init();
-    initUSART4();
-    initDCmotorsPWM(199);
+void I2C_2_Master_RepStart(void);
 
 
 
 
-
-
-    LATDbits.LATD7=0;
-    TRISDbits.TRISD7=0;
-
-    LATHbits.LATH3=0;
-    TRISHbits.TRISH3=0;
-
-    LATDbits.LATD4 = 0;
-    TRISDbits.TRISD4 = 0;
-
-    LATHbits.LATH0 = 0;
-    TRISHbits.TRISH0 = 0;
-
-    LATFbits.LATF0 = 0;
-    TRISFbits.TRISF0 = 0;
-
-    LATHbits.LATH1 = 0;
-    TRISHbits.TRISH1 = 0;
-
-    LATDbits.LATD3 = 0;
-    TRISDbits.TRISD3 = 0;
-
-
-    LATDbits.LATD4 = 1;
-    LATFbits.LATF0 = 1;
-    LATHbits.LATH0 = 1;
-    LATFbits.LATF0 = 1;
-    LATDbits.LATD3 = 1;
+void I2C_2_Master_Stop(void);
 
 
 
 
-    LATGbits.LATG0=1;
-    LATEbits.LATE7=1;
-    LATAbits.LATA3=1;
-
-    TRISGbits.TRISG0=0;
-    TRISEbits.TRISE7=0;
-    TRISAbits.TRISA3=0;
+void I2C_2_Master_Write(unsigned char data_byte);
 
 
-    TRISFbits.TRISF2=1;
-    ANSELFbits.ANSELF2=0;
-
-    TRISFbits.TRISF3=1;
-    ANSELFbits.ANSELF3=0;
-
-    char testString[20];
-    char string1[20];
-    char string2[20];
-    char string3[20];
-    char string4[20];
-    char string5[20];
 
 
-    RGB RGBVal;
-    RGB ambientRGBVal;
-    RGB whiteRGBVal;
-    double clearRef = 0.0;
-    double whiteC = 0.0;
+unsigned char I2C_2_Master_Read(unsigned char ack);
+# 3 "color.c" 2
 
-    DC_motor motorLeft,motorRight;
-    DCmotorsInit(&motorLeft,&motorRight);
-# 116 "main.c"
-    while(1){
+
+
+
+void color_click_init(void)
+{
+
+    I2C_2_Master_Init();
+
+
+  color_writetoaddr(0x00, 0x01);
+    _delay((unsigned long)((3)*(64000000/4000.0)));
+
+
+ color_writetoaddr(0x00, 0x03);
+
+
+ color_writetoaddr(0x01, 0xD5);
+
+}
+
+void color_writetoaddr(char address, char value){
+    I2C_2_Master_Start();
+    I2C_2_Master_Write(0x52 | 0x00);
+    I2C_2_Master_Write(0x80 | address);
+    I2C_2_Master_Write(value);
+    I2C_2_Master_Stop();
+}
+
+unsigned int color_read_Red(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x16);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+unsigned int color_read_Green(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x18);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+unsigned int color_read_Blue(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x1A);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+unsigned int color_read_Clear(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x14);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+void getColor (RGB *v){
+    v->R = color_read_Red();
+    v->G = color_read_Green();
+    v->B = color_read_Blue();
+    v->C = color_read_Clear();
+}
+
+
+void ambientCal (RGB *v){
+
+
+    for(int i = 0;i<20;i++){
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            }
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            getColor(v);
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD7 = !LATDbits.LATD7;
+
+}
+
+
+void whiteCal (RGB *v){
+
+    for(int i = 0;i<20;i++){
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            }
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            getColor(v);
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD7 = !LATDbits.LATD7;
+
+}
+
+
+void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
+
+
+        RGB RGBVal;
         getColor(&RGBVal);
 
+        unsigned int ambientR = ambientRGBVal->R;
+        unsigned int ambientG = ambientRGBVal->G;
+        unsigned int ambientB = ambientRGBVal->B;
 
-        if (!PORTFbits.RF2){
-            ambientCal (&ambientRGBVal);
-        }
+        float whiteR = whiteRGBVal->R;
+        float whiteG = whiteRGBVal->G;
+        float whiteB = whiteRGBVal->B;
+        float whiteC = whiteRGBVal->C;
 
-        if (!PORTFbits.RF3){
-            whiteCal (&whiteRGBVal);
-        }
+        float redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
+        float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
+        float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
 
-
-        LATHbits.LATH3=!LATHbits.LATH3;
-
-
-        whiteC = whiteRGBVal.C;
-        clearRef = RGBVal.C/whiteC;
-
-        if (clearRef > 0.12){
-            colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
-
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-        }
-        else{stop(&motorLeft,&motorRight);}
-
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+        if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
+        if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
+        if ((bluePrint < 0) | (bluePrint > 2)){ bluePrint = 0.0;}
 
 
-        sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
-        TxBufferedString(string4);
-        sendTxBuf();
+        if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
-# 251 "main.c"
-    }
+        fullSpeedAhead(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
+            right45(mL,mR);
+            _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+        if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        }
+
+
+
 }

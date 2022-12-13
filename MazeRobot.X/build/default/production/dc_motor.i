@@ -24252,6 +24252,7 @@ typedef struct DC_motor {
 
 
 void initDCmotorsPWM(int PWMperiod);
+void DCmotorsInit(DC_motor *mL, DC_motor *mR);
 void setMotorPWM(DC_motor *m);
 void stop(DC_motor *mL, DC_motor *mR);
 void turnLeft(DC_motor *mL, DC_motor *mR);
@@ -24335,11 +24336,25 @@ void initDCmotorsPWM(int PWMperiod){
     CCP4CONbits.CCP4MODE=0b1100;
     CCP4CONbits.EN=1;
 
-
-
-
-
 }
+
+void DCmotorsInit(DC_motor *mL, DC_motor *mR){
+
+    mL->power = 0;
+    mL->direction = 1;
+    mL->brakemode = 1;
+    mL->posDutyHighByte = (unsigned char *)(&CCPR1H);
+    mL->negDutyHighByte = (unsigned char *)(&CCPR2H);
+    mL->PWMperiod = 199 ;
+
+    mR->power = 0;
+    mR->direction = 1;
+    mR->brakemode = 1;
+    mR->posDutyHighByte = (unsigned char *)(&CCPR3H);
+    mR->negDutyHighByte = (unsigned char *)(&CCPR4H);
+    mR->PWMperiod = 199 ;
+}
+
 
 
 void setMotorPWM(DC_motor *m)
