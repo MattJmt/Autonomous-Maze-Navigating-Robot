@@ -1,4 +1,5 @@
 #include <xc.h>
+#include <stdio.h>
 #include "color.h"
 #include "i2c.h"
 #include "serialTest.h"
@@ -145,6 +146,13 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
         float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
         float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
         
+        char string1[20];
+        __delay_ms(2);
+        sprintf(string1,"R: %f G: %f B:%f \r",redPrint,greenPrint,bluePrint);
+        TxBufferedString(string1);   // send to pc
+        sendTxBuf();
+        __delay_ms(2);
+        
         if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
         if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
         if ((bluePrint < 0) | (bluePrint > 2)){ bluePrint = 0.0;}            
@@ -207,11 +215,7 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
         } 
         
         
-        char testString[20];
-        sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
-        TxBufferedString(testString);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
+        
         
     
     

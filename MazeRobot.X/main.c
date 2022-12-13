@@ -10,6 +10,7 @@
 
 #include <xc.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "color.h"
 #include "i2c.h"
 #include "dc_motor.h"
@@ -91,6 +92,7 @@ void main(void){
     RGB whiteRGBVal;
     double clearRef = 0.0;
     double whiteC = 19000.0;
+    unsigned char carGo = 0;
     
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
@@ -113,30 +115,40 @@ void main(void){
     float greenPrint = 0.0;
     */
     
+    ambientCal (&ambientRGBVal);
+    
     while(1){
         getColor(&RGBVal);
         
+        if(!PORTFbits.RF2 & !PORTFbits.RF3){
+            LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
+            __delay_ms(1000);
+            LATDbits.LATD7 = 0 , LATHbits.LATH3 = 0;
+            carGo = !carGo;}
+        
         //add something here to calibrate ambient
-        if (!PORTFbits.RF2){
+        if (!PORTFbits.RF2 & PORTFbits.RF3){
             ambientCal (&ambientRGBVal);            
         }
         
-        if (!PORTFbits.RF3){
+        if (!PORTFbits.RF3 & PORTFbits.RF2){
             whiteCal (&whiteRGBVal);           
-        }
-            
+        }            
         
         LATHbits.LATH3=!LATHbits.LATH3;
         
         
         whiteC = whiteRGBVal.C;
-        clearRef = RGBVal.C/whiteC;
+        clearRef = RGBVal.C/whiteC;     // this forces it to be a float
         
-        if (clearRef > 0.12){
+        if ((clearRef > 0.12) & carGo){
             colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);  
             
             __delay_ms(500);
         }
+        
+        if (carGo){forward(&motorLeft,&motorRight);}
+        
         else{stop(&motorLeft,&motorRight);}
         
         __delay_ms(100);

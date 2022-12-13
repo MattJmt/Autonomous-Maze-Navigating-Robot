@@ -203,7 +203,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "21
 [; ;MazeRobot.X/dc_motor.h: 21: void DCmotorsInit(DC_motor *mL, DC_motor *mR);
 [v _DCmotorsInit `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
-"37 MazeRobot.X/color.h
+"38 MazeRobot.X/color.h
+[; ;MazeRobot.X/color.h: 38: void ambientCal(RGB *v);
+[v _ambientCal `(v ~T0 @X0 0 ef1`*S2018 ]
+"37
 [; ;MazeRobot.X/color.h: 37: void getColor(RGB *v);
 [v _getColor `(v ~T0 @X0 0 ef1`*S2018 ]
 "30586 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
@@ -221,20 +224,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30602
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30602: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
 [v _PORTFbits `VS1411 ~T0 @X0 0 e@3982 ]
-"38 MazeRobot.X/color.h
-[; ;MazeRobot.X/color.h: 38: void ambientCal(RGB *v);
-[v _ambientCal `(v ~T0 @X0 0 ef1`*S2018 ]
-"39
+[v F192 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
+[v __delay `JF192 ~T0 @X0 0 e ]
+[p i __delay ]
+"39 MazeRobot.X/color.h
 [; ;MazeRobot.X/color.h: 39: void whiteCal(RGB *v);
 [v _whiteCal `(v ~T0 @X0 0 ef1`*S2018 ]
 "40
 [; ;MazeRobot.X/color.h: 40: void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
 [v _colorDetect `(v ~T0 @X0 0 ef5`d`*S2018`*S2018`*S2017`*S2017 ]
-[v F192 `(v ~T0 @X0 1 tf1`ul ]
-"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
-[v __delay `JF192 ~T0 @X0 0 e ]
-[p i __delay ]
-"23 MazeRobot.X/dc_motor.h
+"26 MazeRobot.X/dc_motor.h
+[; ;MazeRobot.X/dc_motor.h: 26: void forward(DC_motor *mL, DC_motor *mR);
+[v _forward `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"23
 [; ;MazeRobot.X/dc_motor.h: 23: void stop(DC_motor *mL, DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
 "2 MazeRobot.X/main.c
@@ -2265,219 +2268,251 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _on_period `ui ~T0 @X0 1 e ]
 [v _off_period `ui ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"24 MazeRobot.X/main.c
-[; ;MazeRobot.X/main.c: 24: void main(void){
+"25 MazeRobot.X/main.c
+[; ;MazeRobot.X/main.c: 25: void main(void){
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"26
-[; ;MazeRobot.X/main.c: 26:     color_click_init();
-[e ( _color_click_init ..  ]
 "27
-[; ;MazeRobot.X/main.c: 27:     initUSART4();
-[e ( _initUSART4 ..  ]
+[; ;MazeRobot.X/main.c: 27:     color_click_init();
+[e ( _color_click_init ..  ]
 "28
-[; ;MazeRobot.X/main.c: 28:     initDCmotorsPWM(199);
+[; ;MazeRobot.X/main.c: 28:     initUSART4();
+[e ( _initUSART4 ..  ]
+"29
+[; ;MazeRobot.X/main.c: 29:     initDCmotorsPWM(199);
 [e ( _initDCmotorsPWM (1 -> 199 `i ]
-"35
-[; ;MazeRobot.X/main.c: 35:     LATDbits.LATD7=0;
-[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
 "36
-[; ;MazeRobot.X/main.c: 36:     TRISDbits.TRISD7=0;
+[; ;MazeRobot.X/main.c: 36:     LATDbits.LATD7=0;
+[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
+"37
+[; ;MazeRobot.X/main.c: 37:     TRISDbits.TRISD7=0;
 [e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
-"38
-[; ;MazeRobot.X/main.c: 38:     LATHbits.LATH3=0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
 "39
-[; ;MazeRobot.X/main.c: 39:     TRISHbits.TRISH3=0;
+[; ;MazeRobot.X/main.c: 39:     LATHbits.LATH3=0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"40
+[; ;MazeRobot.X/main.c: 40:     TRISHbits.TRISH3=0;
 [e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
-"41
-[; ;MazeRobot.X/main.c: 41:     LATDbits.LATD4 = 0;
-[e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
 "42
-[; ;MazeRobot.X/main.c: 42:     TRISDbits.TRISD4 = 0;
+[; ;MazeRobot.X/main.c: 42:     LATDbits.LATD4 = 0;
+[e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
+"43
+[; ;MazeRobot.X/main.c: 43:     TRISDbits.TRISD4 = 0;
 [e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
-"44
-[; ;MazeRobot.X/main.c: 44:     LATHbits.LATH0 = 0;
-[e = . . _LATHbits 0 0 -> -> 0 `i `uc ]
 "45
-[; ;MazeRobot.X/main.c: 45:     TRISHbits.TRISH0 = 0;
+[; ;MazeRobot.X/main.c: 45:     LATHbits.LATH0 = 0;
+[e = . . _LATHbits 0 0 -> -> 0 `i `uc ]
+"46
+[; ;MazeRobot.X/main.c: 46:     TRISHbits.TRISH0 = 0;
 [e = . . _TRISHbits 0 0 -> -> 0 `i `uc ]
-"47
-[; ;MazeRobot.X/main.c: 47:     LATFbits.LATF0 = 0;
-[e = . . _LATFbits 0 0 -> -> 0 `i `uc ]
 "48
-[; ;MazeRobot.X/main.c: 48:     TRISFbits.TRISF0 = 0;
+[; ;MazeRobot.X/main.c: 48:     LATFbits.LATF0 = 0;
+[e = . . _LATFbits 0 0 -> -> 0 `i `uc ]
+"49
+[; ;MazeRobot.X/main.c: 49:     TRISFbits.TRISF0 = 0;
 [e = . . _TRISFbits 0 0 -> -> 0 `i `uc ]
-"50
-[; ;MazeRobot.X/main.c: 50:     LATHbits.LATH1 = 0;
-[e = . . _LATHbits 0 1 -> -> 0 `i `uc ]
 "51
-[; ;MazeRobot.X/main.c: 51:     TRISHbits.TRISH1 = 0;
+[; ;MazeRobot.X/main.c: 51:     LATHbits.LATH1 = 0;
+[e = . . _LATHbits 0 1 -> -> 0 `i `uc ]
+"52
+[; ;MazeRobot.X/main.c: 52:     TRISHbits.TRISH1 = 0;
 [e = . . _TRISHbits 0 1 -> -> 0 `i `uc ]
-"53
-[; ;MazeRobot.X/main.c: 53:     LATDbits.LATD3 = 0;
-[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
 "54
-[; ;MazeRobot.X/main.c: 54:     TRISDbits.TRISD3 = 0;
+[; ;MazeRobot.X/main.c: 54:     LATDbits.LATD3 = 0;
+[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
+"55
+[; ;MazeRobot.X/main.c: 55:     TRISDbits.TRISD3 = 0;
 [e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
-"57
-[; ;MazeRobot.X/main.c: 57:     LATDbits.LATD4 = 1;
-[e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
 "58
-[; ;MazeRobot.X/main.c: 58:     LATFbits.LATF0 = 1;
-[e = . . _LATFbits 0 0 -> -> 1 `i `uc ]
+[; ;MazeRobot.X/main.c: 58:     LATDbits.LATD4 = 1;
+[e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
 "59
-[; ;MazeRobot.X/main.c: 59:     LATHbits.LATH0 = 1;
-[e = . . _LATHbits 0 0 -> -> 1 `i `uc ]
-"60
-[; ;MazeRobot.X/main.c: 60:     LATFbits.LATF0 = 1;
+[; ;MazeRobot.X/main.c: 59:     LATFbits.LATF0 = 1;
 [e = . . _LATFbits 0 0 -> -> 1 `i `uc ]
+"60
+[; ;MazeRobot.X/main.c: 60:     LATHbits.LATH0 = 1;
+[e = . . _LATHbits 0 0 -> -> 1 `i `uc ]
 "61
-[; ;MazeRobot.X/main.c: 61:     LATDbits.LATD3 = 1;
+[; ;MazeRobot.X/main.c: 61:     LATFbits.LATF0 = 1;
+[e = . . _LATFbits 0 0 -> -> 1 `i `uc ]
+"62
+[; ;MazeRobot.X/main.c: 62:     LATDbits.LATD3 = 1;
 [e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"66
-[; ;MazeRobot.X/main.c: 66:     LATGbits.LATG0=1;
-[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
 "67
-[; ;MazeRobot.X/main.c: 67:     LATEbits.LATE7=1;
-[e = . . _LATEbits 0 7 -> -> 1 `i `uc ]
+[; ;MazeRobot.X/main.c: 67:     LATGbits.LATG0=1;
+[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
 "68
-[; ;MazeRobot.X/main.c: 68:     LATAbits.LATA3=1;
+[; ;MazeRobot.X/main.c: 68:     LATEbits.LATE7=1;
+[e = . . _LATEbits 0 7 -> -> 1 `i `uc ]
+"69
+[; ;MazeRobot.X/main.c: 69:     LATAbits.LATA3=1;
 [e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
-"70
-[; ;MazeRobot.X/main.c: 70:     TRISGbits.TRISG0=0;
-[e = . . _TRISGbits 0 0 -> -> 0 `i `uc ]
 "71
-[; ;MazeRobot.X/main.c: 71:     TRISEbits.TRISE7=0;
-[e = . . _TRISEbits 0 7 -> -> 0 `i `uc ]
+[; ;MazeRobot.X/main.c: 71:     TRISGbits.TRISG0=0;
+[e = . . _TRISGbits 0 0 -> -> 0 `i `uc ]
 "72
-[; ;MazeRobot.X/main.c: 72:     TRISAbits.TRISA3=0;
+[; ;MazeRobot.X/main.c: 72:     TRISEbits.TRISE7=0;
+[e = . . _TRISEbits 0 7 -> -> 0 `i `uc ]
+"73
+[; ;MazeRobot.X/main.c: 73:     TRISAbits.TRISA3=0;
 [e = . . _TRISAbits 0 3 -> -> 0 `i `uc ]
-"75
-[; ;MazeRobot.X/main.c: 75:     TRISFbits.TRISF2=1;
-[e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
 "76
-[; ;MazeRobot.X/main.c: 76:     ANSELFbits.ANSELF2=0;
+[; ;MazeRobot.X/main.c: 76:     TRISFbits.TRISF2=1;
+[e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
+"77
+[; ;MazeRobot.X/main.c: 77:     ANSELFbits.ANSELF2=0;
 [e = . . _ANSELFbits 0 2 -> -> 0 `i `uc ]
-"78
-[; ;MazeRobot.X/main.c: 78:     TRISFbits.TRISF3=1;
-[e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
 "79
-[; ;MazeRobot.X/main.c: 79:     ANSELFbits.ANSELF3=0;
+[; ;MazeRobot.X/main.c: 79:     TRISFbits.TRISF3=1;
+[e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
+"80
+[; ;MazeRobot.X/main.c: 80:     ANSELFbits.ANSELF3=0;
 [e = . . _ANSELFbits 0 3 -> -> 0 `i `uc ]
-"81
-[; ;MazeRobot.X/main.c: 81:     char testString[20];
-[v _testString `uc ~T0 @X0 -> 20 `i a ]
 "82
-[; ;MazeRobot.X/main.c: 82:     char string1[20];
-[v _string1 `uc ~T0 @X0 -> 20 `i a ]
+[; ;MazeRobot.X/main.c: 82:     char testString[20];
+[v _testString `uc ~T0 @X0 -> 20 `i a ]
 "83
-[; ;MazeRobot.X/main.c: 83:     char string2[20];
-[v _string2 `uc ~T0 @X0 -> 20 `i a ]
+[; ;MazeRobot.X/main.c: 83:     char string1[20];
+[v _string1 `uc ~T0 @X0 -> 20 `i a ]
 "84
-[; ;MazeRobot.X/main.c: 84:     char string3[20];
-[v _string3 `uc ~T0 @X0 -> 20 `i a ]
+[; ;MazeRobot.X/main.c: 84:     char string2[20];
+[v _string2 `uc ~T0 @X0 -> 20 `i a ]
 "85
-[; ;MazeRobot.X/main.c: 85:     char string4[20];
-[v _string4 `uc ~T0 @X0 -> 20 `i a ]
+[; ;MazeRobot.X/main.c: 85:     char string3[20];
+[v _string3 `uc ~T0 @X0 -> 20 `i a ]
 "86
-[; ;MazeRobot.X/main.c: 86:     char string5[20];
+[; ;MazeRobot.X/main.c: 86:     char string4[20];
+[v _string4 `uc ~T0 @X0 -> 20 `i a ]
+"87
+[; ;MazeRobot.X/main.c: 87:     char string5[20];
 [v _string5 `uc ~T0 @X0 -> 20 `i a ]
-"89
-[; ;MazeRobot.X/main.c: 89:     RGB RGBVal;
-[v _RGBVal `S2018 ~T0 @X0 1 a ]
 "90
-[; ;MazeRobot.X/main.c: 90:     RGB ambientRGBVal;
-[v _ambientRGBVal `S2018 ~T0 @X0 1 a ]
+[; ;MazeRobot.X/main.c: 90:     RGB RGBVal;
+[v _RGBVal `S2018 ~T0 @X0 1 a ]
 "91
-[; ;MazeRobot.X/main.c: 91:     RGB whiteRGBVal;
-[v _whiteRGBVal `S2018 ~T0 @X0 1 a ]
+[; ;MazeRobot.X/main.c: 91:     RGB ambientRGBVal;
+[v _ambientRGBVal `S2018 ~T0 @X0 1 a ]
 "92
-[; ;MazeRobot.X/main.c: 92:     double clearRef = 0.0;
+[; ;MazeRobot.X/main.c: 92:     RGB whiteRGBVal;
+[v _whiteRGBVal `S2018 ~T0 @X0 1 a ]
+"93
+[; ;MazeRobot.X/main.c: 93:     double clearRef = 0.0;
 [v _clearRef `d ~T0 @X0 1 a ]
 [e = _clearRef .0.0 ]
-"93
-[; ;MazeRobot.X/main.c: 93:     double whiteC = 19000.0;
+"94
+[; ;MazeRobot.X/main.c: 94:     double whiteC = 19000.0;
 [v _whiteC `d ~T0 @X0 1 a ]
 [e = _whiteC .19000.0 ]
 "95
-[; ;MazeRobot.X/main.c: 95:     DC_motor motorLeft,motorRight;
+[; ;MazeRobot.X/main.c: 95:     unsigned char carGo = 0;
+[v _carGo `uc ~T0 @X0 1 a ]
+[e = _carGo -> -> 0 `i `uc ]
+"97
+[; ;MazeRobot.X/main.c: 97:     DC_motor motorLeft,motorRight;
 [v _motorLeft `S2017 ~T0 @X0 1 a ]
 [v _motorRight `S2017 ~T0 @X0 1 a ]
-"96
-[; ;MazeRobot.X/main.c: 96:     DCmotorsInit(&motorLeft,&motorRight);
+"98
+[; ;MazeRobot.X/main.c: 98:     DCmotorsInit(&motorLeft,&motorRight);
 [e ( _DCmotorsInit (2 , &U _motorLeft &U _motorRight ]
-"116
-[; ;MazeRobot.X/main.c: 116:     while(1){
+"118
+[; ;MazeRobot.X/main.c: 118:     ambientCal (&ambientRGBVal);
+[e ( _ambientCal (1 &U _ambientRGBVal ]
+"120
+[; ;MazeRobot.X/main.c: 120:     while(1){
 [e :U 2021 ]
 {
-"117
-[; ;MazeRobot.X/main.c: 117:         getColor(&RGBVal);
-[e ( _getColor (1 &U _RGBVal ]
-"120
-[; ;MazeRobot.X/main.c: 120:         if (!PORTFbits.RF2){
-[e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2023  ]
-{
 "121
-[; ;MazeRobot.X/main.c: 121:             ambientCal (&ambientRGBVal);
-[e ( _ambientCal (1 &U _ambientRGBVal ]
-"122
-[; ;MazeRobot.X/main.c: 122:         }
+[; ;MazeRobot.X/main.c: 121:         getColor(&RGBVal);
+[e ( _getColor (1 &U _RGBVal ]
+"123
+[; ;MazeRobot.X/main.c: 123:         if(!PORTFbits.RF2 & !PORTFbits.RF3){
+[e $ ! & ! != -> . . _PORTFbits 0 2 `i -> 0 `i ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2023  ]
+{
+"124
+[; ;MazeRobot.X/main.c: 124:             LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
+[e ; = . . _LATDbits 0 7 -> -> 1 `i `uc = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+"125
+[; ;MazeRobot.X/main.c: 125:             _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"126
+[; ;MazeRobot.X/main.c: 126:             LATDbits.LATD7 = 0 , LATHbits.LATH3 = 0;
+[e ; = . . _LATDbits 0 7 -> -> 0 `i `uc = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"127
+[; ;MazeRobot.X/main.c: 127:             carGo = !carGo;}
+[e = _carGo -> -> ! != -> _carGo `i -> 0 `i `i `uc ]
 }
 [e :U 2023 ]
-"124
-[; ;MazeRobot.X/main.c: 124:         if (!PORTFbits.RF3){
-[e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2024  ]
+"130
+[; ;MazeRobot.X/main.c: 130:         if (!PORTFbits.RF2 & PORTFbits.RF3){
+[e $ ! != & -> ! != -> . . _PORTFbits 0 2 `i -> 0 `i `i -> . . _PORTFbits 0 3 `i -> 0 `i 2024  ]
 {
-"125
-[; ;MazeRobot.X/main.c: 125:             whiteCal (&whiteRGBVal);
-[e ( _whiteCal (1 &U _whiteRGBVal ]
-"126
-[; ;MazeRobot.X/main.c: 126:         }
+"131
+[; ;MazeRobot.X/main.c: 131:             ambientCal (&ambientRGBVal);
+[e ( _ambientCal (1 &U _ambientRGBVal ]
+"132
+[; ;MazeRobot.X/main.c: 132:         }
 }
 [e :U 2024 ]
-"129
-[; ;MazeRobot.X/main.c: 129:         LATHbits.LATH3=!LATHbits.LATH3;
-[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
-"132
-[; ;MazeRobot.X/main.c: 132:         whiteC = whiteRGBVal.C;
-[e = _whiteC -> . _whiteRGBVal 3 `d ]
-"133
-[; ;MazeRobot.X/main.c: 133:         clearRef = RGBVal.C/whiteC;
-[e = _clearRef / -> . _RGBVal 3 `d _whiteC ]
-"135
-[; ;MazeRobot.X/main.c: 135:         if (clearRef > 0.12){
-[e $ ! > _clearRef .0.12 2025  ]
+"134
+[; ;MazeRobot.X/main.c: 134:         if (!PORTFbits.RF3 & PORTFbits.RF2){
+[e $ ! != & -> ! != -> . . _PORTFbits 0 3 `i -> 0 `i `i -> . . _PORTFbits 0 2 `i -> 0 `i 2025  ]
 {
+"135
+[; ;MazeRobot.X/main.c: 135:             whiteCal (&whiteRGBVal);
+[e ( _whiteCal (1 &U _whiteRGBVal ]
 "136
-[; ;MazeRobot.X/main.c: 136:             colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
-[e ( _colorDetect (4 , , , , _clearRef &U _ambientRGBVal &U _whiteRGBVal &U _motorLeft &U _motorRight ]
-"138
-[; ;MazeRobot.X/main.c: 138:             _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"139
-[; ;MazeRobot.X/main.c: 139:         }
+[; ;MazeRobot.X/main.c: 136:         }
 }
-[e $U 2026  ]
-"140
-[; ;MazeRobot.X/main.c: 140:         else{stop(&motorLeft,&motorRight);}
 [e :U 2025 ]
+"138
+[; ;MazeRobot.X/main.c: 138:         LATHbits.LATH3=!LATHbits.LATH3;
+[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
+"141
+[; ;MazeRobot.X/main.c: 141:         whiteC = whiteRGBVal.C;
+[e = _whiteC -> . _whiteRGBVal 3 `d ]
+"142
+[; ;MazeRobot.X/main.c: 142:         clearRef = RGBVal.C/whiteC;
+[e = _clearRef / -> . _RGBVal 3 `d _whiteC ]
+"144
+[; ;MazeRobot.X/main.c: 144:         if ((clearRef > 0.12) & carGo){
+[e $ ! != & -> > _clearRef .0.12 `i -> _carGo `i -> 0 `i 2026  ]
+{
+"145
+[; ;MazeRobot.X/main.c: 145:             colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
+[e ( _colorDetect (4 , , , , _clearRef &U _ambientRGBVal &U _whiteRGBVal &U _motorLeft &U _motorRight ]
+"147
+[; ;MazeRobot.X/main.c: 147:             _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"148
+[; ;MazeRobot.X/main.c: 148:         }
+}
+[e :U 2026 ]
+"150
+[; ;MazeRobot.X/main.c: 150:         if (carGo){forward(&motorLeft,&motorRight);}
+[e $ ! != -> _carGo `i -> 0 `i 2027  ]
+{
+[e ( _forward (2 , &U _motorLeft &U _motorRight ]
+}
+[e $U 2028  ]
+"152
+[; ;MazeRobot.X/main.c: 152:         else{stop(&motorLeft,&motorRight);}
+[e :U 2027 ]
 {
 [e ( _stop (2 , &U _motorLeft &U _motorRight ]
 }
-[e :U 2026 ]
-"142
-[; ;MazeRobot.X/main.c: 142:         _delay((unsigned long)((100)*(64000000/4000.0)));
+[e :U 2028 ]
+"154
+[; ;MazeRobot.X/main.c: 154:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"253
-[; ;MazeRobot.X/main.c: 253:     }
+"265
+[; ;MazeRobot.X/main.c: 265:     }
 }
 [e :U 2020 ]
 [e $U 2021  ]
 [e :U 2022 ]
-"254
-[; ;MazeRobot.X/main.c: 254: }
+"266
+[; ;MazeRobot.X/main.c: 266: }
 [e :UE 2019 ]
 }

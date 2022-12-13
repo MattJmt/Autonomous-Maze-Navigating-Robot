@@ -26,8 +26,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _I2C_2_Master_Read `(uc ~T0 @X0 0 ef1`uc ]
 "30 MazeRobot.X/color.h
 [; ;MazeRobot.X/color.h: 30: typedef struct RGB {
-[s S2016 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S2016 RGB R G B C ]
+[s S2018 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2018 RGB R G B C ]
 "28811 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 28811:     struct {
 [s S1349 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -45,38 +45,38 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _LATDbits `VS1348 ~T0 @X0 0 e@3964 ]
 "10 MazeRobot.X/dc_motor.h
 [; ;MazeRobot.X/dc_motor.h: 10: typedef struct DC_motor {
-[s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
-[n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
-"29
-[; ;MazeRobot.X/dc_motor.h: 29: void turnRight_90(DC_motor *mL, DC_motor *mR);
-[v _turnRight_90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"31
-[; ;MazeRobot.X/dc_motor.h: 31: void turnRight_135(DC_motor *mL, DC_motor *mR);
-[v _turnRight_135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"33
-[; ;MazeRobot.X/dc_motor.h: 33: void reverseSquareRight(DC_motor *mL, DC_motor *mR);
-[v _reverseSquareRight `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"30
-[; ;MazeRobot.X/dc_motor.h: 30: void turn_180(DC_motor *mL, DC_motor *mR);
-[v _turn_180 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"28
-[; ;MazeRobot.X/dc_motor.h: 28: void turnLeft_90(DC_motor *mL, DC_motor *mR);
-[v _turnLeft_90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"32
-[; ;MazeRobot.X/dc_motor.h: 32: void turnLeft_135(DC_motor *mL, DC_motor *mR);
-[v _turnLeft_135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"34
-[; ;MazeRobot.X/dc_motor.h: 34: void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
-[v _reverseSquareLeft `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"211 MazeRobot.X/color.c
-[; ;MazeRobot.X/color.c: 211:         sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
-[v _sprintf `(i ~T0 @X0 0 e? ]
+[s S2017 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
+[n S2017 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
+"109 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "38 MazeRobot.X/serialTest.h
 [; ;MazeRobot.X/serialTest.h: 38: void TxBufferedString(char *string);
 [v _TxBufferedString `(v ~T0 @X0 0 ef1`*uc ]
 "39
 [; ;MazeRobot.X/serialTest.h: 39: void sendTxBuf(void);
 [v _sendTxBuf `(v ~T0 @X0 0 ef ]
+"29 MazeRobot.X/dc_motor.h
+[; ;MazeRobot.X/dc_motor.h: 29: void turnRight_90(DC_motor *mL, DC_motor *mR);
+[v _turnRight_90 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"31
+[; ;MazeRobot.X/dc_motor.h: 31: void turnRight_135(DC_motor *mL, DC_motor *mR);
+[v _turnRight_135 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"33
+[; ;MazeRobot.X/dc_motor.h: 33: void reverseSquareRight(DC_motor *mL, DC_motor *mR);
+[v _reverseSquareRight `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"30
+[; ;MazeRobot.X/dc_motor.h: 30: void turn_180(DC_motor *mL, DC_motor *mR);
+[v _turn_180 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"28
+[; ;MazeRobot.X/dc_motor.h: 28: void turnLeft_90(DC_motor *mL, DC_motor *mR);
+[v _turnLeft_90 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"32
+[; ;MazeRobot.X/dc_motor.h: 32: void turnLeft_135(DC_motor *mL, DC_motor *mR);
+[v _turnLeft_135 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"34
+[; ;MazeRobot.X/dc_motor.h: 34: void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
+[v _reverseSquareLeft `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2087,576 +2087,580 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _TxBufReadCnt
 -> -> 0 `i `uc
 ]
-"7 MazeRobot.X/color.c
-[; ;MazeRobot.X/color.c: 7: void color_click_init(void)
+"8 MazeRobot.X/color.c
+[; ;MazeRobot.X/color.c: 8: void color_click_init(void)
 [v _color_click_init `(v ~T0 @X0 1 ef ]
-"8
-[; ;MazeRobot.X/color.c: 8: {
+"9
+[; ;MazeRobot.X/color.c: 9: {
 {
 [e :U _color_click_init ]
 [f ]
-"10
-[; ;MazeRobot.X/color.c: 10:     I2C_2_Master_Init();
+"11
+[; ;MazeRobot.X/color.c: 11:     I2C_2_Master_Init();
 [e ( _I2C_2_Master_Init ..  ]
-"13
-[; ;MazeRobot.X/color.c: 13:   color_writetoaddr(0x00, 0x01);
-[e ( _color_writetoaddr (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
 "14
-[; ;MazeRobot.X/color.c: 14:     _delay((unsigned long)((3)*(64000000/4000.0)));
+[; ;MazeRobot.X/color.c: 14:   color_writetoaddr(0x00, 0x01);
+[e ( _color_writetoaddr (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
+"15
+[; ;MazeRobot.X/color.c: 15:     _delay((unsigned long)((3)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"17
-[; ;MazeRobot.X/color.c: 17:  color_writetoaddr(0x00, 0x03);
+"18
+[; ;MazeRobot.X/color.c: 18:  color_writetoaddr(0x00, 0x03);
 [e ( _color_writetoaddr (2 , -> -> 0 `i `uc -> -> 3 `i `uc ]
-"20
-[; ;MazeRobot.X/color.c: 20:  color_writetoaddr(0x01, 0xD5);
+"21
+[; ;MazeRobot.X/color.c: 21:  color_writetoaddr(0x01, 0xD5);
 [e ( _color_writetoaddr (2 , -> -> 1 `i `uc -> -> 213 `i `uc ]
-"22
-[; ;MazeRobot.X/color.c: 22: }
-[e :UE 2017 ]
+"23
+[; ;MazeRobot.X/color.c: 23: }
+[e :UE 2019 ]
 }
-"24
-[; ;MazeRobot.X/color.c: 24: void color_writetoaddr(char address, char value){
+"25
+[; ;MazeRobot.X/color.c: 25: void color_writetoaddr(char address, char value){
 [v _color_writetoaddr `(v ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _color_writetoaddr ]
 [v _address `uc ~T0 @X0 1 r1 ]
 [v _value `uc ~T0 @X0 1 r2 ]
 [f ]
-"25
-[; ;MazeRobot.X/color.c: 25:     I2C_2_Master_Start();
-[e ( _I2C_2_Master_Start ..  ]
 "26
-[; ;MazeRobot.X/color.c: 26:     I2C_2_Master_Write(0x52 | 0x00);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
+[; ;MazeRobot.X/color.c: 26:     I2C_2_Master_Start();
+[e ( _I2C_2_Master_Start ..  ]
 "27
-[; ;MazeRobot.X/color.c: 27:     I2C_2_Master_Write(0x80 | address);
-[e ( _I2C_2_Master_Write (1 -> | -> 128 `i -> _address `i `uc ]
+[; ;MazeRobot.X/color.c: 27:     I2C_2_Master_Write(0x52 | 0x00);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
 "28
-[; ;MazeRobot.X/color.c: 28:     I2C_2_Master_Write(value);
-[e ( _I2C_2_Master_Write (1 -> _value `uc ]
+[; ;MazeRobot.X/color.c: 28:     I2C_2_Master_Write(0x80 | address);
+[e ( _I2C_2_Master_Write (1 -> | -> 128 `i -> _address `i `uc ]
 "29
-[; ;MazeRobot.X/color.c: 29:     I2C_2_Master_Stop();
-[e ( _I2C_2_Master_Stop ..  ]
+[; ;MazeRobot.X/color.c: 29:     I2C_2_Master_Write(value);
+[e ( _I2C_2_Master_Write (1 -> _value `uc ]
 "30
-[; ;MazeRobot.X/color.c: 30: }
-[e :UE 2018 ]
+[; ;MazeRobot.X/color.c: 30:     I2C_2_Master_Stop();
+[e ( _I2C_2_Master_Stop ..  ]
+"31
+[; ;MazeRobot.X/color.c: 31: }
+[e :UE 2020 ]
 }
-"32
-[; ;MazeRobot.X/color.c: 32: unsigned int color_read_Red(void)
-[v _color_read_Red `(ui ~T0 @X0 1 ef ]
 "33
-[; ;MazeRobot.X/color.c: 33: {
+[; ;MazeRobot.X/color.c: 33: unsigned int color_read_Red(void)
+[v _color_read_Red `(ui ~T0 @X0 1 ef ]
+"34
+[; ;MazeRobot.X/color.c: 34: {
 {
 [e :U _color_read_Red ]
 [f ]
-"34
-[; ;MazeRobot.X/color.c: 34:  unsigned int tmp;
-[v _tmp `ui ~T0 @X0 1 a ]
 "35
-[; ;MazeRobot.X/color.c: 35:  I2C_2_Master_Start();
-[e ( _I2C_2_Master_Start ..  ]
+[; ;MazeRobot.X/color.c: 35:  unsigned int tmp;
+[v _tmp `ui ~T0 @X0 1 a ]
 "36
-[; ;MazeRobot.X/color.c: 36:  I2C_2_Master_Write(0x52 | 0x00);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
+[; ;MazeRobot.X/color.c: 36:  I2C_2_Master_Start();
+[e ( _I2C_2_Master_Start ..  ]
 "37
-[; ;MazeRobot.X/color.c: 37:  I2C_2_Master_Write(0xA0 | 0x16);
-[e ( _I2C_2_Master_Write (1 -> | -> 160 `i -> 22 `i `uc ]
+[; ;MazeRobot.X/color.c: 37:  I2C_2_Master_Write(0x52 | 0x00);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
 "38
-[; ;MazeRobot.X/color.c: 38:  I2C_2_Master_RepStart();
-[e ( _I2C_2_Master_RepStart ..  ]
+[; ;MazeRobot.X/color.c: 38:  I2C_2_Master_Write(0xA0 | 0x16);
+[e ( _I2C_2_Master_Write (1 -> | -> 160 `i -> 22 `i `uc ]
 "39
-[; ;MazeRobot.X/color.c: 39:  I2C_2_Master_Write(0x52 | 0x01);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 1 `i `uc ]
+[; ;MazeRobot.X/color.c: 39:  I2C_2_Master_RepStart();
+[e ( _I2C_2_Master_RepStart ..  ]
 "40
-[; ;MazeRobot.X/color.c: 40:  tmp=I2C_2_Master_Read(1);
-[e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
+[; ;MazeRobot.X/color.c: 40:  I2C_2_Master_Write(0x52 | 0x01);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 1 `i `uc ]
 "41
-[; ;MazeRobot.X/color.c: 41:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
-[e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
+[; ;MazeRobot.X/color.c: 41:  tmp=I2C_2_Master_Read(1);
+[e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
 "42
-[; ;MazeRobot.X/color.c: 42:  I2C_2_Master_Stop();
-[e ( _I2C_2_Master_Stop ..  ]
+[; ;MazeRobot.X/color.c: 42:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
+[e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
 "43
-[; ;MazeRobot.X/color.c: 43:  return tmp;
-[e ) _tmp ]
-[e $UE 2019  ]
+[; ;MazeRobot.X/color.c: 43:  I2C_2_Master_Stop();
+[e ( _I2C_2_Master_Stop ..  ]
 "44
-[; ;MazeRobot.X/color.c: 44: }
-[e :UE 2019 ]
+[; ;MazeRobot.X/color.c: 44:  return tmp;
+[e ) _tmp ]
+[e $UE 2021  ]
+"45
+[; ;MazeRobot.X/color.c: 45: }
+[e :UE 2021 ]
 }
-"46
-[; ;MazeRobot.X/color.c: 46: unsigned int color_read_Green(void)
-[v _color_read_Green `(ui ~T0 @X0 1 ef ]
 "47
-[; ;MazeRobot.X/color.c: 47: {
+[; ;MazeRobot.X/color.c: 47: unsigned int color_read_Green(void)
+[v _color_read_Green `(ui ~T0 @X0 1 ef ]
+"48
+[; ;MazeRobot.X/color.c: 48: {
 {
 [e :U _color_read_Green ]
 [f ]
-"48
-[; ;MazeRobot.X/color.c: 48:  unsigned int tmp;
-[v _tmp `ui ~T0 @X0 1 a ]
 "49
-[; ;MazeRobot.X/color.c: 49:  I2C_2_Master_Start();
-[e ( _I2C_2_Master_Start ..  ]
+[; ;MazeRobot.X/color.c: 49:  unsigned int tmp;
+[v _tmp `ui ~T0 @X0 1 a ]
 "50
-[; ;MazeRobot.X/color.c: 50:  I2C_2_Master_Write(0x52 | 0x00);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
+[; ;MazeRobot.X/color.c: 50:  I2C_2_Master_Start();
+[e ( _I2C_2_Master_Start ..  ]
 "51
-[; ;MazeRobot.X/color.c: 51:  I2C_2_Master_Write(0xA0 | 0x18);
-[e ( _I2C_2_Master_Write (1 -> | -> 160 `i -> 24 `i `uc ]
+[; ;MazeRobot.X/color.c: 51:  I2C_2_Master_Write(0x52 | 0x00);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
 "52
-[; ;MazeRobot.X/color.c: 52:  I2C_2_Master_RepStart();
-[e ( _I2C_2_Master_RepStart ..  ]
+[; ;MazeRobot.X/color.c: 52:  I2C_2_Master_Write(0xA0 | 0x18);
+[e ( _I2C_2_Master_Write (1 -> | -> 160 `i -> 24 `i `uc ]
 "53
-[; ;MazeRobot.X/color.c: 53:  I2C_2_Master_Write(0x52 | 0x01);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 1 `i `uc ]
+[; ;MazeRobot.X/color.c: 53:  I2C_2_Master_RepStart();
+[e ( _I2C_2_Master_RepStart ..  ]
 "54
-[; ;MazeRobot.X/color.c: 54:  tmp=I2C_2_Master_Read(1);
-[e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
+[; ;MazeRobot.X/color.c: 54:  I2C_2_Master_Write(0x52 | 0x01);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 1 `i `uc ]
 "55
-[; ;MazeRobot.X/color.c: 55:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
-[e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
+[; ;MazeRobot.X/color.c: 55:  tmp=I2C_2_Master_Read(1);
+[e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
 "56
-[; ;MazeRobot.X/color.c: 56:  I2C_2_Master_Stop();
-[e ( _I2C_2_Master_Stop ..  ]
+[; ;MazeRobot.X/color.c: 56:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
+[e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
 "57
-[; ;MazeRobot.X/color.c: 57:  return tmp;
-[e ) _tmp ]
-[e $UE 2020  ]
+[; ;MazeRobot.X/color.c: 57:  I2C_2_Master_Stop();
+[e ( _I2C_2_Master_Stop ..  ]
 "58
-[; ;MazeRobot.X/color.c: 58: }
-[e :UE 2020 ]
+[; ;MazeRobot.X/color.c: 58:  return tmp;
+[e ) _tmp ]
+[e $UE 2022  ]
+"59
+[; ;MazeRobot.X/color.c: 59: }
+[e :UE 2022 ]
 }
-"61
-[; ;MazeRobot.X/color.c: 61: unsigned int color_read_Blue(void)
-[v _color_read_Blue `(ui ~T0 @X0 1 ef ]
 "62
-[; ;MazeRobot.X/color.c: 62: {
+[; ;MazeRobot.X/color.c: 62: unsigned int color_read_Blue(void)
+[v _color_read_Blue `(ui ~T0 @X0 1 ef ]
+"63
+[; ;MazeRobot.X/color.c: 63: {
 {
 [e :U _color_read_Blue ]
 [f ]
-"63
-[; ;MazeRobot.X/color.c: 63:  unsigned int tmp;
-[v _tmp `ui ~T0 @X0 1 a ]
 "64
-[; ;MazeRobot.X/color.c: 64:  I2C_2_Master_Start();
-[e ( _I2C_2_Master_Start ..  ]
+[; ;MazeRobot.X/color.c: 64:  unsigned int tmp;
+[v _tmp `ui ~T0 @X0 1 a ]
 "65
-[; ;MazeRobot.X/color.c: 65:  I2C_2_Master_Write(0x52 | 0x00);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
+[; ;MazeRobot.X/color.c: 65:  I2C_2_Master_Start();
+[e ( _I2C_2_Master_Start ..  ]
 "66
-[; ;MazeRobot.X/color.c: 66:  I2C_2_Master_Write(0xA0 | 0x1A);
-[e ( _I2C_2_Master_Write (1 -> | -> 160 `i -> 26 `i `uc ]
+[; ;MazeRobot.X/color.c: 66:  I2C_2_Master_Write(0x52 | 0x00);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
 "67
-[; ;MazeRobot.X/color.c: 67:  I2C_2_Master_RepStart();
-[e ( _I2C_2_Master_RepStart ..  ]
+[; ;MazeRobot.X/color.c: 67:  I2C_2_Master_Write(0xA0 | 0x1A);
+[e ( _I2C_2_Master_Write (1 -> | -> 160 `i -> 26 `i `uc ]
 "68
-[; ;MazeRobot.X/color.c: 68:  I2C_2_Master_Write(0x52 | 0x01);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 1 `i `uc ]
+[; ;MazeRobot.X/color.c: 68:  I2C_2_Master_RepStart();
+[e ( _I2C_2_Master_RepStart ..  ]
 "69
-[; ;MazeRobot.X/color.c: 69:  tmp=I2C_2_Master_Read(1);
-[e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
+[; ;MazeRobot.X/color.c: 69:  I2C_2_Master_Write(0x52 | 0x01);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 1 `i `uc ]
 "70
-[; ;MazeRobot.X/color.c: 70:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
-[e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
+[; ;MazeRobot.X/color.c: 70:  tmp=I2C_2_Master_Read(1);
+[e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
 "71
-[; ;MazeRobot.X/color.c: 71:  I2C_2_Master_Stop();
-[e ( _I2C_2_Master_Stop ..  ]
+[; ;MazeRobot.X/color.c: 71:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
+[e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
 "72
-[; ;MazeRobot.X/color.c: 72:  return tmp;
-[e ) _tmp ]
-[e $UE 2021  ]
+[; ;MazeRobot.X/color.c: 72:  I2C_2_Master_Stop();
+[e ( _I2C_2_Master_Stop ..  ]
 "73
-[; ;MazeRobot.X/color.c: 73: }
-[e :UE 2021 ]
+[; ;MazeRobot.X/color.c: 73:  return tmp;
+[e ) _tmp ]
+[e $UE 2023  ]
+"74
+[; ;MazeRobot.X/color.c: 74: }
+[e :UE 2023 ]
 }
-"75
-[; ;MazeRobot.X/color.c: 75: unsigned int color_read_Clear(void)
-[v _color_read_Clear `(ui ~T0 @X0 1 ef ]
 "76
-[; ;MazeRobot.X/color.c: 76: {
+[; ;MazeRobot.X/color.c: 76: unsigned int color_read_Clear(void)
+[v _color_read_Clear `(ui ~T0 @X0 1 ef ]
+"77
+[; ;MazeRobot.X/color.c: 77: {
 {
 [e :U _color_read_Clear ]
 [f ]
-"77
-[; ;MazeRobot.X/color.c: 77:  unsigned int tmp;
-[v _tmp `ui ~T0 @X0 1 a ]
 "78
-[; ;MazeRobot.X/color.c: 78:  I2C_2_Master_Start();
-[e ( _I2C_2_Master_Start ..  ]
+[; ;MazeRobot.X/color.c: 78:  unsigned int tmp;
+[v _tmp `ui ~T0 @X0 1 a ]
 "79
-[; ;MazeRobot.X/color.c: 79:  I2C_2_Master_Write(0x52 | 0x00);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
+[; ;MazeRobot.X/color.c: 79:  I2C_2_Master_Start();
+[e ( _I2C_2_Master_Start ..  ]
 "80
-[; ;MazeRobot.X/color.c: 80:  I2C_2_Master_Write(0xA0 | 0x14);
-[e ( _I2C_2_Master_Write (1 -> | -> 160 `i -> 20 `i `uc ]
+[; ;MazeRobot.X/color.c: 80:  I2C_2_Master_Write(0x52 | 0x00);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 0 `i `uc ]
 "81
-[; ;MazeRobot.X/color.c: 81:  I2C_2_Master_RepStart();
-[e ( _I2C_2_Master_RepStart ..  ]
+[; ;MazeRobot.X/color.c: 81:  I2C_2_Master_Write(0xA0 | 0x14);
+[e ( _I2C_2_Master_Write (1 -> | -> 160 `i -> 20 `i `uc ]
 "82
-[; ;MazeRobot.X/color.c: 82:  I2C_2_Master_Write(0x52 | 0x01);
-[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 1 `i `uc ]
+[; ;MazeRobot.X/color.c: 82:  I2C_2_Master_RepStart();
+[e ( _I2C_2_Master_RepStart ..  ]
 "83
-[; ;MazeRobot.X/color.c: 83:  tmp=I2C_2_Master_Read(1);
-[e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
+[; ;MazeRobot.X/color.c: 83:  I2C_2_Master_Write(0x52 | 0x01);
+[e ( _I2C_2_Master_Write (1 -> | -> 82 `i -> 1 `i `uc ]
 "84
-[; ;MazeRobot.X/color.c: 84:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
-[e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
+[; ;MazeRobot.X/color.c: 84:  tmp=I2C_2_Master_Read(1);
+[e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
 "85
-[; ;MazeRobot.X/color.c: 85:  I2C_2_Master_Stop();
-[e ( _I2C_2_Master_Stop ..  ]
+[; ;MazeRobot.X/color.c: 85:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
+[e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
 "86
-[; ;MazeRobot.X/color.c: 86:  return tmp;
-[e ) _tmp ]
-[e $UE 2022  ]
+[; ;MazeRobot.X/color.c: 86:  I2C_2_Master_Stop();
+[e ( _I2C_2_Master_Stop ..  ]
 "87
-[; ;MazeRobot.X/color.c: 87: }
-[e :UE 2022 ]
-}
-"90
-[; ;MazeRobot.X/color.c: 90: void getColor (RGB *v){
-[v _getColor `(v ~T0 @X0 1 ef1`*S2016 ]
-{
-[e :U _getColor ]
-[v _v `*S2016 ~T0 @X0 1 r1 ]
-[f ]
-"91
-[; ;MazeRobot.X/color.c: 91:     v->R = color_read_Red();
-[e = . *U _v 0 ( _color_read_Red ..  ]
-"92
-[; ;MazeRobot.X/color.c: 92:     v->G = color_read_Green();
-[e = . *U _v 1 ( _color_read_Green ..  ]
-"93
-[; ;MazeRobot.X/color.c: 93:     v->B = color_read_Blue();
-[e = . *U _v 2 ( _color_read_Blue ..  ]
-"94
-[; ;MazeRobot.X/color.c: 94:     v->C = color_read_Clear();
-[e = . *U _v 3 ( _color_read_Clear ..  ]
-"95
-[; ;MazeRobot.X/color.c: 95: }
-[e :UE 2023 ]
-}
-"98
-[; ;MazeRobot.X/color.c: 98: void ambientCal (RGB *v){
-[v _ambientCal `(v ~T0 @X0 1 ef1`*S2016 ]
-{
-[e :U _ambientCal ]
-[v _v `*S2016 ~T0 @X0 1 r1 ]
-[f ]
-"101
-[; ;MazeRobot.X/color.c: 101:     for(int i = 0;i<20;i++){
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 20 `i 2025  ]
-[e $U 2026  ]
-[e :U 2025 ]
-{
-"102
-[; ;MazeRobot.X/color.c: 102:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"103
-[; ;MazeRobot.X/color.c: 103:             _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"104
-[; ;MazeRobot.X/color.c: 104:             }
-}
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 20 `i 2025  ]
-[e :U 2026 ]
-}
-"105
-[; ;MazeRobot.X/color.c: 105:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"106
-[; ;MazeRobot.X/color.c: 106:             _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"107
-[; ;MazeRobot.X/color.c: 107:             getColor(v);
-[e ( _getColor (1 _v ]
-"108
-[; ;MazeRobot.X/color.c: 108:             _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"109
-[; ;MazeRobot.X/color.c: 109:             LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"111
-[; ;MazeRobot.X/color.c: 111: }
+[; ;MazeRobot.X/color.c: 87:  return tmp;
+[e ) _tmp ]
+[e $UE 2024  ]
+"88
+[; ;MazeRobot.X/color.c: 88: }
 [e :UE 2024 ]
 }
-"114
-[; ;MazeRobot.X/color.c: 114: void whiteCal (RGB *v){
-[v _whiteCal `(v ~T0 @X0 1 ef1`*S2016 ]
+"91
+[; ;MazeRobot.X/color.c: 91: void getColor (RGB *v){
+[v _getColor `(v ~T0 @X0 1 ef1`*S2018 ]
 {
-[e :U _whiteCal ]
-[v _v `*S2016 ~T0 @X0 1 r1 ]
+[e :U _getColor ]
+[v _v `*S2018 ~T0 @X0 1 r1 ]
 [f ]
-"116
-[; ;MazeRobot.X/color.c: 116:     for(int i = 0;i<20;i++){
+"92
+[; ;MazeRobot.X/color.c: 92:     v->R = color_read_Red();
+[e = . *U _v 0 ( _color_read_Red ..  ]
+"93
+[; ;MazeRobot.X/color.c: 93:     v->G = color_read_Green();
+[e = . *U _v 1 ( _color_read_Green ..  ]
+"94
+[; ;MazeRobot.X/color.c: 94:     v->B = color_read_Blue();
+[e = . *U _v 2 ( _color_read_Blue ..  ]
+"95
+[; ;MazeRobot.X/color.c: 95:     v->C = color_read_Clear();
+[e = . *U _v 3 ( _color_read_Clear ..  ]
+"96
+[; ;MazeRobot.X/color.c: 96: }
+[e :UE 2025 ]
+}
+"99
+[; ;MazeRobot.X/color.c: 99: void ambientCal (RGB *v){
+[v _ambientCal `(v ~T0 @X0 1 ef1`*S2018 ]
+{
+[e :U _ambientCal ]
+[v _v `*S2018 ~T0 @X0 1 r1 ]
+[f ]
+"102
+[; ;MazeRobot.X/color.c: 102:     for(int i = 0;i<20;i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 20 `i 2029  ]
-[e $U 2030  ]
-[e :U 2029 ]
+[e $ < _i -> 20 `i 2027  ]
+[e $U 2028  ]
+[e :U 2027 ]
 {
-"117
-[; ;MazeRobot.X/color.c: 117:             LATDbits.LATD7 = !LATDbits.LATD7;
+"103
+[; ;MazeRobot.X/color.c: 103:             LATDbits.LATD7 = !LATDbits.LATD7;
 [e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"118
-[; ;MazeRobot.X/color.c: 118:             _delay((unsigned long)((100)*(64000000/4000.0)));
+"104
+[; ;MazeRobot.X/color.c: 104:             _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"119
-[; ;MazeRobot.X/color.c: 119:             }
+"105
+[; ;MazeRobot.X/color.c: 105:             }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 20 `i 2029  ]
-[e :U 2030 ]
+[e $ < _i -> 20 `i 2027  ]
+[e :U 2028 ]
 }
-"120
-[; ;MazeRobot.X/color.c: 120:             LATDbits.LATD7 = !LATDbits.LATD7;
+"106
+[; ;MazeRobot.X/color.c: 106:             LATDbits.LATD7 = !LATDbits.LATD7;
 [e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"121
-[; ;MazeRobot.X/color.c: 121:             _delay((unsigned long)((500)*(64000000/4000.0)));
+"107
+[; ;MazeRobot.X/color.c: 107:             _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"122
-[; ;MazeRobot.X/color.c: 122:             getColor(v);
+"108
+[; ;MazeRobot.X/color.c: 108:             getColor(v);
 [e ( _getColor (1 _v ]
-"123
-[; ;MazeRobot.X/color.c: 123:             _delay((unsigned long)((500)*(64000000/4000.0)));
+"109
+[; ;MazeRobot.X/color.c: 109:             _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"124
-[; ;MazeRobot.X/color.c: 124:             LATDbits.LATD7 = !LATDbits.LATD7;
+"110
+[; ;MazeRobot.X/color.c: 110:             LATDbits.LATD7 = !LATDbits.LATD7;
 [e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"126
-[; ;MazeRobot.X/color.c: 126: }
-[e :UE 2028 ]
+"112
+[; ;MazeRobot.X/color.c: 112: }
+[e :UE 2026 ]
 }
-"129
-[; ;MazeRobot.X/color.c: 129: void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
-[v _colorDetect `(v ~T0 @X0 1 ef5`d`*S2016`*S2016`*S2015`*S2015 ]
+"115
+[; ;MazeRobot.X/color.c: 115: void whiteCal (RGB *v){
+[v _whiteCal `(v ~T0 @X0 1 ef1`*S2018 ]
+{
+[e :U _whiteCal ]
+[v _v `*S2018 ~T0 @X0 1 r1 ]
+[f ]
+"117
+[; ;MazeRobot.X/color.c: 117:     for(int i = 0;i<20;i++){
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 20 `i 2031  ]
+[e $U 2032  ]
+[e :U 2031 ]
+{
+"118
+[; ;MazeRobot.X/color.c: 118:             LATDbits.LATD7 = !LATDbits.LATD7;
+[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
+"119
+[; ;MazeRobot.X/color.c: 119:             _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"120
+[; ;MazeRobot.X/color.c: 120:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 20 `i 2031  ]
+[e :U 2032 ]
+}
+"121
+[; ;MazeRobot.X/color.c: 121:             LATDbits.LATD7 = !LATDbits.LATD7;
+[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
+"122
+[; ;MazeRobot.X/color.c: 122:             _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"123
+[; ;MazeRobot.X/color.c: 123:             getColor(v);
+[e ( _getColor (1 _v ]
+"124
+[; ;MazeRobot.X/color.c: 124:             _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"125
+[; ;MazeRobot.X/color.c: 125:             LATDbits.LATD7 = !LATDbits.LATD7;
+[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
+"127
+[; ;MazeRobot.X/color.c: 127: }
+[e :UE 2030 ]
+}
+"130
+[; ;MazeRobot.X/color.c: 130: void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
+[v _colorDetect `(v ~T0 @X0 1 ef5`d`*S2018`*S2018`*S2017`*S2017 ]
 {
 [e :U _colorDetect ]
 [v _clearRef `d ~T0 @X0 1 r1 ]
-[v _ambientRGBVal `*S2016 ~T0 @X0 1 r2 ]
-[v _whiteRGBVal `*S2016 ~T0 @X0 1 r3 ]
-[v _mL `*S2015 ~T0 @X0 1 r4 ]
-[v _mR `*S2015 ~T0 @X0 1 r5 ]
+[v _ambientRGBVal `*S2018 ~T0 @X0 1 r2 ]
+[v _whiteRGBVal `*S2018 ~T0 @X0 1 r3 ]
+[v _mL `*S2017 ~T0 @X0 1 r4 ]
+[v _mR `*S2017 ~T0 @X0 1 r5 ]
 [f ]
-"132
-[; ;MazeRobot.X/color.c: 132:         RGB RGBVal;
-[v _RGBVal `S2016 ~T0 @X0 1 a ]
 "133
-[; ;MazeRobot.X/color.c: 133:         getColor(&RGBVal);
+[; ;MazeRobot.X/color.c: 133:         RGB RGBVal;
+[v _RGBVal `S2018 ~T0 @X0 1 a ]
+"134
+[; ;MazeRobot.X/color.c: 134:         getColor(&RGBVal);
 [e ( _getColor (1 &U _RGBVal ]
-"135
-[; ;MazeRobot.X/color.c: 135:         unsigned int ambientR = ambientRGBVal->R;
+"136
+[; ;MazeRobot.X/color.c: 136:         unsigned int ambientR = ambientRGBVal->R;
 [v _ambientR `ui ~T0 @X0 1 a ]
 [e = _ambientR . *U _ambientRGBVal 0 ]
-"136
-[; ;MazeRobot.X/color.c: 136:         unsigned int ambientG = ambientRGBVal->G;
+"137
+[; ;MazeRobot.X/color.c: 137:         unsigned int ambientG = ambientRGBVal->G;
 [v _ambientG `ui ~T0 @X0 1 a ]
 [e = _ambientG . *U _ambientRGBVal 1 ]
-"137
-[; ;MazeRobot.X/color.c: 137:         unsigned int ambientB = ambientRGBVal->B;
+"138
+[; ;MazeRobot.X/color.c: 138:         unsigned int ambientB = ambientRGBVal->B;
 [v _ambientB `ui ~T0 @X0 1 a ]
 [e = _ambientB . *U _ambientRGBVal 2 ]
-"139
-[; ;MazeRobot.X/color.c: 139:         float whiteR = whiteRGBVal->R;
+"140
+[; ;MazeRobot.X/color.c: 140:         float whiteR = whiteRGBVal->R;
 [v _whiteR `f ~T0 @X0 1 a ]
 [e = _whiteR -> . *U _whiteRGBVal 0 `f ]
-"140
-[; ;MazeRobot.X/color.c: 140:         float whiteG = whiteRGBVal->G;
+"141
+[; ;MazeRobot.X/color.c: 141:         float whiteG = whiteRGBVal->G;
 [v _whiteG `f ~T0 @X0 1 a ]
 [e = _whiteG -> . *U _whiteRGBVal 1 `f ]
-"141
-[; ;MazeRobot.X/color.c: 141:         float whiteB = whiteRGBVal->B;
+"142
+[; ;MazeRobot.X/color.c: 142:         float whiteB = whiteRGBVal->B;
 [v _whiteB `f ~T0 @X0 1 a ]
 [e = _whiteB -> . *U _whiteRGBVal 2 `f ]
-"142
-[; ;MazeRobot.X/color.c: 142:         float whiteC = whiteRGBVal->C;
+"143
+[; ;MazeRobot.X/color.c: 143:         float whiteC = whiteRGBVal->C;
 [v _whiteC `f ~T0 @X0 1 a ]
 [e = _whiteC -> . *U _whiteRGBVal 3 `f ]
-"144
-[; ;MazeRobot.X/color.c: 144:         float redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
+"145
+[; ;MazeRobot.X/color.c: 145:         float redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
 [v _redPrint `f ~T0 @X0 1 a ]
 [e = _redPrint -> / -> - . _RGBVal 0 _ambientR `d * -> - _whiteR -> _ambientR `f `d _clearRef `f ]
-"145
-[; ;MazeRobot.X/color.c: 145:         float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
+"146
+[; ;MazeRobot.X/color.c: 146:         float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
 [v _greenPrint `f ~T0 @X0 1 a ]
 [e = _greenPrint -> / -> - . _RGBVal 1 _ambientG `d * -> - _whiteG -> _ambientG `f `d _clearRef `f ]
-"146
-[; ;MazeRobot.X/color.c: 146:         float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
+"147
+[; ;MazeRobot.X/color.c: 147:         float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
 [v _bluePrint `f ~T0 @X0 1 a ]
 [e = _bluePrint -> / -> - . _RGBVal 2 _ambientB `d * -> - _whiteB -> _ambientB `f `d _clearRef `f ]
-"148
-[; ;MazeRobot.X/color.c: 148:         if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
-[e $ ! | < _redPrint -> -> 0 `i `f > _redPrint -> -> 2 `i `f 2033  ]
-{
-[e = _redPrint -> .0.0 `f ]
-}
-[e :U 2033 ]
 "149
-[; ;MazeRobot.X/color.c: 149:         if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
-[e $ ! | < _greenPrint -> -> 0 `i `f > _greenPrint -> -> 2 `i `f 2034  ]
-{
-[e = _greenPrint -> .0.0 `f ]
-}
-[e :U 2034 ]
+[; ;MazeRobot.X/color.c: 149:         char string1[20];
+[v _string1 `uc ~T0 @X0 -> 20 `i a ]
 "150
-[; ;MazeRobot.X/color.c: 150:         if ((bluePrint < 0) | (bluePrint > 2)){ bluePrint = 0.0;}
-[e $ ! | < _bluePrint -> -> 0 `i `f > _bluePrint -> -> 2 `i `f 2035  ]
-{
-[e = _bluePrint -> .0.0 `f ]
-}
-[e :U 2035 ]
+[; ;MazeRobot.X/color.c: 150:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"151
+[; ;MazeRobot.X/color.c: 151:         sprintf(string1,"R: %f G: %f B:%f \r",redPrint,greenPrint,bluePrint);
+[e ( _sprintf (1 , , , (. , &U _string1 :s 1C -> _redPrint `d -> _greenPrint `d -> _bluePrint `d ]
+"152
+[; ;MazeRobot.X/color.c: 152:         TxBufferedString(string1);
+[e ( _TxBufferedString (1 &U _string1 ]
 "153
-[; ;MazeRobot.X/color.c: 153:         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
-[e $ ! & & > -> _redPrint `d .0.9 > -> _greenPrint `d .0.9 > -> _bluePrint `d .0.9 2036  ]
-{
+[; ;MazeRobot.X/color.c: 153:         sendTxBuf();
+[e ( _sendTxBuf ..  ]
 "154
 [; ;MazeRobot.X/color.c: 154:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "156
-[; ;MazeRobot.X/color.c: 156:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;MazeRobot.X/color.c: 156:         if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
+[e $ ! | < _redPrint -> -> 0 `i `f > _redPrint -> -> 2 `i `f 2035  ]
+{
+[e = _redPrint -> .0.0 `f ]
+}
+[e :U 2035 ]
 "157
-[; ;MazeRobot.X/color.c: 157:         }
+[; ;MazeRobot.X/color.c: 157:         if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
+[e $ ! | < _greenPrint -> -> 0 `i `f > _greenPrint -> -> 2 `i `f 2036  ]
+{
+[e = _greenPrint -> .0.0 `f ]
 }
 [e :U 2036 ]
-"160
-[; ;MazeRobot.X/color.c: 160:         if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
-[e $ ! & & > -> _redPrint `d .1.5 > -> - _redPrint _greenPrint `d .0.8 > -> - _redPrint _bluePrint `d .0.8 2037  ]
+"158
+[; ;MazeRobot.X/color.c: 158:         if ((bluePrint < 0) | (bluePrint > 2)){ bluePrint = 0.0;}
+[e $ ! | < _bluePrint -> -> 0 `i `f > _bluePrint -> -> 2 `i `f 2037  ]
 {
-"161
-[; ;MazeRobot.X/color.c: 161:             turnRight_90(mL,mR);
-[e ( _turnRight_90 (2 , _mL _mR ]
-"162
-[; ;MazeRobot.X/color.c: 162:             _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"163
-[; ;MazeRobot.X/color.c: 163:         }
+[e = _bluePrint -> .0.0 `f ]
 }
 [e :U 2037 ]
-"166
-[; ;MazeRobot.X/color.c: 166:         if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
-[e $ ! & & > -> _redPrint `d .1.3 > -> _greenPrint `d .0.5 > -> _bluePrint `d .0.5 2038  ]
+"161
+[; ;MazeRobot.X/color.c: 161:         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
+[e $ ! & & > -> _redPrint `d .0.9 > -> _greenPrint `d .0.9 > -> _bluePrint `d .0.9 2038  ]
 {
-"167
-[; ;MazeRobot.X/color.c: 167:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"162
+[; ;MazeRobot.X/color.c: 162:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"164
+[; ;MazeRobot.X/color.c: 164:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"165
+[; ;MazeRobot.X/color.c: 165:         }
+}
+[e :U 2038 ]
 "168
-[; ;MazeRobot.X/color.c: 168:         turnRight_135(mL,mR);
-[e ( _turnRight_135 (2 , _mL _mR ]
+[; ;MazeRobot.X/color.c: 168:         if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
+[e $ ! & & > -> _redPrint `d .1.5 > -> - _redPrint _greenPrint `d .0.8 > -> - _redPrint _bluePrint `d .0.8 2039  ]
+{
 "169
-[; ;MazeRobot.X/color.c: 169:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[; ;MazeRobot.X/color.c: 169:             turnRight_90(mL,mR);
+[e ( _turnRight_90 (2 , _mL _mR ]
+"170
+[; ;MazeRobot.X/color.c: 170:             _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "171
 [; ;MazeRobot.X/color.c: 171:         }
 }
-[e :U 2038 ]
+[e :U 2039 ]
 "174
-[; ;MazeRobot.X/color.c: 174:         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
-[e $ ! & & > -> _redPrint `d .1.0 > -> _greenPrint `d .0.8 < -> _bluePrint `d .0.8 2039  ]
+[; ;MazeRobot.X/color.c: 174:         if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
+[e $ ! & & > -> _redPrint `d .1.3 > -> _greenPrint `d .0.5 > -> _bluePrint `d .0.5 2040  ]
 {
-"176
-[; ;MazeRobot.X/color.c: 176:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"175
+[; ;MazeRobot.X/color.c: 175:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"176
+[; ;MazeRobot.X/color.c: 176:         turnRight_135(mL,mR);
+[e ( _turnRight_135 (2 , _mL _mR ]
 "177
-[; ;MazeRobot.X/color.c: 177:         reverseSquareRight(mL,mR);
-[e ( _reverseSquareRight (2 , _mL _mR ]
-"178
-[; ;MazeRobot.X/color.c: 178:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[; ;MazeRobot.X/color.c: 177:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "179
 [; ;MazeRobot.X/color.c: 179:         }
 }
-[e :U 2039 ]
-"182
-[; ;MazeRobot.X/color.c: 182:         if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
-[e $ ! & & > -> - _bluePrint _redPrint `d .0.7 > -> - _bluePrint _greenPrint `d .0.3 > -> _bluePrint `d .0.7 2040  ]
-{
-"183
-[; ;MazeRobot.X/color.c: 183:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"184
-[; ;MazeRobot.X/color.c: 184:         turn_180(mL,mR);
-[e ( _turn_180 (2 , _mL _mR ]
-"185
-[; ;MazeRobot.X/color.c: 185:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"186
-[; ;MazeRobot.X/color.c: 186:         }
-}
 [e :U 2040 ]
-"189
-[; ;MazeRobot.X/color.c: 189:         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
-[e $ ! & & > -> - _greenPrint _redPrint `d .0.4 > _greenPrint -> -> 1 `i `f > -> - _greenPrint _bluePrint `d .0.4 2041  ]
+"182
+[; ;MazeRobot.X/color.c: 182:         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+[e $ ! & & > -> _redPrint `d .1.0 > -> _greenPrint `d .0.8 < -> _bluePrint `d .0.8 2041  ]
 {
-"190
-[; ;MazeRobot.X/color.c: 190:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"184
+[; ;MazeRobot.X/color.c: 184:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"191
-[; ;MazeRobot.X/color.c: 191:         turnLeft_90(mL,mR);
-[e ( _turnLeft_90 (2 , _mL _mR ]
-"192
-[; ;MazeRobot.X/color.c: 192:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"185
+[; ;MazeRobot.X/color.c: 185:         reverseSquareRight(mL,mR);
+[e ( _reverseSquareRight (2 , _mL _mR ]
+"186
+[; ;MazeRobot.X/color.c: 186:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"193
-[; ;MazeRobot.X/color.c: 193:         }
+"187
+[; ;MazeRobot.X/color.c: 187:         }
 }
 [e :U 2041 ]
-"196
-[; ;MazeRobot.X/color.c: 196:         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
-[e $ ! & & < -> _redPrint `d .0.7 > -> _greenPrint `d .1.0 > -> _bluePrint `d .1.0 2042  ]
+"190
+[; ;MazeRobot.X/color.c: 190:         if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
+[e $ ! & & > -> - _bluePrint _redPrint `d .0.7 > -> - _bluePrint _greenPrint `d .0.3 > -> _bluePrint `d .0.7 2042  ]
 {
-"197
-[; ;MazeRobot.X/color.c: 197:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"191
+[; ;MazeRobot.X/color.c: 191:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"198
-[; ;MazeRobot.X/color.c: 198:         turnLeft_135(mL,mR);
-[e ( _turnLeft_135 (2 , _mL _mR ]
-"199
-[; ;MazeRobot.X/color.c: 199:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"192
+[; ;MazeRobot.X/color.c: 192:         turn_180(mL,mR);
+[e ( _turn_180 (2 , _mL _mR ]
+"193
+[; ;MazeRobot.X/color.c: 193:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"200
-[; ;MazeRobot.X/color.c: 200:         }
+"194
+[; ;MazeRobot.X/color.c: 194:         }
 }
 [e :U 2042 ]
-"203
-[; ;MazeRobot.X/color.c: 203:         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
-[e $ ! & & > -> _redPrint `d .0.95 & > -> _greenPrint `d .0.8 < -> _greenPrint `d .0.9 & > -> _bluePrint `d .0.8 < -> _bluePrint `d .0.95 2043  ]
+"197
+[; ;MazeRobot.X/color.c: 197:         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+[e $ ! & & > -> - _greenPrint _redPrint `d .0.4 > _greenPrint -> -> 1 `i `f > -> - _greenPrint _bluePrint `d .0.4 2043  ]
 {
-"204
-[; ;MazeRobot.X/color.c: 204:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"198
+[; ;MazeRobot.X/color.c: 198:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"205
-[; ;MazeRobot.X/color.c: 205:         reverseSquareLeft(mL,mR);
-[e ( _reverseSquareLeft (2 , _mL _mR ]
-"206
-[; ;MazeRobot.X/color.c: 206:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"199
+[; ;MazeRobot.X/color.c: 199:         turnLeft_90(mL,mR);
+[e ( _turnLeft_90 (2 , _mL _mR ]
+"200
+[; ;MazeRobot.X/color.c: 200:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"207
-[; ;MazeRobot.X/color.c: 207:         }
+"201
+[; ;MazeRobot.X/color.c: 201:         }
 }
 [e :U 2043 ]
-"210
-[; ;MazeRobot.X/color.c: 210:         char testString[20];
-[v _testString `uc ~T0 @X0 -> 20 `i a ]
+"204
+[; ;MazeRobot.X/color.c: 204:         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
+[e $ ! & & < -> _redPrint `d .0.7 > -> _greenPrint `d .1.0 > -> _bluePrint `d .1.0 2044  ]
+{
+"205
+[; ;MazeRobot.X/color.c: 205:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"206
+[; ;MazeRobot.X/color.c: 206:         turnLeft_135(mL,mR);
+[e ( _turnLeft_135 (2 , _mL _mR ]
+"207
+[; ;MazeRobot.X/color.c: 207:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"208
+[; ;MazeRobot.X/color.c: 208:         }
+}
+[e :U 2044 ]
 "211
-[; ;MazeRobot.X/color.c: 211:         sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
-[e ( _sprintf , , , , &U _testString :s 1C -> _redPrint `d -> _greenPrint `d -> _bluePrint `d ]
+[; ;MazeRobot.X/color.c: 211:         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
+[e $ ! & & > -> _redPrint `d .0.95 & > -> _greenPrint `d .0.8 < -> _greenPrint `d .0.9 & > -> _bluePrint `d .0.8 < -> _bluePrint `d .0.95 2045  ]
+{
 "212
-[; ;MazeRobot.X/color.c: 212:         TxBufferedString(testString);
-[e ( _TxBufferedString (1 &U _testString ]
+[; ;MazeRobot.X/color.c: 212:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "213
-[; ;MazeRobot.X/color.c: 213:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
+[; ;MazeRobot.X/color.c: 213:         reverseSquareLeft(mL,mR);
+[e ( _reverseSquareLeft (2 , _mL _mR ]
 "214
 [; ;MazeRobot.X/color.c: 214:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"218
-[; ;MazeRobot.X/color.c: 218: }
-[e :UE 2032 ]
+"215
+[; ;MazeRobot.X/color.c: 215:         }
 }
-[a 1C 37 100 32 32 37 102 32 32 37 102 32 13 0 ]
+[e :U 2045 ]
+"222
+[; ;MazeRobot.X/color.c: 222: }
+[e :UE 2034 ]
+}
+[p f _sprintf 8396800 ]
+[a 1C 82 58 32 37 102 32 71 58 32 37 102 32 66 58 37 102 32 13 0 ]
