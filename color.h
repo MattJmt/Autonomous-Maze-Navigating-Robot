@@ -2,6 +2,7 @@
 #define _color_H
 
 #include <xc.h>
+#include "dc_motor.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
@@ -23,5 +24,20 @@ void color_writetoaddr(char address, char value);
  *	Returns a 16 bit ADC value representing colour intensity
  ***********************************************/
 unsigned int color_read_Red(void);
+unsigned int color_read_Green(void);
+unsigned int color_read_Blue(void);
+
+typedef struct RGB { //definition of DC_motor structure
+    unsigned int R;
+    unsigned int G;
+    unsigned int B;
+    unsigned int C;
+} RGB;
+
+void getColor(RGB *v);
+void ambientCal(RGB *v);
+void whiteCal(RGB *v);
+void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+
 
 #endif
