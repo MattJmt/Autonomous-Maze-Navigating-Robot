@@ -24496,43 +24496,57 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
 
         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
-        fullSpeedAhead(mL,mR);
+
         _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
-            right45(mL,mR);
+            turnRight_90(mL,mR);
             _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnRight_135(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+
         }
 
 
         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        reverseSquareRight(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        turn_180(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnLeft_90(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnLeft_135(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        reverseSquareLeft(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 

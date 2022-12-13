@@ -47,12 +47,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/dc_motor.h: 10: typedef struct DC_motor {
 [s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
-"155 MazeRobot.X/color.c
-[; ;MazeRobot.X/color.c: 155:         fullSpeedAhead(mL,mR);
-[v _fullSpeedAhead `(i ~T0 @X0 0 e? ]
-"161
-[; ;MazeRobot.X/color.c: 161:             right45(mL,mR);
-[v _right45 `(i ~T0 @X0 0 e? ]
+"29
+[; ;MazeRobot.X/dc_motor.h: 29: void turnRight_90(DC_motor *mL, DC_motor *mR);
+[v _turnRight_90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"31
+[; ;MazeRobot.X/dc_motor.h: 31: void turnRight_135(DC_motor *mL, DC_motor *mR);
+[v _turnRight_135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"33
+[; ;MazeRobot.X/dc_motor.h: 33: void reverseSquareRight(DC_motor *mL, DC_motor *mR);
+[v _reverseSquareRight `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"30
+[; ;MazeRobot.X/dc_motor.h: 30: void turn_180(DC_motor *mL, DC_motor *mR);
+[v _turn_180 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"28
+[; ;MazeRobot.X/dc_motor.h: 28: void turnLeft_90(DC_motor *mL, DC_motor *mR);
+[v _turnLeft_90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"32
+[; ;MazeRobot.X/dc_motor.h: 32: void turnLeft_135(DC_motor *mL, DC_motor *mR);
+[v _turnLeft_135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"34
+[; ;MazeRobot.X/dc_motor.h: 34: void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
+[v _reverseSquareLeft `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2463,9 +2478,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "154
 [; ;MazeRobot.X/color.c: 154:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"155
-[; ;MazeRobot.X/color.c: 155:         fullSpeedAhead(mL,mR);
-[e ( _fullSpeedAhead , _mL _mR ]
 "156
 [; ;MazeRobot.X/color.c: 156:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
@@ -2478,8 +2490,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! & & > -> _redPrint `d .1.5 > -> - _redPrint _greenPrint `d .0.8 > -> - _redPrint _bluePrint `d .0.8 2037  ]
 {
 "161
-[; ;MazeRobot.X/color.c: 161:             right45(mL,mR);
-[e ( _right45 , _mL _mR ]
+[; ;MazeRobot.X/color.c: 161:             turnRight_90(mL,mR);
+[e ( _turnRight_90 (2 , _mL _mR ]
 "162
 [; ;MazeRobot.X/color.c: 162:             _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
@@ -2495,65 +2507,101 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/color.c: 167:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "168
-[; ;MazeRobot.X/color.c: 168:         }
+[; ;MazeRobot.X/color.c: 168:         turnRight_135(mL,mR);
+[e ( _turnRight_135 (2 , _mL _mR ]
+"169
+[; ;MazeRobot.X/color.c: 169:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"171
+[; ;MazeRobot.X/color.c: 171:         }
 }
 [e :U 2038 ]
-"171
-[; ;MazeRobot.X/color.c: 171:         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+"174
+[; ;MazeRobot.X/color.c: 174:         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
 [e $ ! & & > -> _redPrint `d .1.0 > -> _greenPrint `d .0.8 < -> _bluePrint `d .0.8 2039  ]
 {
-"172
-[; ;MazeRobot.X/color.c: 172:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"176
+[; ;MazeRobot.X/color.c: 176:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"173
-[; ;MazeRobot.X/color.c: 173:         }
+"177
+[; ;MazeRobot.X/color.c: 177:         reverseSquareRight(mL,mR);
+[e ( _reverseSquareRight (2 , _mL _mR ]
+"178
+[; ;MazeRobot.X/color.c: 178:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"179
+[; ;MazeRobot.X/color.c: 179:         }
 }
 [e :U 2039 ]
-"176
-[; ;MazeRobot.X/color.c: 176:         if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
+"182
+[; ;MazeRobot.X/color.c: 182:         if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
 [e $ ! & & > -> - _bluePrint _redPrint `d .0.7 > -> - _bluePrint _greenPrint `d .0.3 > -> _bluePrint `d .0.7 2040  ]
 {
-"177
-[; ;MazeRobot.X/color.c: 177:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"183
+[; ;MazeRobot.X/color.c: 183:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"178
-[; ;MazeRobot.X/color.c: 178:         }
+"184
+[; ;MazeRobot.X/color.c: 184:         turn_180(mL,mR);
+[e ( _turn_180 (2 , _mL _mR ]
+"185
+[; ;MazeRobot.X/color.c: 185:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"186
+[; ;MazeRobot.X/color.c: 186:         }
 }
 [e :U 2040 ]
-"181
-[; ;MazeRobot.X/color.c: 181:         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+"189
+[; ;MazeRobot.X/color.c: 189:         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
 [e $ ! & & > -> - _greenPrint _redPrint `d .0.4 > _greenPrint -> -> 1 `i `f > -> - _greenPrint _bluePrint `d .0.4 2041  ]
 {
-"182
-[; ;MazeRobot.X/color.c: 182:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"190
+[; ;MazeRobot.X/color.c: 190:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"183
-[; ;MazeRobot.X/color.c: 183:         }
-}
-[e :U 2041 ]
-"186
-[; ;MazeRobot.X/color.c: 186:         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
-[e $ ! & & < -> _redPrint `d .0.7 > -> _greenPrint `d .1.0 > -> _bluePrint `d .1.0 2042  ]
-{
-"187
-[; ;MazeRobot.X/color.c: 187:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"188
-[; ;MazeRobot.X/color.c: 188:         }
-}
-[e :U 2042 ]
 "191
-[; ;MazeRobot.X/color.c: 191:         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
-[e $ ! & & > -> _redPrint `d .0.95 & > -> _greenPrint `d .0.8 < -> _greenPrint `d .0.9 & > -> _bluePrint `d .0.8 < -> _bluePrint `d .0.95 2043  ]
-{
+[; ;MazeRobot.X/color.c: 191:         turnLeft_90(mL,mR);
+[e ( _turnLeft_90 (2 , _mL _mR ]
 "192
 [; ;MazeRobot.X/color.c: 192:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "193
 [; ;MazeRobot.X/color.c: 193:         }
 }
-[e :U 2043 ]
+[e :U 2041 ]
+"196
+[; ;MazeRobot.X/color.c: 196:         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
+[e $ ! & & < -> _redPrint `d .0.7 > -> _greenPrint `d .1.0 > -> _bluePrint `d .1.0 2042  ]
+{
 "197
-[; ;MazeRobot.X/color.c: 197: }
+[; ;MazeRobot.X/color.c: 197:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"198
+[; ;MazeRobot.X/color.c: 198:         turnLeft_135(mL,mR);
+[e ( _turnLeft_135 (2 , _mL _mR ]
+"199
+[; ;MazeRobot.X/color.c: 199:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"200
+[; ;MazeRobot.X/color.c: 200:         }
+}
+[e :U 2042 ]
+"203
+[; ;MazeRobot.X/color.c: 203:         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
+[e $ ! & & > -> _redPrint `d .0.95 & > -> _greenPrint `d .0.8 < -> _greenPrint `d .0.9 & > -> _bluePrint `d .0.8 < -> _bluePrint `d .0.95 2043  ]
+{
+"204
+[; ;MazeRobot.X/color.c: 204:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"205
+[; ;MazeRobot.X/color.c: 205:         reverseSquareLeft(mL,mR);
+[e ( _reverseSquareLeft (2 , _mL _mR ]
+"206
+[; ;MazeRobot.X/color.c: 206:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"207
+[; ;MazeRobot.X/color.c: 207:         }
+}
+[e :U 2043 ]
+"211
+[; ;MazeRobot.X/color.c: 211: }
 [e :UE 2032 ]
 }
