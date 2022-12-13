@@ -67,12 +67,26 @@ void initDCmotorsPWM(int PWMperiod){
     CCP4CONbits.FMT=1; // left aligned
     CCP4CONbits.CCP4MODE=0b1100; //PWM mode  
     CCP4CONbits.EN=1; //turn on
-    
-    
-
-    
-    
+   
 }
+
+void DCmotorsInit(DC_motor *mL, DC_motor *mR){
+    
+    mL->power = 0;      //zero power to start
+    mL->direction = 1;    //set default motor direction
+    mL->brakemode = 1;    //brake mode (slow decay)
+    mL->posDutyHighByte = (unsigned char *)(&CCPR1H);     //store address of CCP1 duty high byte
+    mL->negDutyHighByte = (unsigned char *)(&CCPR2H);     //store address of CCP2 duty high byte
+    mL->PWMperiod = 199 ;        // store PWMperiod for motor (value of T2PR in this case)
+    
+    mR->power = 0;      //zero power to start
+    mR->direction = 1;    //set default motor direction
+    mR->brakemode = 1;    //brake mode (slow decay)
+    mR->posDutyHighByte = (unsigned char *)(&CCPR3H);     //store address of CCP1 duty high byte
+    mR->negDutyHighByte = (unsigned char *)(&CCPR4H);     //store address of CCP2 duty high byte
+    mR->PWMperiod = 199 ;        // store PWMperiod for motor (value of T2PR in this case)
+}
+
 
 // function to set CCP PWM output from the values in the motor structure
 void setMotorPWM(DC_motor *m)

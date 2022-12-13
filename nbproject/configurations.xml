@@ -4,10 +4,12 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>color.h</itemPath>
-      <itemPath>i2c.h</itemPath>
-      <itemPath>dc_motor.h</itemPath>
-      <itemPath>serialTest.h</itemPath>
+      <itemPath>MazeRobot.X/color.h</itemPath>
+      <itemPath>MazeRobot.X/dc_motor.h</itemPath>
+      <itemPath>MazeRobot.X/i2c.h</itemPath>
+      <itemPath>MazeRobot.X/serial.h</itemPath>
+      <itemPath>MazeRobot.X/serialTest.h</itemPath>
+      <itemPath>MazeRobot.X/timers.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,11 +18,12 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>color.c</itemPath>
-      <itemPath>i2c.c</itemPath>
-      <itemPath>newmain.c</itemPath>
-      <itemPath>dc_motor.c</itemPath>
-      <itemPath>serialTest.c</itemPath>
+      <itemPath>MazeRobot.X/color.c</itemPath>
+      <itemPath>MazeRobot.X/dc_motor.c</itemPath>
+      <itemPath>MazeRobot.X/i2c.c</itemPath>
+      <itemPath>MazeRobot.X/main.c</itemPath>
+      <itemPath>MazeRobot.X/serial.c</itemPath>
+      <itemPath>MazeRobot.X/timers.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
