@@ -24345,6 +24345,37 @@ void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
 # 3 "color.c" 2
 
+# 1 "./serialTest.h" 1
+# 13 "./serialTest.h"
+volatile char EUSART4RXbuf[20];
+volatile char RxBufWriteCnt=0;
+volatile char RxBufReadCnt=0;
+
+volatile char EUSART4TXbuf[60];
+volatile char TxBufWriteCnt=0;
+volatile char TxBufReadCnt=0;
+
+
+
+void initUSART4(void);
+char getCharSerial4(void);
+void sendCharSerial4(char charToSend);
+void sendStringSerial4(char *string);
+void ADC2String(unsigned int valr, unsigned int valb, unsigned int valg, unsigned int valc);
+
+
+char getCharFromRxBuf(void);
+void putCharToRxBuf(char byte);
+char isDataInRxBuf (void);
+
+
+char getCharFromTxBuf(void);
+void putCharToTxBuf(char byte);
+char isDataInTxBuf (void);
+void TxBufferedString(char *string);
+void sendTxBuf(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 4 "color.c" 2
 
 
 
@@ -24496,45 +24527,66 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
 
         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
-        fullSpeedAhead(mL,mR);
+
         _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
-            right45(mL,mR);
+            turnRight_90(mL,mR);
             _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnRight_135(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+
         }
 
 
         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        reverseSquareRight(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        turn_180(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnLeft_90(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnLeft_135(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
         }
 
 
         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        reverseSquareLeft(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
         }
+
+
+        char testString[20];
+        sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
+        TxBufferedString(testString);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
 
 
 

@@ -2,8 +2,8 @@
 #include "dc_motor.h"
 
 //Calibration 
-int turning_time45 = 200; // time period elapsed to achieve a 45 degree rotation
-int reverse_time = 200; //time period elapsed when reversing after detecting a colour (this is different to square reverse)
+int turning_time45 = 187; // time period elapsed to achieve a 45 degree rotation
+int reverse_time = 700; //time period elapsed when reversing after detecting a colour (this is different to square reverse)
 
 
 // function initialise T2 and CCP for DC motor control
@@ -258,7 +258,7 @@ void turnLeft_90(DC_motor *mL, DC_motor *mR)            //Green
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-   __delay_ms(2*turning_time45);
+   __delay_ms(turning_time45);
     stop(mL, mR);
 }
 
@@ -295,27 +295,8 @@ void turnRight_90(DC_motor *mL, DC_motor *mR) //Red
 void turn_180(DC_motor *mL, DC_motor *mR)              
 {
    
-    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
-    __delay_ms(100);
-    
-    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(reverse_time);
-    
-    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
-    
-    mL->direction = 0;
-    mR->direction = 1;
-    
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
-    
-    while((mL->power < 70) || (mR->power < 70)){                 // Limit the motor power to 70%
-        mL->power += 10;                   // Gradually increase the left motor power
-        mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-    }
-   __delay_ms(4*turning_time45);
+    turnRight(mL,mR);
+    turnRight(mL,mR);
     stop(mL, mR);
 }
 
@@ -342,7 +323,7 @@ void turnRight_135(DC_motor *mL, DC_motor *mR) //Orange
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-   __delay_ms(turning_time45);
+   __delay_ms(1.5*turning_time45);
     
     stop(mL, mR);
 }
@@ -379,12 +360,14 @@ void turnLeft_135(DC_motor *mL, DC_motor *mR)          //Light Blue
 /***YELLOW***/    
 void reverseSquareRight(DC_motor *mL, DC_motor *mR)     //Yellow
 {
-        
-    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
-    __delay_ms(100);
     
     reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(500);    //change delay to match distance of a square
+    __delay_ms(reverse_time); // to position away from wall, in centre of square
+    
+    stop(mL, mR);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(2*reverse_time); // to position away from wall, in centre of square
     
     turnRight_90(mL,mR);  //90 degree rotation to the right
     
@@ -395,12 +378,13 @@ void reverseSquareRight(DC_motor *mL, DC_motor *mR)     //Yellow
 /***PINK***/    
 void reverseSquareLeft(DC_motor *mL, DC_motor *mR)      //Pink
 {
-        
-    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
-    __delay_ms(100);
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(reverse_time); // to position away from wall, in centre of square
+    
+    stop(mL, mR);
     
     reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(500);    //change delay to match distance of a square
+    __delay_ms(2*reverse_time); // to position away from wall, in centre of square
     
     turnLeft_90(mL,mR);  //90 degree rotation to the right
     

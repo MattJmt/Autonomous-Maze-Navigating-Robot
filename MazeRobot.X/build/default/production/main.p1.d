@@ -1,8 +1,8 @@
 build/default/production/main.p1:  \
 main.c  \
-i2c.h  \
-dc_motor.h  \
-serialTest.h  \
 color.h  \
+dc_motor.h  \
+i2c.h  \
+serialTest.h  \
 interrupts.h  \
 timers.h 

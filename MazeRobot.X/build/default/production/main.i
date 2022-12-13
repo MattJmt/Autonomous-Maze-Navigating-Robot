@@ -24388,40 +24388,10 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 12 "main.c" 2
 
-# 1 "./i2c.h" 1
-# 13 "./i2c.h"
-void I2C_2_Master_Init(void);
+# 1 "./color.h" 1
 
 
 
-
-void I2C_2_Master_Idle(void);
-
-
-
-
-void I2C_2_Master_Start(void);
-
-
-
-
-void I2C_2_Master_RepStart(void);
-
-
-
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 13 "main.c" 2
 
 # 1 "./dc_motor.h" 1
 
@@ -24458,7 +24428,80 @@ void turnRight_135(DC_motor *mL, DC_motor *mR);
 void turnLeft_135(DC_motor *mL, DC_motor *mR);
 void reverseSquareRight(DC_motor *mL, DC_motor *mR);
 void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
+# 5 "./color.h" 2
+
+
+
+
+
+
+
+
+void color_click_init(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+unsigned int color_read_Green(void);
+unsigned int color_read_Blue(void);
+
+typedef struct RGB {
+    unsigned int R;
+    unsigned int G;
+    unsigned int B;
+    unsigned int C;
+} RGB;
+
+void getColor(RGB *v);
+void ambientCal(RGB *v);
+void whiteCal(RGB *v);
+void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+# 13 "main.c" 2
+
+# 1 "./i2c.h" 1
+# 13 "./i2c.h"
+void I2C_2_Master_Init(void);
+
+
+
+
+void I2C_2_Master_Idle(void);
+
+
+
+
+void I2C_2_Master_Start(void);
+
+
+
+
+void I2C_2_Master_RepStart(void);
+
+
+
+
+void I2C_2_Master_Stop(void);
+
+
+
+
+void I2C_2_Master_Write(unsigned char data_byte);
+
+
+
+
+unsigned char I2C_2_Master_Read(unsigned char ack);
 # 14 "main.c" 2
+
 
 # 1 "./serialTest.h" 1
 # 13 "./serialTest.h"
@@ -24490,38 +24533,6 @@ char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 15 "main.c" 2
-
-# 1 "./color.h" 1
-# 13 "./color.h"
-void color_click_init(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-unsigned int color_read_Green(void);
-unsigned int color_read_Blue(void);
-
-typedef struct RGB {
-    unsigned int R;
-    unsigned int G;
-    unsigned int B;
-    unsigned int C;
-} RGB;
-
-void getColor(RGB *v);
-void ambientCal(RGB *v);
-void whiteCal(RGB *v);
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
 # 16 "main.c" 2
 
 # 1 "./interrupts.h" 1
@@ -24627,44 +24638,23 @@ void main(void){
     RGB ambientRGBVal;
     RGB whiteRGBVal;
     double clearRef = 0.0;
-    double whiteC = 0.0;
+    double whiteC = 19000.0;
 
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
-# 116 "main.c"
-    while(1){
-        getColor(&RGBVal);
+# 249 "main.c"
+    TRISFbits.TRISF2=1;
+    ANSELFbits.ANSELF2=0;
+
+    if (!PORTFbits.RF2){
+        while (1) {
 
 
-        if (!PORTFbits.RF2){
-            ambientCal (&ambientRGBVal);
+
+            reverseSquareRight(&motorLeft, &motorRight);
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+
+
         }
-
-        if (!PORTFbits.RF3){
-            whiteCal (&whiteRGBVal);
-        }
-
-
-        LATHbits.LATH3=!LATHbits.LATH3;
-
-
-        whiteC = whiteRGBVal.C;
-        clearRef = RGBVal.C/whiteC;
-
-        if (clearRef > 0.12){
-            colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
-
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-        }
-        else{stop(&motorLeft,&motorRight);}
-
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-
-
-        sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
-        TxBufferedString(string4);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-# 251 "main.c"
     }
 }

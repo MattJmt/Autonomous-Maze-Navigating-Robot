@@ -47,12 +47,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./dc_motor.h: 10: typedef struct DC_motor {
 [s S2015 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2015 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
-"155 color.c
-[; ;color.c: 155:         fullSpeedAhead(mL,mR);
-[v _fullSpeedAhead `(i ~T0 @X0 0 e? ]
-"161
-[; ;color.c: 161:             right45(mL,mR);
-[v _right45 `(i ~T0 @X0 0 e? ]
+"29
+[; ;./dc_motor.h: 29: void turnRight_90(DC_motor *mL, DC_motor *mR);
+[v _turnRight_90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"31
+[; ;./dc_motor.h: 31: void turnRight_135(DC_motor *mL, DC_motor *mR);
+[v _turnRight_135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"33
+[; ;./dc_motor.h: 33: void reverseSquareRight(DC_motor *mL, DC_motor *mR);
+[v _reverseSquareRight `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"30
+[; ;./dc_motor.h: 30: void turn_180(DC_motor *mL, DC_motor *mR);
+[v _turn_180 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"28
+[; ;./dc_motor.h: 28: void turnLeft_90(DC_motor *mL, DC_motor *mR);
+[v _turnLeft_90 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"32
+[; ;./dc_motor.h: 32: void turnLeft_135(DC_motor *mL, DC_motor *mR);
+[v _turnLeft_135 `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"34
+[; ;./dc_motor.h: 34: void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
+[v _reverseSquareLeft `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"211 color.c
+[; ;color.c: 211:         sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
+[v _sprintf `(i ~T0 @X0 0 e? ]
+"38 ./serialTest.h
+[; ;./serialTest.h: 38: void TxBufferedString(char *string);
+[v _TxBufferedString `(v ~T0 @X0 0 ef1`*uc ]
+"39
+[; ;./serialTest.h: 39: void sendTxBuf(void);
+[v _sendTxBuf `(v ~T0 @X0 0 ef ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2033,6 +2057,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8
 [; ;./dc_motor.h: 8: int reverse_time;
 [v _reverse_time `i ~T0 @X0 1 e ]
+"13 ./serialTest.h
+[; ;./serialTest.h: 13: volatile char EUSART4RXbuf[20];
+[v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]
+"14
+[; ;./serialTest.h: 14: volatile char RxBufWriteCnt=0;
+[v _RxBufWriteCnt `Vuc ~T0 @X0 1 e ]
+[i _RxBufWriteCnt
+-> -> 0 `i `uc
+]
+"15
+[; ;./serialTest.h: 15: volatile char RxBufReadCnt=0;
+[v _RxBufReadCnt `Vuc ~T0 @X0 1 e ]
+[i _RxBufReadCnt
+-> -> 0 `i `uc
+]
+"17
+[; ;./serialTest.h: 17: volatile char EUSART4TXbuf[60];
+[v _EUSART4TXbuf `Vuc ~T0 @X0 -> 60 `i e ]
+"18
+[; ;./serialTest.h: 18: volatile char TxBufWriteCnt=0;
+[v _TxBufWriteCnt `Vuc ~T0 @X0 1 e ]
+[i _TxBufWriteCnt
+-> -> 0 `i `uc
+]
+"19
+[; ;./serialTest.h: 19: volatile char TxBufReadCnt=0;
+[v _TxBufReadCnt `Vuc ~T0 @X0 1 e ]
+[i _TxBufReadCnt
+-> -> 0 `i `uc
+]
 "7 color.c
 [; ;color.c: 7: void color_click_init(void)
 [v _color_click_init `(v ~T0 @X0 1 ef ]
@@ -2463,9 +2517,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "154
 [; ;color.c: 154:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"155
-[; ;color.c: 155:         fullSpeedAhead(mL,mR);
-[e ( _fullSpeedAhead , _mL _mR ]
 "156
 [; ;color.c: 156:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
@@ -2478,8 +2529,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! & & > -> _redPrint `d .1.5 > -> - _redPrint _greenPrint `d .0.8 > -> - _redPrint _bluePrint `d .0.8 2037  ]
 {
 "161
-[; ;color.c: 161:             right45(mL,mR);
-[e ( _right45 , _mL _mR ]
+[; ;color.c: 161:             turnRight_90(mL,mR);
+[e ( _turnRight_90 (2 , _mL _mR ]
 "162
 [; ;color.c: 162:             _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
@@ -2495,65 +2546,117 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color.c: 167:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "168
-[; ;color.c: 168:         }
+[; ;color.c: 168:         turnRight_135(mL,mR);
+[e ( _turnRight_135 (2 , _mL _mR ]
+"169
+[; ;color.c: 169:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"171
+[; ;color.c: 171:         }
 }
 [e :U 2038 ]
-"171
-[; ;color.c: 171:         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+"174
+[; ;color.c: 174:         if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
 [e $ ! & & > -> _redPrint `d .1.0 > -> _greenPrint `d .0.8 < -> _bluePrint `d .0.8 2039  ]
 {
-"172
-[; ;color.c: 172:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"176
+[; ;color.c: 176:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"173
-[; ;color.c: 173:         }
+"177
+[; ;color.c: 177:         reverseSquareRight(mL,mR);
+[e ( _reverseSquareRight (2 , _mL _mR ]
+"178
+[; ;color.c: 178:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"179
+[; ;color.c: 179:         }
 }
 [e :U 2039 ]
-"176
-[; ;color.c: 176:         if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
+"182
+[; ;color.c: 182:         if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
 [e $ ! & & > -> - _bluePrint _redPrint `d .0.7 > -> - _bluePrint _greenPrint `d .0.3 > -> _bluePrint `d .0.7 2040  ]
 {
-"177
-[; ;color.c: 177:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"183
+[; ;color.c: 183:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"178
-[; ;color.c: 178:         }
+"184
+[; ;color.c: 184:         turn_180(mL,mR);
+[e ( _turn_180 (2 , _mL _mR ]
+"185
+[; ;color.c: 185:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"186
+[; ;color.c: 186:         }
 }
 [e :U 2040 ]
-"181
-[; ;color.c: 181:         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+"189
+[; ;color.c: 189:         if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
 [e $ ! & & > -> - _greenPrint _redPrint `d .0.4 > _greenPrint -> -> 1 `i `f > -> - _greenPrint _bluePrint `d .0.4 2041  ]
 {
-"182
-[; ;color.c: 182:         _delay((unsigned long)((2)*(64000000/4000.0)));
+"190
+[; ;color.c: 190:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"183
-[; ;color.c: 183:         }
-}
-[e :U 2041 ]
-"186
-[; ;color.c: 186:         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
-[e $ ! & & < -> _redPrint `d .0.7 > -> _greenPrint `d .1.0 > -> _bluePrint `d .1.0 2042  ]
-{
-"187
-[; ;color.c: 187:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"188
-[; ;color.c: 188:         }
-}
-[e :U 2042 ]
 "191
-[; ;color.c: 191:         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
-[e $ ! & & > -> _redPrint `d .0.95 & > -> _greenPrint `d .0.8 < -> _greenPrint `d .0.9 & > -> _bluePrint `d .0.8 < -> _bluePrint `d .0.95 2043  ]
-{
+[; ;color.c: 191:         turnLeft_90(mL,mR);
+[e ( _turnLeft_90 (2 , _mL _mR ]
 "192
 [; ;color.c: 192:         _delay((unsigned long)((2)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "193
 [; ;color.c: 193:         }
 }
-[e :U 2043 ]
+[e :U 2041 ]
+"196
+[; ;color.c: 196:         if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
+[e $ ! & & < -> _redPrint `d .0.7 > -> _greenPrint `d .1.0 > -> _bluePrint `d .1.0 2042  ]
+{
 "197
-[; ;color.c: 197: }
+[; ;color.c: 197:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"198
+[; ;color.c: 198:         turnLeft_135(mL,mR);
+[e ( _turnLeft_135 (2 , _mL _mR ]
+"199
+[; ;color.c: 199:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"200
+[; ;color.c: 200:         }
+}
+[e :U 2042 ]
+"203
+[; ;color.c: 203:         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
+[e $ ! & & > -> _redPrint `d .0.95 & > -> _greenPrint `d .0.8 < -> _greenPrint `d .0.9 & > -> _bluePrint `d .0.8 < -> _bluePrint `d .0.95 2043  ]
+{
+"204
+[; ;color.c: 204:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"205
+[; ;color.c: 205:         reverseSquareLeft(mL,mR);
+[e ( _reverseSquareLeft (2 , _mL _mR ]
+"206
+[; ;color.c: 206:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"207
+[; ;color.c: 207:         }
+}
+[e :U 2043 ]
+"210
+[; ;color.c: 210:         char testString[20];
+[v _testString `uc ~T0 @X0 -> 20 `i a ]
+"211
+[; ;color.c: 211:         sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
+[e ( _sprintf , , , , &U _testString :s 1C -> _redPrint `d -> _greenPrint `d -> _bluePrint `d ]
+"212
+[; ;color.c: 212:         TxBufferedString(testString);
+[e ( _TxBufferedString (1 &U _testString ]
+"213
+[; ;color.c: 213:         sendTxBuf();
+[e ( _sendTxBuf ..  ]
+"214
+[; ;color.c: 214:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"218
+[; ;color.c: 218: }
 [e :UE 2032 ]
 }
+[a 1C 37 100 32 32 37 102 32 32 37 102 32 13 0 ]

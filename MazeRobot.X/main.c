@@ -256,12 +256,9 @@ void main(void){
         sendTxBuf();
         __delay_ms(2);
         
-        */
         
-        
-            
-        
-        
+    
+ 
     }
 }
 
