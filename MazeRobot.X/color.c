@@ -1,7 +1,7 @@
 #include <xc.h>
 #include "color.h"
 #include "i2c.h"
-
+#include "serialTest.h"
 
 
 void color_click_init(void)
@@ -205,6 +205,13 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
         reverseSquareLeft(mL,mR);
         __delay_ms(2);
         } 
+        
+        
+        char testString[20];
+        sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
+        TxBufferedString(testString);   // send to pc
+        sendTxBuf();
+        __delay_ms(2);
         
     
     

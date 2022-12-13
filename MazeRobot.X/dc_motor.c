@@ -2,7 +2,7 @@
 #include "dc_motor.h"
 
 //Calibration 
-int turning_time45 = 72; // time period elapsed to achieve a 45 degree rotation
+int turning_time45 = 200; // time period elapsed to achieve a 45 degree rotation
 int reverse_time = 200; //time period elapsed when reversing after detecting a colour (this is different to square reverse)
 
 

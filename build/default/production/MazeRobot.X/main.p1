@@ -237,15 +237,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23 MazeRobot.X/dc_motor.h
 [; ;MazeRobot.X/dc_motor.h: 23: void stop(DC_motor *mL, DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
-"109 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
-[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"38 MazeRobot.X/serialTest.h
-[; ;MazeRobot.X/serialTest.h: 38: void TxBufferedString(char *string);
-[v _TxBufferedString `(v ~T0 @X0 0 ef1`*uc ]
-"39
-[; ;MazeRobot.X/serialTest.h: 39: void sendTxBuf(void);
-[v _sendTxBuf `(v ~T0 @X0 0 ef ]
 "2 MazeRobot.X/main.c
 [; ;MazeRobot.X/main.c: 2: 
 [p x FEXTOSC  =  HS      ]
@@ -2408,9 +2399,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _clearRef `d ~T0 @X0 1 a ]
 [e = _clearRef .0.0 ]
 "93
-[; ;MazeRobot.X/main.c: 93:     double whiteC = 0.0;
+[; ;MazeRobot.X/main.c: 93:     double whiteC = 19000.0;
 [v _whiteC `d ~T0 @X0 1 a ]
-[e = _whiteC .0.0 ]
+[e = _whiteC .19000.0 ]
 "95
 [; ;MazeRobot.X/main.c: 95:     DC_motor motorLeft,motorRight;
 [v _motorLeft `S2017 ~T0 @X0 1 a ]
@@ -2480,27 +2471,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "142
 [; ;MazeRobot.X/main.c: 142:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"145
-[; ;MazeRobot.X/main.c: 145:         sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
-[e ( _sprintf (1 , , , (. , &U _string4 :s 1C . _RGBVal 3 . _whiteRGBVal 3 _clearRef ]
-"146
-[; ;MazeRobot.X/main.c: 146:         TxBufferedString(string4);
-[e ( _TxBufferedString (1 &U _string4 ]
-"147
-[; ;MazeRobot.X/main.c: 147:         sendTxBuf();
-[e ( _sendTxBuf ..  ]
-"148
-[; ;MazeRobot.X/main.c: 148:         _delay((unsigned long)((2)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"251
-[; ;MazeRobot.X/main.c: 251:     }
+"253
+[; ;MazeRobot.X/main.c: 253:     }
 }
 [e :U 2020 ]
 [e $U 2021  ]
 [e :U 2022 ]
-"252
-[; ;MazeRobot.X/main.c: 252: }
+"254
+[; ;MazeRobot.X/main.c: 254: }
 [e :UE 2019 ]
 }
-[p f _sprintf 8396928 ]
-[a 1C 32 32 67 58 32 37 100 32 32 37 100 32 32 37 102 32 13 0 ]

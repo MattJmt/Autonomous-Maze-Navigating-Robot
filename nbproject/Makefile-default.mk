@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=MazeRobot.X/color.c MazeRobot.X/dc_motor.c MazeRobot.X/i2c.c MazeRobot.X/main.c MazeRobot.X/serial.c MazeRobot.X/timers.c
+SOURCEFILES_QUOTED_IF_SPACED=MazeRobot.X/color.c MazeRobot.X/dc_motor.c MazeRobot.X/i2c.c MazeRobot.X/main.c MazeRobot.X/timers.c serialTest.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MazeRobot.X/color.p1 ${OBJECTDIR}/MazeRobot.X/dc_motor.p1 ${OBJECTDIR}/MazeRobot.X/i2c.p1 ${OBJECTDIR}/MazeRobot.X/main.p1 ${OBJECTDIR}/MazeRobot.X/serial.p1 ${OBJECTDIR}/MazeRobot.X/timers.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/MazeRobot.X/color.p1.d ${OBJECTDIR}/MazeRobot.X/dc_motor.p1.d ${OBJECTDIR}/MazeRobot.X/i2c.p1.d ${OBJECTDIR}/MazeRobot.X/main.p1.d ${OBJECTDIR}/MazeRobot.X/serial.p1.d ${OBJECTDIR}/MazeRobot.X/timers.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MazeRobot.X/color.p1 ${OBJECTDIR}/MazeRobot.X/dc_motor.p1 ${OBJECTDIR}/MazeRobot.X/i2c.p1 ${OBJECTDIR}/MazeRobot.X/main.p1 ${OBJECTDIR}/MazeRobot.X/timers.p1 ${OBJECTDIR}/serialTest.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/MazeRobot.X/color.p1.d ${OBJECTDIR}/MazeRobot.X/dc_motor.p1.d ${OBJECTDIR}/MazeRobot.X/i2c.p1.d ${OBJECTDIR}/MazeRobot.X/main.p1.d ${OBJECTDIR}/MazeRobot.X/timers.p1.d ${OBJECTDIR}/serialTest.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/MazeRobot.X/color.p1 ${OBJECTDIR}/MazeRobot.X/dc_motor.p1 ${OBJECTDIR}/MazeRobot.X/i2c.p1 ${OBJECTDIR}/MazeRobot.X/main.p1 ${OBJECTDIR}/MazeRobot.X/serial.p1 ${OBJECTDIR}/MazeRobot.X/timers.p1
+OBJECTFILES=${OBJECTDIR}/MazeRobot.X/color.p1 ${OBJECTDIR}/MazeRobot.X/dc_motor.p1 ${OBJECTDIR}/MazeRobot.X/i2c.p1 ${OBJECTDIR}/MazeRobot.X/main.p1 ${OBJECTDIR}/MazeRobot.X/timers.p1 ${OBJECTDIR}/serialTest.p1
 
 # Source Files
-SOURCEFILES=MazeRobot.X/color.c MazeRobot.X/dc_motor.c MazeRobot.X/i2c.c MazeRobot.X/main.c MazeRobot.X/serial.c MazeRobot.X/timers.c
+SOURCEFILES=MazeRobot.X/color.c MazeRobot.X/dc_motor.c MazeRobot.X/i2c.c MazeRobot.X/main.c MazeRobot.X/timers.c serialTest.c
 
 
 
@@ -126,14 +126,6 @@ ${OBJECTDIR}/MazeRobot.X/main.p1: MazeRobot.X/main.c  nbproject/Makefile-${CND_C
 	@-${MV} ${OBJECTDIR}/MazeRobot.X/main.d ${OBJECTDIR}/MazeRobot.X/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/MazeRobot.X/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/MazeRobot.X/serial.p1: MazeRobot.X/serial.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/MazeRobot.X" 
-	@${RM} ${OBJECTDIR}/MazeRobot.X/serial.p1.d 
-	@${RM} ${OBJECTDIR}/MazeRobot.X/serial.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/MazeRobot.X/serial.p1 MazeRobot.X/serial.c 
-	@-${MV} ${OBJECTDIR}/MazeRobot.X/serial.d ${OBJECTDIR}/MazeRobot.X/serial.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/MazeRobot.X/serial.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/MazeRobot.X/timers.p1: MazeRobot.X/timers.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/MazeRobot.X" 
 	@${RM} ${OBJECTDIR}/MazeRobot.X/timers.p1.d 
@@ -141,6 +133,14 @@ ${OBJECTDIR}/MazeRobot.X/timers.p1: MazeRobot.X/timers.c  nbproject/Makefile-${C
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/MazeRobot.X/timers.p1 MazeRobot.X/timers.c 
 	@-${MV} ${OBJECTDIR}/MazeRobot.X/timers.d ${OBJECTDIR}/MazeRobot.X/timers.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/MazeRobot.X/timers.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/serialTest.p1: serialTest.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/serialTest.p1.d 
+	@${RM} ${OBJECTDIR}/serialTest.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/serialTest.p1 serialTest.c 
+	@-${MV} ${OBJECTDIR}/serialTest.d ${OBJECTDIR}/serialTest.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/serialTest.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/MazeRobot.X/color.p1: MazeRobot.X/color.c  nbproject/Makefile-${CND_CONF}.mk 
@@ -175,14 +175,6 @@ ${OBJECTDIR}/MazeRobot.X/main.p1: MazeRobot.X/main.c  nbproject/Makefile-${CND_C
 	@-${MV} ${OBJECTDIR}/MazeRobot.X/main.d ${OBJECTDIR}/MazeRobot.X/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/MazeRobot.X/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/MazeRobot.X/serial.p1: MazeRobot.X/serial.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/MazeRobot.X" 
-	@${RM} ${OBJECTDIR}/MazeRobot.X/serial.p1.d 
-	@${RM} ${OBJECTDIR}/MazeRobot.X/serial.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/MazeRobot.X/serial.p1 MazeRobot.X/serial.c 
-	@-${MV} ${OBJECTDIR}/MazeRobot.X/serial.d ${OBJECTDIR}/MazeRobot.X/serial.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/MazeRobot.X/serial.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/MazeRobot.X/timers.p1: MazeRobot.X/timers.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/MazeRobot.X" 
 	@${RM} ${OBJECTDIR}/MazeRobot.X/timers.p1.d 
@@ -190,6 +182,14 @@ ${OBJECTDIR}/MazeRobot.X/timers.p1: MazeRobot.X/timers.c  nbproject/Makefile-${C
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/MazeRobot.X/timers.p1 MazeRobot.X/timers.c 
 	@-${MV} ${OBJECTDIR}/MazeRobot.X/timers.d ${OBJECTDIR}/MazeRobot.X/timers.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/MazeRobot.X/timers.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/serialTest.p1: serialTest.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/serialTest.p1.d 
+	@${RM} ${OBJECTDIR}/serialTest.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/serialTest.p1 serialTest.c 
+	@-${MV} ${OBJECTDIR}/serialTest.d ${OBJECTDIR}/serialTest.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/serialTest.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

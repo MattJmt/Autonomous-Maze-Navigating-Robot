@@ -22,8 +22,8 @@
       <itemPath>MazeRobot.X/dc_motor.c</itemPath>
       <itemPath>MazeRobot.X/i2c.c</itemPath>
       <itemPath>MazeRobot.X/main.c</itemPath>
-      <itemPath>MazeRobot.X/serial.c</itemPath>
       <itemPath>MazeRobot.X/timers.c</itemPath>
+      <itemPath>serialTest.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -191,6 +191,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-1ffff"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/Users/44795/Documents/GitHub/final-project-hudson-matthias/debug/default/default_ptg"/>
         <property key="programmerToGoImageName" value="default_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>

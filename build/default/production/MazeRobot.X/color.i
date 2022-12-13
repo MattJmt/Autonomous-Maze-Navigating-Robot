@@ -24345,6 +24345,37 @@ void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
 # 3 "MazeRobot.X/color.c" 2
 
+# 1 "MazeRobot.X/serialTest.h" 1
+# 13 "MazeRobot.X/serialTest.h"
+volatile char EUSART4RXbuf[20];
+volatile char RxBufWriteCnt=0;
+volatile char RxBufReadCnt=0;
+
+volatile char EUSART4TXbuf[60];
+volatile char TxBufWriteCnt=0;
+volatile char TxBufReadCnt=0;
+
+
+
+void initUSART4(void);
+char getCharSerial4(void);
+void sendCharSerial4(char charToSend);
+void sendStringSerial4(char *string);
+void ADC2String(unsigned int valr, unsigned int valb, unsigned int valg, unsigned int valc);
+
+
+char getCharFromRxBuf(void);
+void putCharToRxBuf(char byte);
+char isDataInRxBuf (void);
+
+
+char getCharFromTxBuf(void);
+void putCharToTxBuf(char byte);
+char isDataInTxBuf (void);
+void TxBufferedString(char *string);
+void sendTxBuf(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 4 "MazeRobot.X/color.c" 2
 
 
 
@@ -24549,6 +24580,13 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
         reverseSquareLeft(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
         }
+
+
+        char testString[20];
+        sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
+        TxBufferedString(testString);
+        sendTxBuf();
+        _delay((unsigned long)((2)*(64000000/4000.0)));
 
 
 

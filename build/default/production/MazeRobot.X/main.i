@@ -24388,40 +24388,10 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 12 "MazeRobot.X/main.c" 2
 
-# 1 "MazeRobot.X/i2c.h" 1
-# 13 "MazeRobot.X/i2c.h"
-void I2C_2_Master_Init(void);
+# 1 "MazeRobot.X/color.h" 1
 
 
 
-
-void I2C_2_Master_Idle(void);
-
-
-
-
-void I2C_2_Master_Start(void);
-
-
-
-
-void I2C_2_Master_RepStart(void);
-
-
-
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 13 "MazeRobot.X/main.c" 2
 
 # 1 "MazeRobot.X/dc_motor.h" 1
 
@@ -24458,7 +24428,80 @@ void turnRight_135(DC_motor *mL, DC_motor *mR);
 void turnLeft_135(DC_motor *mL, DC_motor *mR);
 void reverseSquareRight(DC_motor *mL, DC_motor *mR);
 void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
+# 5 "MazeRobot.X/color.h" 2
+
+
+
+
+
+
+
+
+void color_click_init(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+unsigned int color_read_Green(void);
+unsigned int color_read_Blue(void);
+
+typedef struct RGB {
+    unsigned int R;
+    unsigned int G;
+    unsigned int B;
+    unsigned int C;
+} RGB;
+
+void getColor(RGB *v);
+void ambientCal(RGB *v);
+void whiteCal(RGB *v);
+void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+# 13 "MazeRobot.X/main.c" 2
+
+# 1 "MazeRobot.X/i2c.h" 1
+# 13 "MazeRobot.X/i2c.h"
+void I2C_2_Master_Init(void);
+
+
+
+
+void I2C_2_Master_Idle(void);
+
+
+
+
+void I2C_2_Master_Start(void);
+
+
+
+
+void I2C_2_Master_RepStart(void);
+
+
+
+
+void I2C_2_Master_Stop(void);
+
+
+
+
+void I2C_2_Master_Write(unsigned char data_byte);
+
+
+
+
+unsigned char I2C_2_Master_Read(unsigned char ack);
 # 14 "MazeRobot.X/main.c" 2
+
 
 # 1 "MazeRobot.X/serialTest.h" 1
 # 13 "MazeRobot.X/serialTest.h"
@@ -24490,38 +24533,6 @@ char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 15 "MazeRobot.X/main.c" 2
-
-# 1 "MazeRobot.X/color.h" 1
-# 13 "MazeRobot.X/color.h"
-void color_click_init(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-unsigned int color_read_Green(void);
-unsigned int color_read_Blue(void);
-
-typedef struct RGB {
-    unsigned int R;
-    unsigned int G;
-    unsigned int B;
-    unsigned int C;
-} RGB;
-
-void getColor(RGB *v);
-void ambientCal(RGB *v);
-void whiteCal(RGB *v);
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
 # 16 "MazeRobot.X/main.c" 2
 
 # 1 "MazeRobot.X/interrupts.h" 1
@@ -24627,7 +24638,7 @@ void main(void){
     RGB ambientRGBVal;
     RGB whiteRGBVal;
     double clearRef = 0.0;
-    double whiteC = 0.0;
+    double whiteC = 19000.0;
 
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
@@ -24659,12 +24670,6 @@ void main(void){
         else{stop(&motorLeft,&motorRight);}
 
         _delay((unsigned long)((100)*(64000000/4000.0)));
-
-
-        sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
-        TxBufferedString(string4);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-# 251 "MazeRobot.X/main.c"
+# 253 "MazeRobot.X/main.c"
     }
 }

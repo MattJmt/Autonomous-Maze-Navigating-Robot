@@ -24270,7 +24270,7 @@ void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
 
 
 
-int turning_time45 = 72;
+int turning_time45 = 200;
 int reverse_time = 200;
 
 

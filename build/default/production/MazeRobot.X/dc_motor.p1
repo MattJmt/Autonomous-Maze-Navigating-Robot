@@ -2273,10 +2273,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/dc_motor.h: 8: int reverse_time;
 [v _reverse_time `i ~T0 @X0 1 e ]
 "5 MazeRobot.X/dc_motor.c
-[; ;MazeRobot.X/dc_motor.c: 5: int turning_time45 = 72;
+[; ;MazeRobot.X/dc_motor.c: 5: int turning_time45 = 200;
 [v _turning_time45 `i ~T0 @X0 1 e ]
 [i _turning_time45
--> 72 `i
+-> 200 `i
 ]
 "6
 [; ;MazeRobot.X/dc_motor.c: 6: int reverse_time = 200;

@@ -68,6 +68,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "34
 [; ;MazeRobot.X/dc_motor.h: 34: void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
 [v _reverseSquareLeft `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"211 MazeRobot.X/color.c
+[; ;MazeRobot.X/color.c: 211:         sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
+[v _sprintf `(i ~T0 @X0 0 e? ]
+"38 MazeRobot.X/serialTest.h
+[; ;MazeRobot.X/serialTest.h: 38: void TxBufferedString(char *string);
+[v _TxBufferedString `(v ~T0 @X0 0 ef1`*uc ]
+"39
+[; ;MazeRobot.X/serialTest.h: 39: void sendTxBuf(void);
+[v _sendTxBuf `(v ~T0 @X0 0 ef ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2048,6 +2057,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8
 [; ;MazeRobot.X/dc_motor.h: 8: int reverse_time;
 [v _reverse_time `i ~T0 @X0 1 e ]
+"13 MazeRobot.X/serialTest.h
+[; ;MazeRobot.X/serialTest.h: 13: volatile char EUSART4RXbuf[20];
+[v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]
+"14
+[; ;MazeRobot.X/serialTest.h: 14: volatile char RxBufWriteCnt=0;
+[v _RxBufWriteCnt `Vuc ~T0 @X0 1 e ]
+[i _RxBufWriteCnt
+-> -> 0 `i `uc
+]
+"15
+[; ;MazeRobot.X/serialTest.h: 15: volatile char RxBufReadCnt=0;
+[v _RxBufReadCnt `Vuc ~T0 @X0 1 e ]
+[i _RxBufReadCnt
+-> -> 0 `i `uc
+]
+"17
+[; ;MazeRobot.X/serialTest.h: 17: volatile char EUSART4TXbuf[60];
+[v _EUSART4TXbuf `Vuc ~T0 @X0 -> 60 `i e ]
+"18
+[; ;MazeRobot.X/serialTest.h: 18: volatile char TxBufWriteCnt=0;
+[v _TxBufWriteCnt `Vuc ~T0 @X0 1 e ]
+[i _TxBufWriteCnt
+-> -> 0 `i `uc
+]
+"19
+[; ;MazeRobot.X/serialTest.h: 19: volatile char TxBufReadCnt=0;
+[v _TxBufReadCnt `Vuc ~T0 @X0 1 e ]
+[i _TxBufReadCnt
+-> -> 0 `i `uc
+]
 "7 MazeRobot.X/color.c
 [; ;MazeRobot.X/color.c: 7: void color_click_init(void)
 [v _color_click_init `(v ~T0 @X0 1 ef ]
@@ -2601,7 +2640,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/color.c: 207:         }
 }
 [e :U 2043 ]
+"210
+[; ;MazeRobot.X/color.c: 210:         char testString[20];
+[v _testString `uc ~T0 @X0 -> 20 `i a ]
 "211
-[; ;MazeRobot.X/color.c: 211: }
+[; ;MazeRobot.X/color.c: 211:         sprintf(testString,"%d  %f  %f \r",redPrint, greenPrint, bluePrint);
+[e ( _sprintf , , , , &U _testString :s 1C -> _redPrint `d -> _greenPrint `d -> _bluePrint `d ]
+"212
+[; ;MazeRobot.X/color.c: 212:         TxBufferedString(testString);
+[e ( _TxBufferedString (1 &U _testString ]
+"213
+[; ;MazeRobot.X/color.c: 213:         sendTxBuf();
+[e ( _sendTxBuf ..  ]
+"214
+[; ;MazeRobot.X/color.c: 214:         _delay((unsigned long)((2)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"218
+[; ;MazeRobot.X/color.c: 218: }
 [e :UE 2032 ]
 }
+[a 1C 37 100 32 32 37 102 32 32 37 102 32 13 0 ]

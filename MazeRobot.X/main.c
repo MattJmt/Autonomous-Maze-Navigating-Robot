@@ -10,10 +10,10 @@
 
 #include <xc.h>
 #include <stdio.h>
+#include "color.h"
 #include "i2c.h"
 #include "dc_motor.h"
 #include "serialTest.h"
-#include "color.h"
 #include "interrupts.h"
 #include "timers.h"
 //#include "interupts2.h"
@@ -90,7 +90,7 @@ void main(void){
     RGB ambientRGBVal;
     RGB whiteRGBVal;
     double clearRef = 0.0;
-    double whiteC = 0.0;
+    double whiteC = 19000.0;
     
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
@@ -141,12 +141,14 @@ void main(void){
         
         __delay_ms(100);
         
-        
+        /*
         sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
         TxBufferedString(string4);   // send to pc
         sendTxBuf();
         __delay_ms(2);
-
+         */
+        
+        
         /*    
      
         FOR DEBUGGING
