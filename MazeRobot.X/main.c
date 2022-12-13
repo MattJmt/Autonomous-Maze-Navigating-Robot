@@ -46,21 +46,17 @@ void main(void){
          while(1){        
             
             if (count  < 4 ){
-            reverse(&motorLeft,&motorRight);
-            __delay_ms(500);
+              
             
-            count++;
-            
-            stop(&motorLeft,&motorRight);
-            __delay_ms(300);
-            
-            forward(&motorLeft,&motorRight);
-            __delay_ms(500);
-            
-            turnLeft(&motorLeft,&motorRight);
-            __delay_ms(200);
-            
-            count = 0;
+                
+                
+                
+                stop(&motorLeft, &motorRight);
+                
+                reverseSquareRight(&motorLeft, &motorRight);
+                
+                stop(&motorLeft, &motorRight);
+                
             }
         
             //if (count == 4){

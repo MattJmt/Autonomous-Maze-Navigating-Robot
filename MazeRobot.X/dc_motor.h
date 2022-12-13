@@ -24,5 +24,13 @@ void turnLeft(DC_motor *mL, DC_motor *mR);
 void turnRight(DC_motor *mL, DC_motor *mR);
 void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
+void turnLeft_90(DC_motor *mL, DC_motor *mR);           //Green
+void turnRight_90(DC_motor *mL, DC_motor *mR);          //Red
+void turn_180(DC_motor *mL, DC_motor *mR);              //Blue
+void turnRight_135(DC_motor *mL, DC_motor *mR);         //Orange
+void turnLeft_135(DC_motor *mL, DC_motor *mR);          //Light Blue
+void reverseSquareRight(DC_motor *mL, DC_motor *mR);    //Yellow
+void reverseSquareLeft(DC_motor *mL, DC_motor *mR);     //Pink
+
 
 #endif

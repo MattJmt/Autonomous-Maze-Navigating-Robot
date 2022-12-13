@@ -57,12 +57,14 @@
 [v _setMotorPWM setMotorPWM `(v  1 e 1 0 ]
 "101
 [v _stop stop `(v  1 e 1 0 ]
-"117
-[v _forward forward `(v  1 e 1 0 ]
-"139
+"141
 [v _reverse reverse `(v  1 e 1 0 ]
-"161
-[v _turnLeft turnLeft `(v  1 e 1 0 ]
+"224
+[v _turnLeft_90 turnLeft_90 `(v  1 e 1 0 ]
+"253
+[v _turnRight_90 turnRight_90 `(v  1 e 1 0 ]
+"366
+[v _reverseSquareRight reverseSquareRight `(v  1 e 1 0 ]
 "8 C:\Users\matja\Documents\GitHub\ECM\final-project-hudson-matthias\MazeRobot.X\interrupts.c
 [v _Interrupts_init Interrupts_init `(v  1 e 1 0 ]
 "20
@@ -80,7 +82,7 @@
 [v _SSP2CLKPPS SSP2CLKPPS `VEuc  1 e 1 @3612 ]
 "3863
 [v _SSP2DATPPS SSP2DATPPS `VEuc  1 e 1 @3613 ]
-[s S1298 . 1 `uc 1 INT0IE 1 0 :1:0 
+[s S1376 . 1 `uc 1 INT0IE 1 0 :1:0 
 `uc 1 INT1IE 1 0 :1:1 
 `uc 1 INT2IE 1 0 :1:2 
 `uc 1 INT3IE 1 0 :1:3 
@@ -88,9 +90,9 @@
 `uc 1 TMR0IE 1 0 :1:5 
 ]
 "4558
-[u S1305 . 1 `S1298 1 . 1 0 ]
-[v _PIE0bits PIE0bits `VES1305  1 e 1 @3625 ]
-[s S1354 . 1 `uc 1 INT0IF 1 0 :1:0 
+[u S1383 . 1 `S1376 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES1383  1 e 1 @3625 ]
+[s S1432 . 1 `uc 1 INT0IF 1 0 :1:0 
 `uc 1 INT1IF 1 0 :1:1 
 `uc 1 INT2IF 1 0 :1:2 
 `uc 1 INT3IF 1 0 :1:3 
@@ -98,8 +100,8 @@
 `uc 1 TMR0IF 1 0 :1:5 
 ]
 "5103
-[u S1361 . 1 `S1354 1 . 1 0 ]
-[v _PIR0bits PIR0bits `VES1361  1 e 1 @3635 ]
+[u S1439 . 1 `S1432 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES1439  1 e 1 @3635 ]
 "8209
 [v _RC7PPS RC7PPS `VEuc  1 e 1 @3689 ]
 "8509
@@ -124,7 +126,7 @@
 "11514
 [u S144 . 1 `S135 1 . 1 0 ]
 [v _ANSELDbits ANSELDbits `VES144  1 e 1 @3751 ]
-[s S1101 . 1 `uc 1 ANSELF0 1 0 :1:0 
+[s S1184 . 1 `uc 1 ANSELF0 1 0 :1:0 
 `uc 1 ANSELF1 1 0 :1:1 
 `uc 1 ANSELF2 1 0 :1:2 
 `uc 1 ANSELF3 1 0 :1:3 
@@ -134,8 +136,8 @@
 `uc 1 ANSELF7 1 0 :1:7 
 ]
 "12320
-[u S1110 . 1 `S1101 1 . 1 0 ]
-[v _ANSELFbits ANSELFbits `VES1110  1 e 1 @3764 ]
+[u S1193 . 1 `S1184 1 . 1 0 ]
+[v _ANSELFbits ANSELFbits `VES1193  1 e 1 @3764 ]
 "14197
 [v _SSP2BUF SSP2BUF `VEuc  1 e 1 @3797 ]
 "14217
@@ -344,7 +346,7 @@
 "29840
 [u S403 . 1 `S394 1 . 1 0 ]
 [v _TRISEbits TRISEbits `VES403  1 e 1 @3973 ]
-[s S1080 . 1 `uc 1 TRISF0 1 0 :1:0 
+[s S1163 . 1 `uc 1 TRISF0 1 0 :1:0 
 `uc 1 TRISF1 1 0 :1:1 
 `uc 1 TRISF2 1 0 :1:2 
 `uc 1 TRISF3 1 0 :1:3 
@@ -354,8 +356,8 @@
 `uc 1 TRISF7 1 0 :1:7 
 ]
 "29957
-[u S1089 . 1 `S1080 1 . 1 0 ]
-[v _TRISFbits TRISFbits `VES1089  1 e 1 @3974 ]
+[u S1172 . 1 `S1163 1 . 1 0 ]
+[v _TRISFbits TRISFbits `VES1172  1 e 1 @3974 ]
 [s S436 . 1 `uc 1 TRISG0 1 0 :1:0 
 `uc 1 TRISG1 1 0 :1:1 
 `uc 1 TRISG2 1 0 :1:2 
@@ -368,7 +370,7 @@
 "30019
 [u S445 . 1 `S436 1 . 1 0 ]
 [v _TRISGbits TRISGbits `VES445  1 e 1 @3975 ]
-[s S1122 . 1 `uc 1 RF0 1 0 :1:0 
+[s S1205 . 1 `uc 1 RF0 1 0 :1:0 
 `uc 1 RF1 1 0 :1:1 
 `uc 1 RF2 1 0 :1:2 
 `uc 1 RF3 1 0 :1:3 
@@ -378,12 +380,12 @@
 `uc 1 RF7 1 0 :1:7 
 ]
 "30602
-[s S1131 . 1 `uc 1 . 1 0 :1:0 
+[s S1214 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 C2OUTF 1 0 :1:1 
 `uc 1 C1OUTF 1 0 :1:2 
 ]
-[u S1135 . 1 `S1122 1 . 1 0 `S1131 1 . 1 0 ]
-[v _PORTFbits PORTFbits `VES1135  1 e 1 @3982 ]
+[u S1218 . 1 `S1205 1 . 1 0 `S1214 1 . 1 0 ]
+[v _PORTFbits PORTFbits `VES1218  1 e 1 @3982 ]
 "34200
 [v _CCPR2H CCPR2H `VEuc  1 e 1 @4006 ]
 [s S638 . 1 `uc 1 MODE 1 0 :4:0 
@@ -547,29 +549,29 @@
 [v _TMR0L TMR0L `VEuc  1 e 1 @4051 ]
 "39327
 [v _TMR0H TMR0H `VEuc  1 e 1 @4052 ]
-[s S1257 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S1335 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T016BIT 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
 "39601
-[s S1263 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+[s S1341 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
 `uc 1 T0OUTPS1 1 0 :1:1 
 `uc 1 T0OUTPS2 1 0 :1:2 
 `uc 1 T0OUTPS3 1 0 :1:3 
 ]
 "39601
-[u S1268 . 1 `S1257 1 . 1 0 `S1263 1 . 1 0 ]
+[u S1346 . 1 `S1335 1 . 1 0 `S1341 1 . 1 0 ]
 "39601
 "39601
-[v _T0CON0bits T0CON0bits `VES1268  1 e 1 @4053 ]
-[s S1211 . 1 `uc 1 T0CKPS 1 0 :4:0 
+[v _T0CON0bits T0CON0bits `VES1346  1 e 1 @4053 ]
+[s S1289 . 1 `uc 1 T0CKPS 1 0 :4:0 
 `uc 1 T0ASYNC 1 0 :1:4 
 `uc 1 T0CS 1 0 :3:5 
 ]
 "39677
-[s S1215 . 1 `uc 1 T0CKPS0 1 0 :1:0 
+[s S1293 . 1 `uc 1 T0CKPS0 1 0 :1:0 
 `uc 1 T0CKPS1 1 0 :1:1 
 `uc 1 T0CKPS2 1 0 :1:2 
 `uc 1 T0CKPS3 1 0 :1:3 
@@ -579,20 +581,20 @@
 `uc 1 T0CS2 1 0 :1:7 
 ]
 "39677
-[s S1224 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S1302 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 `uc 1 T0PS3 1 0 :1:3 
 ]
 "39677
-[s S1229 . 1 `uc 1 T0PS 1 0 :4:0 
+[s S1307 . 1 `uc 1 T0PS 1 0 :4:0 
 ]
 "39677
-[u S1231 . 1 `S1211 1 . 1 0 `S1215 1 . 1 0 `S1224 1 . 1 0 `S1229 1 . 1 0 ]
+[u S1309 . 1 `S1289 1 . 1 0 `S1293 1 . 1 0 `S1302 1 . 1 0 `S1307 1 . 1 0 ]
 "39677
 "39677
-[v _T0CON1bits T0CON1bits `VES1231  1 e 1 @4054 ]
-[s S1315 . 1 `uc 1 INT0EDG 1 0 :1:0 
+[v _T0CON1bits T0CON1bits `VES1309  1 e 1 @4054 ]
+[s S1393 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
 `uc 1 INT3EDG 1 0 :1:3 
@@ -602,38 +604,46 @@
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "40500
-[s S1324 . 1 `uc 1 . 1 0 :6:0 
+[s S1402 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
 "40500
-[s S1328 . 1 `uc 1 . 1 0 :6:0 
+[s S1406 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "40500
-[u S1332 . 1 `S1315 1 . 1 0 `S1324 1 . 1 0 `S1328 1 . 1 0 ]
+[u S1410 . 1 `S1393 1 . 1 0 `S1402 1 . 1 0 `S1406 1 . 1 0 ]
 "40500
 "40500
-[v _INTCONbits INTCONbits `VES1332  1 e 1 @4082 ]
+[v _INTCONbits INTCONbits `VES1410  1 e 1 @4082 ]
 "16 C:\Users\matja\Documents\GitHub\ECM\final-project-hudson-matthias\MazeRobot.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
 [s S845 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 "24
-[v main@motorLeft motorLeft `S845  1 a 9 44 ]
-[v main@motorRight motorRight `S845  1 a 9 35 ]
+[v main@motorLeft motorLeft `S845  1 a 9 49 ]
+[v main@motorRight motorRight `S845  1 a 9 40 ]
 "40
-[v main@count count `uc  1 a 1 34 ]
-"131
+[v main@count count `uc  1 a 1 39 ]
+"127
 } 0
-"161 C:\Users\matja\Documents\GitHub\ECM\final-project-hudson-matthias\MazeRobot.X\dc_motor.c
-[v _turnLeft turnLeft `(v  1 e 1 0 ]
+"366 C:\Users\matja\Documents\GitHub\ECM\final-project-hudson-matthias\MazeRobot.X\dc_motor.c
+[v _reverseSquareRight reverseSquareRight `(v  1 e 1 0 ]
 {
 [s S845 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
-[v turnLeft@mL mL `*.39S845  1 p 2 26 ]
-[v turnLeft@mR mR `*.39S845  1 p 2 28 ]
-"190
+[v reverseSquareRight@mL mL `*.39S845  1 p 2 33 ]
+[v reverseSquareRight@mR mR `*.39S845  1 p 2 35 ]
+"378
+} 0
+"253
+[v _turnRight_90 turnRight_90 `(v  1 e 1 0 ]
+{
+[s S845 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
+[v turnRight_90@mL mL `*.39S845  1 p 2 27 ]
+[v turnRight_90@mR mR `*.39S845  1 p 2 29 ]
+"278
 } 0
 "101
 [v _stop stop `(v  1 e 1 0 ]
@@ -641,29 +651,15 @@
 [s S845 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v stop@mL mL `*.39S845  1 p 2 21 ]
 [v stop@mR mR `*.39S845  1 p 2 23 ]
-"114
+"115
 } 0
-"139
+"141
 [v _reverse reverse `(v  1 e 1 0 ]
 {
 [s S845 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v reverse@mL mL `*.39S845  1 p 2 21 ]
 [v reverse@mR mR `*.39S845  1 p 2 23 ]
-"158
-} 0
-"10
-[v _initDCmotorsPWM initDCmotorsPWM `(v  1 e 1 0 ]
-{
-[v initDCmotorsPWM@PWMperiod PWMperiod `i  1 p 2 2 ]
-"75
-} 0
-"117
-[v _forward forward `(v  1 e 1 0 ]
-{
-[s S845 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
-[v forward@mL mL `*.39S845  1 p 2 21 ]
-[v forward@mR mR `*.39S845  1 p 2 23 ]
-"136
+"162
 } 0
 "78
 [v _setMotorPWM setMotorPWM `(v  1 e 1 0 ]
@@ -697,6 +693,12 @@
 [v ___lwdiv@dividend dividend `ui  1 p 2 8 ]
 [v ___lwdiv@divisor divisor `ui  1 p 2 10 ]
 "30
+} 0
+"10 C:\Users\matja\Documents\GitHub\ECM\final-project-hudson-matthias\MazeRobot.X\dc_motor.c
+[v _initDCmotorsPWM initDCmotorsPWM `(v  1 e 1 0 ]
+{
+[v initDCmotorsPWM@PWMperiod PWMperiod `i  1 p 2 2 ]
+"75
 } 0
 "7 C:\Users\matja\Documents\GitHub\ECM\final-project-hudson-matthias\MazeRobot.X\timers.c
 [v _Timer0_init Timer0_init `(v  1 e 1 0 ]

@@ -2,7 +2,7 @@
 #include "dc_motor.h"
 
 //Calibration 
-int turning_time45 = 116; // time period elapsed to achieve a 45 degree rotation
+int turning_time45 = 72; // time period elapsed to achieve a 45 degree rotation
 int reverse_time = 200; //time period elapsed when reversing after detecting a colour (this is different to square reverse)
 
 
@@ -111,6 +111,7 @@ void stop(DC_motor *mL, DC_motor *mR){
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
+    __delay_ms(100);
 }
 
 //function to make the robot gradually move forward
@@ -133,6 +134,7 @@ void forward(DC_motor *mL, DC_motor *mR)
     }
     setMotorPWM(mL);
     setMotorPWM(mR);
+    //__delay_ms(time_period);
 }
 
 //function to make the robot gradually reverse
@@ -155,6 +157,8 @@ void reverse(DC_motor *mL, DC_motor *mR)
     }
     setMotorPWM(mL);
     setMotorPWM(mR);
+    
+  // __delay_ms(time_period);
 }
 
 //function to make the robot turn left 
@@ -167,44 +171,227 @@ void turnLeft(DC_motor *mL, DC_motor *mR)
     reverse(mL, mR);    // reverse from the wall to avoid collision when turning
     __delay_ms(reverse_time);
     
-    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
-    __delay_ms(100);
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
     
     mL->direction = 0;
     mR->direction = 1;
     
     mL->brakemode = 1;   
     mL->brakemode = 1; 
-  
-   while ((mR->power) < 70){
-        mR->power += 5;
-        mL->power += 5; 
-   }
+    
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
    __delay_ms(turning_time45);
     
     stop(mL, mR);
-    __delay_ms(100);
     
-    setMotorPWM(mL);
-    setMotorPWM(mR);
+
 }
 
-//function to make the robot turn right 
 void turnRight(DC_motor *mL, DC_motor *mR)
-{
-    mL->power = 50;
-    mR->power = 50;     
+{    
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(reverse_time);
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
     
     mL->direction = 1;
     mR->direction = 0;
     
     mL->brakemode = 1;   
     mL->brakemode = 1; 
+  
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   __delay_ms(turning_time45);
     
-    setMotorPWM(mL);
-    setMotorPWM(mR);
+    stop(mL, mR);
+    
 }
 
+/***GREEN***/    
+void turnLeft_90(DC_motor *mL, DC_motor *mR)            //Green
+{
+   
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(reverse_time);
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
+    
+    mL->direction = 0;
+    mR->direction = 1;
+    
+    mL->brakemode = 1;   
+    mL->brakemode = 1; 
+    
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   __delay_ms(2*turning_time45);
+    stop(mL, mR);
+}
+
+
+/***RED***/    
+void turnRight_90(DC_motor *mL, DC_motor *mR) //Red
+{    
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(reverse_time);
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
+    
+    mL->direction = 1;
+    mR->direction = 0;
+    
+    mL->brakemode = 1;   
+    mL->brakemode = 1; 
+  
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   __delay_ms(turning_time45);
+    
+    stop(mL, mR);
+}
+
+/***BLUE***/    
+void turn_180(DC_motor *mL, DC_motor *mR)              
+{
+   
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(reverse_time);
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
+    
+    mL->direction = 0;
+    mR->direction = 1;
+    
+    mL->brakemode = 1;   
+    mL->brakemode = 1; 
+    
+    while((mL->power < 70) || (mR->power < 70)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   __delay_ms(4*turning_time45);
+    stop(mL, mR);
+}
+
+/***ORANGE***/    
+void turnRight_135(DC_motor *mL, DC_motor *mR) //Orange
+{    
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(reverse_time);
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
+    
+    mL->direction = 1;
+    mR->direction = 0;
+    
+    mL->brakemode = 1;   
+    mL->brakemode = 1; 
+  
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   __delay_ms(turning_time45);
+    
+    stop(mL, mR);
+}
+
+
+/***LIGHTBLUE***/    
+void turnLeft_135(DC_motor *mL, DC_motor *mR)          //Light Blue
+{
+   
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(reverse_time);
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
+    
+    mL->direction = 0;
+    mR->direction = 1;
+    
+    mL->brakemode = 1;   
+    mL->brakemode = 1; 
+    
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   __delay_ms(3*turning_time45);
+    stop(mL, mR);
+}
+
+/***YELLOW***/    
+void reverseSquareRight(DC_motor *mL, DC_motor *mR)     //Yellow
+{
+        
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(500);    //change delay to match distance of a square
+    
+    turnRight_90(mL,mR);  //90 degree rotation to the right
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
+}
+
+
+/***PINK***/    
+void reverseSquareLeft(DC_motor *mL, DC_motor *mR)      //Pink
+{
+        
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(500);    //change delay to match distance of a square
+    
+    turnLeft_90(mL,mR);  //90 degree rotation to the right
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
+}
 
 
 

@@ -24267,6 +24267,13 @@ void turnLeft(DC_motor *mL, DC_motor *mR);
 void turnRight(DC_motor *mL, DC_motor *mR);
 void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
+void turnLeft_90(DC_motor *mL, DC_motor *mR);
+void turnRight_90(DC_motor *mL, DC_motor *mR);
+void turn_180(DC_motor *mL, DC_motor *mR);
+void turnRight_135(DC_motor *mL, DC_motor *mR);
+void turnLeft_135(DC_motor *mL, DC_motor *mR);
+void reverseSquareRight(DC_motor *mL, DC_motor *mR);
+void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
 # 10 "main.c" 2
 
 # 1 "./interrupts.h" 1
@@ -24334,21 +24341,17 @@ void main(void){
          while(1){
 
             if (count < 4 ){
-            reverse(&motorLeft,&motorRight);
-            _delay((unsigned long)((500)*(64000000/4000.0)));
 
-            count++;
 
-            stop(&motorLeft,&motorRight);
-            _delay((unsigned long)((300)*(64000000/4000.0)));
 
-            forward(&motorLeft,&motorRight);
-            _delay((unsigned long)((500)*(64000000/4000.0)));
 
-            turnLeft(&motorLeft,&motorRight);
-            _delay((unsigned long)((200)*(64000000/4000.0)));
 
-            count = 0;
+                stop(&motorLeft, &motorRight);
+
+                reverseSquareRight(&motorLeft, &motorRight);
+
+                stop(&motorLeft, &motorRight);
+
             }
 
 
@@ -24358,6 +24361,6 @@ void main(void){
 
 
         }
-# 130 "main.c"
+# 126 "main.c"
     }
 }
