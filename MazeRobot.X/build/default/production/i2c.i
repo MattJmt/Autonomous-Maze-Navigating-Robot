@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "i2c.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,18 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL
-
-
-#pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = OFF
-
-
-
-
+# 1 "i2c.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24240,153 +24229,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 11 "main.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 12 "main.c" 2
+# 1 "i2c.c" 2
 
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
@@ -24421,250 +24264,65 @@ void I2C_2_Master_Write(unsigned char data_byte);
 
 
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 13 "main.c" 2
-
-# 1 "./dc_motor.h" 1
-
-
-
-
-
-
-int turning_time45;
-int reverse_time;
-
-typedef struct DC_motor {
-    char power;
-    char direction;
-    char brakemode;
-    unsigned int PWMperiod;
-    unsigned char *posDutyHighByte;
-    unsigned char *negDutyHighByte;
-} DC_motor;
-
-
-void initDCmotorsPWM(int PWMperiod);
-void DCmotorsInit(DC_motor *mL, DC_motor *mR);
-void setMotorPWM(DC_motor *m);
-void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR);
-void turnRight(DC_motor *mL, DC_motor *mR);
-void forward(DC_motor *mL, DC_motor *mR);
-void reverse(DC_motor *mL, DC_motor *mR);
-void turnLeft_90(DC_motor *mL, DC_motor *mR);
-void turnRight_90(DC_motor *mL, DC_motor *mR);
-void turn_180(DC_motor *mL, DC_motor *mR);
-void turnRight_135(DC_motor *mL, DC_motor *mR);
-void turnLeft_135(DC_motor *mL, DC_motor *mR);
-void reverseSquareRight(DC_motor *mL, DC_motor *mR);
-void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
-# 14 "main.c" 2
-
-# 1 "./serialTest.h" 1
-# 13 "./serialTest.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
-
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
-
-
-
-void initUSART4(void);
-char getCharSerial4(void);
-void sendCharSerial4(char charToSend);
-void sendStringSerial4(char *string);
-void ADC2String(unsigned int valr, unsigned int valb, unsigned int valg, unsigned int valc);
-
-
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 15 "main.c" 2
-
-# 1 "./color.h" 1
-# 13 "./color.h"
-void color_click_init(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-unsigned int color_read_Green(void);
-unsigned int color_read_Blue(void);
-
-typedef struct RGB {
-    unsigned int R;
-    unsigned int G;
-    unsigned int B;
-    unsigned int C;
-} RGB;
-
-void getColor(RGB *v);
-void ambientCal(RGB *v);
-void whiteCal(RGB *v);
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
-# 16 "main.c" 2
-
-# 1 "./interrupts.h" 1
-
-
-
-
-
-
-
-unsigned int on_period,off_period;
-
-void Interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 17 "main.c" 2
-
-# 1 "./timers.h" 1
-
-
-
-
-
-
-
-
-unsigned int on_period,off_period;
-
-void Timer0_init(void);
-void write16bitTMR0val(unsigned int);
-# 18 "main.c" 2
-
-
-
-
-
-
-void main(void){
-
-    color_click_init();
-    initUSART4();
-    initDCmotorsPWM(199);
-
-
-
-
-
-
-    LATDbits.LATD7=0;
-    TRISDbits.TRISD7=0;
-
-    LATHbits.LATH3=0;
-    TRISHbits.TRISH3=0;
-
-    LATDbits.LATD4 = 0;
-    TRISDbits.TRISD4 = 0;
-
-    LATHbits.LATH0 = 0;
-    TRISHbits.TRISH0 = 0;
-
-    LATFbits.LATF0 = 0;
-    TRISFbits.TRISF0 = 0;
-
-    LATHbits.LATH1 = 0;
-    TRISHbits.TRISH1 = 0;
-
-    LATDbits.LATD3 = 0;
-    TRISDbits.TRISD3 = 0;
-
-
-    LATDbits.LATD4 = 1;
-    LATFbits.LATF0 = 1;
-    LATHbits.LATH0 = 1;
-    LATFbits.LATF0 = 1;
-    LATDbits.LATD3 = 1;
-
-
-
-
-    LATGbits.LATG0=1;
-    LATEbits.LATE7=1;
-    LATAbits.LATA3=1;
-
-    TRISGbits.TRISG0=0;
-    TRISEbits.TRISE7=0;
-    TRISAbits.TRISA3=0;
-
-
-    TRISFbits.TRISF2=1;
-    ANSELFbits.ANSELF2=0;
-
-    TRISFbits.TRISF3=1;
-    ANSELFbits.ANSELF3=0;
-
-    char testString[20];
-    char string1[20];
-    char string2[20];
-    char string3[20];
-    char string4[20];
-    char string5[20];
-
-
-    RGB RGBVal;
-    RGB ambientRGBVal;
-    RGB whiteRGBVal;
-    double clearRef = 0.0;
-    double whiteC = 0.0;
-
-    DC_motor motorLeft,motorRight;
-    DCmotorsInit(&motorLeft,&motorRight);
-# 116 "main.c"
-    while(1){
-        getColor(&RGBVal);
-
-
-        if (!PORTFbits.RF2){
-            ambientCal (&ambientRGBVal);
-        }
-
-        if (!PORTFbits.RF3){
-            whiteCal (&whiteRGBVal);
-        }
-
-
-        LATHbits.LATH3=!LATHbits.LATH3;
-
-
-        whiteC = whiteRGBVal.C;
-        clearRef = RGBVal.C/whiteC;
-
-        if (clearRef > 0.12){
-            colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
-
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-        }
-        else{stop(&motorLeft,&motorRight);}
-
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-
-
-        sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
-        TxBufferedString(string4);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-# 251 "main.c"
-    }
+# 2 "i2c.c" 2
+
+
+void I2C_2_Master_Init(void)
+{
+
+  SSP2CON1bits.SSPM= 0b1000;
+  SSP2CON1bits.SSPEN = 1;
+  SSP2ADD = (64000000/(4*100000))-1;
+
+
+  TRISDbits.TRISD5 = 1;
+  TRISDbits.TRISD6 = 1;
+  ANSELDbits.ANSELD5=0;
+  ANSELDbits.ANSELD6=0;
+  SSP2DATPPS=0x1D;
+  SSP2CLKPPS=0x1E;
+  RD5PPS=0x1C;
+  RD6PPS=0x1B;
+}
+
+void I2C_2_Master_Idle(void)
+{
+  while ((SSP2STAT & 0x04) || (SSP2CON2 & 0x1F));
+}
+
+void I2C_2_Master_Start(void)
+{
+  I2C_2_Master_Idle();
+  SSP2CON2bits.SEN = 1;
+}
+
+void I2C_2_Master_RepStart(void)
+{
+  I2C_2_Master_Idle();
+  SSP2CON2bits.RSEN = 1;
+}
+
+void I2C_2_Master_Stop()
+{
+  I2C_2_Master_Idle();
+  SSP2CON2bits.PEN = 1;
+}
+
+void I2C_2_Master_Write(unsigned char data_byte)
+{
+  I2C_2_Master_Idle();
+  SSP2BUF = data_byte;
+}
+
+unsigned char I2C_2_Master_Read(unsigned char ack)
+{
+  unsigned char tmp;
+  I2C_2_Master_Idle();
+  SSP2CON2bits.RCEN = 1;
+  I2C_2_Master_Idle();
+  tmp = SSP2BUF;
+  I2C_2_Master_Idle();
+  SSP2CON2bits.ACKDT = !ack;
+  SSP2CON2bits.ACKEN = 1;
+  return tmp;
 }
