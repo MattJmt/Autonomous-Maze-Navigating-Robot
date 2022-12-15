@@ -2,7 +2,9 @@
 #include "dc_motor.h"
 
 //Calibration 
-int turning_time45 = 187; // time period elapsed to achieve a 45 degree rotation
+//int turning_time45 = 187; // time period elapsed to achieve a 45 degree rotation
+int turning_time45 = 170;
+
 int reverse_time = 700; //time period elapsed when reversing after detecting a colour (this is different to square reverse)
 
 
@@ -315,24 +317,7 @@ void turn_180(DC_motor *mL, DC_motor *mR)
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-   __delay_ms(turning_time45);
-   
-   stop(mL, mR);       // buggy must me at rest for a more accurate turn.
-    __delay_ms(100);
-    
-    mL->direction = 1;
-    mR->direction = 0;
-    
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
-  
-    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
-        mL->power += 10;                   // Gradually increase the left motor power
-        mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-    }
-   __delay_ms(turning_time45);
+   __delay_ms(1.75*turning_time45);
     
     stop(mL, mR);
 }
@@ -404,7 +389,7 @@ void reverseSquareRight(DC_motor *mL, DC_motor *mR)     //Yellow
     stop(mL, mR);
     
     reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(2*reverse_time); // to position away from wall, in centre of square
+    __delay_ms(reverse_time); // to position away from wall, in centre of square
     
     turnRight_90(mL,mR);  //90 degree rotation to the right
     
@@ -421,7 +406,7 @@ void reverseSquareLeft(DC_motor *mL, DC_motor *mR)      //Pink
     stop(mL, mR);
     
     reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(2*reverse_time); // to position away from wall, in centre of square
+    __delay_ms(reverse_time); // to position away from wall, in centre of square
     
     turnLeft_90(mL,mR);  //90 degree rotation to the right
     

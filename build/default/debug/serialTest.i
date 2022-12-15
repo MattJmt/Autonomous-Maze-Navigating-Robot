@@ -1,4 +1,4 @@
-# 1 "MazeRobot.X/main.c"
+# 1 "serialTest.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,18 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "MazeRobot.X/main.c" 2
-
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL
-
-
-#pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = OFF
-
-
-
-
+# 1 "serialTest.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24240,7 +24229,39 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 11 "MazeRobot.X/main.c" 2
+# 1 "serialTest.c" 2
+
+# 1 "./serialTest.h" 1
+# 13 "./serialTest.h"
+volatile char EUSART4RXbuf[20];
+volatile char RxBufWriteCnt=0;
+volatile char RxBufReadCnt=0;
+
+volatile char EUSART4TXbuf[60];
+volatile char TxBufWriteCnt=0;
+volatile char TxBufReadCnt=0;
+
+
+
+void initUSART4(void);
+char getCharSerial4(void);
+void sendCharSerial4(char charToSend);
+void sendStringSerial4(char *string);
+void ADC2String(unsigned int valr, unsigned int valb, unsigned int valg, unsigned int valc);
+
+
+char getCharFromRxBuf(void);
+void putCharToRxBuf(char byte);
+char isDataInRxBuf (void);
+
+
+char getCharFromTxBuf(void);
+void putCharToTxBuf(char byte);
+char isDataInTxBuf (void);
+void TxBufferedString(char *string);
+void sendTxBuf(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 2 "serialTest.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
@@ -24386,323 +24407,141 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 12 "MazeRobot.X/main.c" 2
+# 3 "serialTest.c" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdbool.h" 1 3
-# 13 "MazeRobot.X/main.c" 2
 
-# 1 "MazeRobot.X/color.h" 1
+void initUSART4(void) {
 
 
 
+    BAUD4CONbits.BRG16 = 0;
+    TX4STAbits.BRGH = 0;
+# 19 "serialTest.c"
+    SP4BRGL = 51;
+    SP4BRGH = 0;
 
-# 1 "MazeRobot.X/dc_motor.h" 1
+    RC4STAbits.CREN = 1;
+    TX4STAbits.TXEN = 1;
+    RC4STAbits.SPEN = 1;
 
+    TRISCbits.TRISC1 = 1;
 
+    RC0PPS = 0x12;
+    RX4PPS = 0x11;
 
 
+    INTCONbits.GIE = 1;
+    INTCONbits.IPEN = 1;
+    INTCONbits.PEIE = 1;
 
+    PIE4bits.RC4IE=1;
+    PIE4bits.TX4IE=0;
 
-int turning_time45;
-int reverse_time;
+    IPR4bits.RC4IP = 1;
+    IPR4bits.TX4IP = 1;
 
-typedef struct DC_motor {
-    char power;
-    char direction;
-    char brakemode;
-    unsigned int PWMperiod;
-    unsigned char *posDutyHighByte;
-    unsigned char *negDutyHighByte;
-} DC_motor;
+}
 
 
-void initDCmotorsPWM(int PWMperiod);
-void DCmotorsInit(DC_motor *mL, DC_motor *mR);
-void setMotorPWM(DC_motor *m);
-void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR);
-void turnRight(DC_motor *mL, DC_motor *mR);
-void forward(DC_motor *mL, DC_motor *mR);
-void reverse(DC_motor *mL, DC_motor *mR);
-void turnLeft_90(DC_motor *mL, DC_motor *mR);
-void turnRight_90(DC_motor *mL, DC_motor *mR);
-void turn_180(DC_motor *mL, DC_motor *mR);
-void turnRight_135(DC_motor *mL, DC_motor *mR);
-void turnLeft_135(DC_motor *mL, DC_motor *mR);
-void reverseSquareRight(DC_motor *mL, DC_motor *mR);
-void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
-# 5 "MazeRobot.X/color.h" 2
+char getCharSerial4(void) {
+    while (!PIR4bits.RC4IF);
+    return RC4REG;
+}
 
 
+void sendCharSerial4(char charToSend) {
+    while (!PIR4bits.TX4IF);
+    TX4REG = charToSend;
+}
 
 
 
+void sendStringSerial4(char *string){
 
 
+    while(*string != 0) {sendCharSerial4(*string++);}
+}
 
-void color_click_init(void);
 
+void ADC2String(unsigned int valr, unsigned int valb, unsigned int valg, unsigned int valc){
 
+    char buf[40];
 
 
+    sprintf(buf, "%d,%d,%d,%d \r\n", valr, valb, valg, valc);
+    sendStringSerial4(buf);
 
+}
 
-void color_writetoaddr(char address, char value);
 
 
 
 
+char getCharFromRxBuf(void){
+    if (RxBufReadCnt>=20) {RxBufReadCnt=0;}
+    return EUSART4RXbuf[RxBufReadCnt++];
+}
 
-unsigned int color_read_Red(void);
-unsigned int color_read_Green(void);
-unsigned int color_read_Blue(void);
 
-typedef struct RGB {
-    unsigned int R;
-    unsigned int G;
-    unsigned int B;
-    unsigned int C;
-} RGB;
+void putCharToRxBuf(char byte){
+    if (RxBufWriteCnt>=20) {RxBufWriteCnt=0;}
+    EUSART4RXbuf[RxBufWriteCnt++]=byte;
+}
 
-void getColor(RGB *v);
-void ambientCal(RGB *v);
-void whiteCal(RGB *v);
-unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
-void return_home_turns(unsigned int *turn_history, unsigned int *counter_history, unsigned int index, DC_motor *mL, DC_motor *mR);
-# 14 "MazeRobot.X/main.c" 2
 
-# 1 "MazeRobot.X/i2c.h" 1
-# 13 "MazeRobot.X/i2c.h"
-void I2C_2_Master_Init(void);
 
 
+char isDataInRxBuf (void){
+    return (RxBufWriteCnt!=RxBufReadCnt);
+}
 
 
-void I2C_2_Master_Idle(void);
 
+char getCharFromTxBuf(void){
+    if (TxBufReadCnt>=60) {TxBufReadCnt=0;}
+    return EUSART4TXbuf[TxBufReadCnt++];
+}
 
 
+void putCharToTxBuf(char byte){
+    if (TxBufWriteCnt>=60) {TxBufWriteCnt=0;}
+    EUSART4TXbuf[TxBufWriteCnt++]=byte;
+}
 
-void I2C_2_Master_Start(void);
 
 
 
+char isDataInTxBuf (void){
+    return (TxBufWriteCnt!=TxBufReadCnt);
+}
 
-void I2C_2_Master_RepStart(void);
 
+void TxBufferedString(char *string){
 
 
+    while(*string != 0) {putCharToTxBuf(*string++);}
+}
 
-void I2C_2_Master_Stop(void);
 
 
+void sendTxBuf(void){
+    if (isDataInTxBuf()) {PIE4bits.TX4IE=1;}
 
+}
 
-void I2C_2_Master_Write(unsigned char data_byte);
 
+void __attribute__((picinterrupt(("high_priority")))) HighISR()
+{
+    if (PIR4bits.RC4IF){
+        putCharToRxBuf(RC4REG);
+    }
 
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 15 "MazeRobot.X/main.c" 2
-
-
-# 1 "MazeRobot.X/serialTest.h" 1
-# 13 "MazeRobot.X/serialTest.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
-
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
-
-
-
-void initUSART4(void);
-char getCharSerial4(void);
-void sendCharSerial4(char charToSend);
-void sendStringSerial4(char *string);
-void ADC2String(unsigned int valr, unsigned int valb, unsigned int valg, unsigned int valc);
-
-
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 17 "MazeRobot.X/main.c" 2
-
-# 1 "MazeRobot.X/interrupts.h" 1
-
-
-
-
-
-
-
-unsigned int on_period,off_period;
-
-void Interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 18 "MazeRobot.X/main.c" 2
-
-# 1 "MazeRobot.X/timers.h" 1
-
-
-
-
-
-
-
-
-unsigned int on_period,off_period;
-
-void Timer0_init(void);
-void write16bitTMR0val(unsigned int);
-# 19 "MazeRobot.X/main.c" 2
-
-
-
-
-
-
-void main(void){
-
-    color_click_init();
-    initUSART4();
-    initDCmotorsPWM(199);
-
-
-
-
-    LATDbits.LATD7=0;
-    TRISDbits.TRISD7=0;
-
-    LATHbits.LATH3=0;
-    TRISHbits.TRISH3=0;
-
-    LATDbits.LATD4 = 0;
-    TRISDbits.TRISD4 = 0;
-
-    LATHbits.LATH0 = 0;
-    TRISHbits.TRISH0 = 0;
-
-    LATFbits.LATF0 = 0;
-    TRISFbits.TRISF0 = 0;
-
-    LATHbits.LATH1 = 0;
-    TRISHbits.TRISH1 = 0;
-
-    LATDbits.LATD3 = 0;
-    TRISDbits.TRISD3 = 0;
-
-    LATDbits.LATD4 = 1;
-    LATFbits.LATF0 = 1;
-    LATHbits.LATH0 = 1;
-    LATFbits.LATF0 = 1;
-    LATDbits.LATD3 = 1;
-
-    LATGbits.LATG0=1;
-    LATEbits.LATE7=1;
-    LATAbits.LATA3=1;
-
-    TRISGbits.TRISG0=0;
-    TRISEbits.TRISE7=0;
-    TRISAbits.TRISA3=0;
-
-
-    TRISFbits.TRISF2=1;
-    ANSELFbits.ANSELF2=0;
-
-    TRISFbits.TRISF3=1;
-    ANSELFbits.ANSELF3=0;
-
-    RGB RGBVal;
-    RGB ambientRGBVal;
-    RGB whiteRGBVal;
-    double clearRef = 0.0;
-    double whiteC = 19000.0;
-    unsigned char carGo = 0;
-
-    DC_motor motorLeft,motorRight;
-    DCmotorsInit(&motorLeft,&motorRight);
-
-    unsigned int turn_history[32];
-    unsigned int counter_history[32];
-    unsigned int index = 0;
-    unsigned int forwardCount = 0;
-    unsigned int colorNum = 0;
-
-    ambientCal(&ambientRGBVal);
-
-    while(1){
-        getColor(&RGBVal);
-
-        if(!PORTFbits.RF2 && !PORTFbits.RF3){
-            LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATDbits.LATD7 = 0 , LATHbits.LATH3 = 0;
-            carGo = !carGo;
+    if (PIR4bits.TX4IF && PIE4bits.TX4IE == 1){
+        if (isDataInTxBuf() == 1){
+           TX4REG = getCharFromTxBuf();
         }
-
-
-        if (!PORTFbits.RF2 & PORTFbits.RF3){
-            ambientCal (&ambientRGBVal);
+        else{
+           PIE4bits.TX4IE = 0;
         }
-
-        if (!PORTFbits.RF3 & PORTFbits.RF2){
-            whiteCal (&whiteRGBVal);
-        }
-
-        LATHbits.LATH3=!LATHbits.LATH3;
-
-        whiteC = whiteRGBVal.C;
-        clearRef = RGBVal.C/whiteC;
-
-        if ((clearRef > 0.12) && carGo){
-
-            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
-
-            if (colorNum < 9){
-
-            turn_history[index] = 0;
-            counter_history[index] = forwardCount;
-
-            index +=1;
-            forwardCount = 0;
-
-            if (colorNum == 8){
-                turn_180(&motorLeft,&motorRight);
-                LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
-                return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);
-                carGo = 0;
-            }
-            turn_history[index] = colorNum;
-            counter_history[index] = 1;
-
-            index += 1;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            }
-
-        }
-
-        if (carGo){
-            forward(&motorLeft,&motorRight);
-            LATDbits.LATD4 = !LATDbits.LATD4;
-            forwardCount +=1;
-
-        }
-
-        else{stop(&motorLeft,&motorRight);}
-
-        _delay((unsigned long)((50)*(64000000/4000.0)));
-
     }
 }

@@ -129,7 +129,6 @@ void whiteCal (RGB *v){
 
 unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
         
-    
         RGB RGBVal;
         getColor(&RGBVal);
 
@@ -146,7 +145,7 @@ unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal,
         float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
         float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
         
-        unsigned int colour_ref;
+        unsigned int colour_ref = 11;
         
         if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
         if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
@@ -154,9 +153,6 @@ unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal,
              
         //white    
         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint >  0.9)){     
-        __delay_ms(2);
-        turn_180(mL,mR);
-        __delay_ms(2);
         colour_ref = 8;
         }    
          
@@ -195,7 +191,7 @@ unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal,
         }    
         
         //Pink
-        if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint >  0.8 & bluePrint < 0.95)){
+        else if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint >  0.8 & bluePrint < 0.95)){
         __delay_ms(2);
         reverseSquareLeft(mL,mR);
         __delay_ms(2);
@@ -228,17 +224,14 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
 {
 
     
-    for (int k = index; k >=0; k --){
-        
-            
-            /*
-            char string1[20];
+    for (int k = (index); k >= 0; k--){    
+            char string1[150];
             __delay_ms(2);
-            sprintf(string1,"K:%d J:%d I:%d C:%d %d \r",k,i,index,counter_history[k],turn_history[1]);
+            sprintf(string1,"K:%d I:%d C:%d T:%d \r",k,index,counter_history[k],turn_history[k]);
             TxBufferedString(string1);   // send to pc
             sendTxBuf();
             __delay_ms(2);
-            */
+            
             switch (turn_history[k]){
                 case 1:
                     turnLeft_90(mL,mR);
@@ -270,10 +263,13 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
                     }
                     break;
                 default:
+                    stop(mL,mR);
                     break;
-                    
-                
-                
+               
+            }
+
+        
+            
                 
             /*
             if (turn_history[k] == 1){turnLeft_90(mL,mR);} // Red
@@ -290,4 +286,3 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
         
     }
                                     
-}

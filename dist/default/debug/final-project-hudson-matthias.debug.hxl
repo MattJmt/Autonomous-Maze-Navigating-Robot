@@ -1,35 +1,35 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- dist/default/production\final-project-hudson-matthias.production.hex
- -Odist/default/production\final-project-hudson-matthias.production.hex
- -logfile=dist/default/production\final-project-hudson-matthias.production.hxl
+ dist/default/debug\final-project-hudson-matthias.debug.hex
+ -Odist/default/debug\final-project-hudson-matthias.debug.hex
+ -logfile=dist/default/debug\final-project-hudson-matthias.debug.hxl
  -addressing=1
  -break=300000
 
 ### Memory Usage ###
  Intel Hex-file ranges:
-  0h - 3h		(dist/default/production\final-project-hudson-matthias.production.hex)
-  8h - 79h		(dist/default/production\final-project-hudson-matthias.production.hex)
-  E00h - E26h		(dist/default/production\final-project-hudson-matthias.production.hex)
-  E28h - 4C51h		(dist/default/production\final-project-hudson-matthias.production.hex)
-  200000h - 20000Fh		(dist/default/production\final-project-hudson-matthias.production.hex)
-  300000h - 30000Bh		(dist/default/production\final-project-hudson-matthias.production.hex)
+  0h - 5h		(dist/default/debug\final-project-hudson-matthias.debug.hex)
+  8h - 79h		(dist/default/debug\final-project-hudson-matthias.debug.hex)
+  E00h - E26h		(dist/default/debug\final-project-hudson-matthias.debug.hex)
+  E28h - 4D6Fh		(dist/default/debug\final-project-hudson-matthias.debug.hex)
+  200000h - 20000Fh		(dist/default/debug\final-project-hudson-matthias.debug.hex)
+  300000h - 30000Bh		(dist/default/debug\final-project-hudson-matthias.debug.hex)
  Unused ranges:
-  4h - 7h
+  6h - 7h
   7Ah - DFFh
   E27h - E27h
-  4C52h - 1FFFFFh
+  4D70h - 1FFFFFh
   200010h - 2FFFFFh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Intel Hex-file         (dist/default/production\final-project-hudson-matthias.production.hex)
+  H1 = Intel Hex-file         (dist/default/debug\final-project-hudson-matthias.debug.hex)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
-00000000 | H1 H1 H1 H1 -- -- -- -- H1 H1 H1 H1 H1 H1 H1 H1
+00000000 | H1 H1 H1 H1 H1 H1 -- -- H1 H1 H1 H1 H1 H1 H1 H1
 00000010 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000020 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000030 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -1035,7 +1035,24 @@
 00004C20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00004C30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00004C40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00004C50 | H1 H1 -- -- -- -- -- -- -- -- -- -- -- -- -- --
+00004C50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004C60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004C70 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004C80 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004C90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CB0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CD0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004D00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004D10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004D20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004D30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004D40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004D50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004D60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------

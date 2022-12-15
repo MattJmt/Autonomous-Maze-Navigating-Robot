@@ -24582,6 +24582,8 @@ void main(void){
 
 
 
+
+
     LATDbits.LATD7=0;
     TRISDbits.TRISD7=0;
 
@@ -24603,11 +24605,15 @@ void main(void){
     LATDbits.LATD3 = 0;
     TRISDbits.TRISD3 = 0;
 
+
     LATDbits.LATD4 = 1;
     LATFbits.LATF0 = 1;
     LATHbits.LATH0 = 1;
     LATFbits.LATF0 = 1;
     LATDbits.LATD3 = 1;
+
+
+
 
     LATGbits.LATG0=1;
     LATEbits.LATE7=1;
@@ -24667,37 +24673,38 @@ void main(void){
         clearRef = RGBVal.C/whiteC;
 
         if ((clearRef > 0.12) && carGo){
-
-            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
-
-            if (colorNum < 9){
-
             turn_history[index] = 0;
             counter_history[index] = forwardCount;
 
             index +=1;
             forwardCount = 0;
 
+            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
+
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+
             if (colorNum == 8){
+                turn_history[index] = colorNum;
+                counter_history[index] = 1;
                 turn_180(&motorLeft,&motorRight);
                 LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
-                return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);
+                return_home_turns(&turn_history, &counter_history, (index), &motorLeft, &motorRight);
                 carGo = 0;
             }
+
+            else{
             turn_history[index] = colorNum;
             counter_history[index] = 1;
-
-            index += 1;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
             }
 
+            index += 1;
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
         }
 
         if (carGo){
             forward(&motorLeft,&motorRight);
             LATDbits.LATD4 = !LATDbits.LATD4;
             forwardCount +=1;
-
         }
 
         else{stop(&motorLeft,&motorRight);}

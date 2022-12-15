@@ -1,4 +1,4 @@
-# 1 "MazeRobot.X/main.c"
+# 1 "MazeRobot.X/dc_motor.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,18 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "MazeRobot.X/main.c" 2
-
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL
-
-
-#pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = OFF
-
-
-
-
+# 1 "MazeRobot.X/dc_motor.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24240,161 +24229,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 11 "MazeRobot.X/main.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 12 "MazeRobot.X/main.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdbool.h" 1 3
-# 13 "MazeRobot.X/main.c" 2
-
-# 1 "MazeRobot.X/color.h" 1
-
-
-
+# 1 "MazeRobot.X/dc_motor.c" 2
 
 # 1 "MazeRobot.X/dc_motor.h" 1
 
@@ -24431,278 +24266,432 @@ void turnRight_135(DC_motor *mL, DC_motor *mR);
 void turnLeft_135(DC_motor *mL, DC_motor *mR);
 void reverseSquareRight(DC_motor *mL, DC_motor *mR);
 void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
-# 5 "MazeRobot.X/color.h" 2
+# 2 "MazeRobot.X/dc_motor.c" 2
 
 
 
+int turning_time45 = 187;
+int reverse_time = 700;
 
 
 
+void initDCmotorsPWM(int PWMperiod){
 
 
-void color_click_init(void);
 
+    LATEbits.LATE2 = 0;
+    LATEbits.LATE4 = 0;
+    LATCbits.LATC7 = 0;
+    LATGbits.LATG6 = 0;
 
 
+    TRISEbits.TRISE2 = 0 ;
+    TRISEbits.TRISE4 = 0 ;
+    TRISCbits.TRISC7 = 0 ;
+    TRISGbits.TRISG6 = 0 ;
 
 
+    RE2PPS=0x05;
+    RE4PPS=0x06;
+    RC7PPS=0x07;
+    RG6PPS=0x08;
 
-void color_writetoaddr(char address, char value);
 
+    T2CONbits.CKPS=0b011;
+    T2HLTbits.MODE=0b00000;
+    T2CLKCONbits.CS=0b0001;
 
 
 
+    T2PR=199;
+    T2CONbits.ON=1;
 
-unsigned int color_read_Red(void);
-unsigned int color_read_Green(void);
-unsigned int color_read_Blue(void);
 
-typedef struct RGB {
-    unsigned int R;
-    unsigned int G;
-    unsigned int B;
-    unsigned int C;
-} RGB;
 
-void getColor(RGB *v);
-void ambientCal(RGB *v);
-void whiteCal(RGB *v);
-unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
-void return_home_turns(unsigned int *turn_history, unsigned int *counter_history, unsigned int index, DC_motor *mL, DC_motor *mR);
-# 14 "MazeRobot.X/main.c" 2
+    CCPR1H=0;
+    CCPR2H=0;
+    CCPR3H=0;
+    CCPR4H=0;
 
-# 1 "MazeRobot.X/i2c.h" 1
-# 13 "MazeRobot.X/i2c.h"
-void I2C_2_Master_Init(void);
 
+    CCPTMRS0bits.C1TSEL=0;
+    CCPTMRS0bits.C2TSEL=0;
+    CCPTMRS0bits.C3TSEL=0;
+    CCPTMRS0bits.C4TSEL=0;
 
 
+    CCP1CONbits.FMT=1;
+    CCP1CONbits.CCP1MODE=0b1100;
+    CCP1CONbits.EN=1;
 
-void I2C_2_Master_Idle(void);
+    CCP2CONbits.FMT=1;
+    CCP2CONbits.CCP2MODE=0b1100;
+    CCP2CONbits.EN=1;
 
+    CCP3CONbits.FMT=1;
+    CCP3CONbits.CCP3MODE=0b1100;
+    CCP3CONbits.EN=1;
 
+    CCP4CONbits.FMT=1;
+    CCP4CONbits.CCP4MODE=0b1100;
+    CCP4CONbits.EN=1;
 
+}
 
-void I2C_2_Master_Start(void);
+void DCmotorsInit(DC_motor *mL, DC_motor *mR){
 
+    mL->power = 0;
+    mL->direction = 1;
+    mL->brakemode = 1;
+    mL->posDutyHighByte = (unsigned char *)(&CCPR1H);
+    mL->negDutyHighByte = (unsigned char *)(&CCPR2H);
+    mL->PWMperiod = 199 ;
 
+    mR->power = 0;
+    mR->direction = 1;
+    mR->brakemode = 1;
+    mR->posDutyHighByte = (unsigned char *)(&CCPR3H);
+    mR->negDutyHighByte = (unsigned char *)(&CCPR4H);
+    mR->PWMperiod = 199 ;
+}
 
 
-void I2C_2_Master_RepStart(void);
 
+void setMotorPWM(DC_motor *m)
+{
+    unsigned char posDuty, negDuty;
 
-
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 15 "MazeRobot.X/main.c" 2
-
-
-# 1 "MazeRobot.X/serialTest.h" 1
-# 13 "MazeRobot.X/serialTest.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
-
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
-
-
-
-void initUSART4(void);
-char getCharSerial4(void);
-void sendCharSerial4(char charToSend);
-void sendStringSerial4(char *string);
-void ADC2String(unsigned int valr, unsigned int valb, unsigned int valg, unsigned int valc);
-
-
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 17 "MazeRobot.X/main.c" 2
-
-# 1 "MazeRobot.X/interrupts.h" 1
-
-
-
-
-
-
-
-unsigned int on_period,off_period;
-
-void Interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 18 "MazeRobot.X/main.c" 2
-
-# 1 "MazeRobot.X/timers.h" 1
-
-
-
-
-
-
-
-
-unsigned int on_period,off_period;
-
-void Timer0_init(void);
-void write16bitTMR0val(unsigned int);
-# 19 "MazeRobot.X/main.c" 2
-
-
-
-
-
-
-void main(void){
-
-    color_click_init();
-    initUSART4();
-    initDCmotorsPWM(199);
-
-
-
-
-    LATDbits.LATD7=0;
-    TRISDbits.TRISD7=0;
-
-    LATHbits.LATH3=0;
-    TRISHbits.TRISH3=0;
-
-    LATDbits.LATD4 = 0;
-    TRISDbits.TRISD4 = 0;
-
-    LATHbits.LATH0 = 0;
-    TRISHbits.TRISH0 = 0;
-
-    LATFbits.LATF0 = 0;
-    TRISFbits.TRISF0 = 0;
-
-    LATHbits.LATH1 = 0;
-    TRISHbits.TRISH1 = 0;
-
-    LATDbits.LATD3 = 0;
-    TRISDbits.TRISD3 = 0;
-
-    LATDbits.LATD4 = 1;
-    LATFbits.LATF0 = 1;
-    LATHbits.LATH0 = 1;
-    LATFbits.LATF0 = 1;
-    LATDbits.LATD3 = 1;
-
-    LATGbits.LATG0=1;
-    LATEbits.LATE7=1;
-    LATAbits.LATA3=1;
-
-    TRISGbits.TRISG0=0;
-    TRISEbits.TRISE7=0;
-    TRISAbits.TRISA3=0;
-
-
-    TRISFbits.TRISF2=1;
-    ANSELFbits.ANSELF2=0;
-
-    TRISFbits.TRISF3=1;
-    ANSELFbits.ANSELF3=0;
-
-    RGB RGBVal;
-    RGB ambientRGBVal;
-    RGB whiteRGBVal;
-    double clearRef = 0.0;
-    double whiteC = 19000.0;
-    unsigned char carGo = 0;
-
-    DC_motor motorLeft,motorRight;
-    DCmotorsInit(&motorLeft,&motorRight);
-
-    unsigned int turn_history[32];
-    unsigned int counter_history[32];
-    unsigned int index = 0;
-    unsigned int forwardCount = 0;
-    unsigned int colorNum = 0;
-
-    ambientCal(&ambientRGBVal);
-
-    while(1){
-        getColor(&RGBVal);
-
-        if(!PORTFbits.RF2 && !PORTFbits.RF3){
-            LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATDbits.LATD7 = 0 , LATHbits.LATH3 = 0;
-            carGo = !carGo;
+    if(m->brakemode) {
+        posDuty=m->PWMperiod - ((unsigned int)(m->power)*(m->PWMperiod))/100;
+        negDuty=m->PWMperiod;
+    }
+    else {
+        posDuty=0;
+  negDuty=((unsigned int)(m->power)*(m->PWMperiod))/100;
+    }
+
+    if (m->direction) {
+        *(m->posDutyHighByte)=posDuty;
+        *(m->negDutyHighByte)=negDuty;
+    } else {
+        *(m->posDutyHighByte)=negDuty;
+        *(m->negDutyHighByte)=posDuty;
+    }
+}
+
+
+void stop(DC_motor *mL, DC_motor *mR){
+
+    while ((mL->power)>0 && (mR->power)>0){
+        if ((mL->power) >0){
+            mL->power -= 5;
+        }
+        if ((mR->power) >0){
+            mR->power -= 5;
         }
 
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+}
 
-        if (!PORTFbits.RF2 & PORTFbits.RF3){
-            ambientCal (&ambientRGBVal);
+
+void forward(DC_motor *mL, DC_motor *mR)
+{
+    mL->direction = 1;
+    mR->direction = 1;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while ((mL->power)<40 && (mR->power)<40){
+        if ((mL->power) < 40){
+            mL->power += 5;
         }
-
-        if (!PORTFbits.RF3 & PORTFbits.RF2){
-            whiteCal (&whiteRGBVal);
+        if ((mR->power) < 40){
+            mR->power += 5;
         }
-
-        LATHbits.LATH3=!LATHbits.LATH3;
-
-        whiteC = whiteRGBVal.C;
-        clearRef = RGBVal.C/whiteC;
-
-        if ((clearRef > 0.12) && carGo){
-
-            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
-
-            if (colorNum < 9){
-
-            turn_history[index] = 0;
-            counter_history[index] = forwardCount;
-
-            index +=1;
-            forwardCount = 0;
-
-            if (colorNum == 8){
-                turn_180(&motorLeft,&motorRight);
-                LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
-                return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);
-                carGo = 0;
-            }
-            turn_history[index] = colorNum;
-            counter_history[index] = 1;
-
-            index += 1;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            }
-
-        }
-
-        if (carGo){
-            forward(&motorLeft,&motorRight);
-            LATDbits.LATD4 = !LATDbits.LATD4;
-            forwardCount +=1;
-
-        }
-
-        else{stop(&motorLeft,&motorRight);}
-
-        _delay((unsigned long)((50)*(64000000/4000.0)));
 
     }
+    setMotorPWM(mL);
+    setMotorPWM(mR);
+
+}
+
+
+void reverse(DC_motor *mL, DC_motor *mR)
+{
+    mL->direction = 0;
+    mR->direction = 0;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while ((mL->power)<25 && (mR->power)<25){
+        if ((mL->power) < 25){
+            mL->power += 5;
+        }
+        if ((mR->power) <25){
+            mR->power += 5;
+        }
+
+    }
+    setMotorPWM(mL);
+    setMotorPWM(mR);
+
+
+}
+
+
+void turnLeft(DC_motor *mL, DC_motor *mR)
+{
+
+    stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    mL->direction = 0;
+    mR->direction = 1;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+
+}
+
+void turnRight(DC_motor *mL, DC_motor *mR)
+{
+    stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    mL->direction = 1;
+    mR->direction = 0;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+}
+
+
+void turnLeft_90(DC_motor *mL, DC_motor *mR)
+{
+
+    stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    mL->direction = 0;
+    mR->direction = 1;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+    stop(mL, mR);
+}
+
+
+
+void turnRight_90(DC_motor *mL, DC_motor *mR)
+{
+    stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    mL->direction = 1;
+    mR->direction = 0;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+
+    stop(mL, mR);
+}
+
+
+void turn_180(DC_motor *mL, DC_motor *mR)
+{
+
+    stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    mL->direction = 1;
+    mR->direction = 0;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+
+   stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    mL->direction = 1;
+    mR->direction = 0;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+
+    stop(mL, mR);
+}
+
+
+void turnRight_135(DC_motor *mL, DC_motor *mR)
+{
+    stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    mL->direction = 1;
+    mR->direction = 0;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((1.5*turning_time45)*(64000000/4000.0)));
+
+    stop(mL, mR);
+}
+
+
+
+void turnLeft_135(DC_motor *mL, DC_motor *mR)
+{
+
+    stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    mL->direction = 0;
+    mR->direction = 1;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((3*turning_time45)*(64000000/4000.0)));
+    stop(mL, mR);
+}
+
+
+void reverseSquareRight(DC_motor *mL, DC_motor *mR)
+{
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    reverse(mL, mR);
+    _delay((unsigned long)((2*reverse_time)*(64000000/4000.0)));
+
+    turnRight_90(mL,mR);
+
+    stop(mL, mR);
+}
+
+
+
+void reverseSquareLeft(DC_motor *mL, DC_motor *mR)
+{
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    reverse(mL, mR);
+    _delay((unsigned long)((2*reverse_time)*(64000000/4000.0)));
+
+    turnLeft_90(mL,mR);
+
+    stop(mL, mR);
 }

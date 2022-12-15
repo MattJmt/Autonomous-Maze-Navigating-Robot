@@ -79,33 +79,33 @@
 [v _whiteCal whiteCal `(v  1 e 1 0 ]
 "130
 [v _colorDetect colorDetect `(ui  1 e 2 0 ]
-"223
+"224
 [v _return_home_turns return_home_turns `(v  1 e 1 0 ]
-"12 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
+"10 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
 [v _initDCmotorsPWM initDCmotorsPWM `(v  1 e 1 0 ]
-"75
+"73
 [v _DCmotorsInit DCmotorsInit `(v  1 e 1 0 ]
-"94
+"92
 [v _setMotorPWM setMotorPWM `(v  1 e 1 0 ]
-"117
+"115
 [v _stop stop `(v  1 e 1 0 ]
-"134
+"132
 [v _forward forward `(v  1 e 1 0 ]
-"157
+"155
 [v _reverse reverse `(v  1 e 1 0 ]
-"240
+"238
 [v _turnLeft_90 turnLeft_90 `(v  1 e 1 0 ]
-"269
+"267
 [v _turnRight_90 turnRight_90 `(v  1 e 1 0 ]
-"297
+"295
 [v _turn_180 turn_180 `(v  1 e 1 0 ]
-"326
+"341
 [v _turnRight_135 turnRight_135 `(v  1 e 1 0 ]
-"355
+"370
 [v _turnLeft_135 turnLeft_135 `(v  1 e 1 0 ]
-"383
+"398
 [v _reverseSquareRight reverseSquareRight `(v  1 e 1 0 ]
-"401
+"416
 [v _reverseSquareLeft reverseSquareLeft `(v  1 e 1 0 ]
 "4 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/i2c.c
 [v _I2C_2_Master_Init I2C_2_Master_Init `(v  1 e 1 0 ]
@@ -874,34 +874,34 @@
 "25 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"86
-[v main@turn_history turn_history `[32]ui  1 a 64 64 ]
-"87
-[v main@counter_history counter_history `[32]ui  1 a 64 0 ]
+"92
+[v main@turn_history turn_history `[32]ui  1 a 64 67 ]
+"93
+[v main@counter_history counter_history `[32]ui  1 a 64 3 ]
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
-"83
-[v main@motorLeft motorLeft `S107  1 a 9 176 ]
-[v main@motorRight motorRight `S107  1 a 9 167 ]
-[s S62 RGB 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
-"78
-[v main@whiteRGBVal whiteRGBVal `S62  1 a 8 159 ]
-"77
-[v main@ambientRGBVal ambientRGBVal `S62  1 a 8 149 ]
-"76
-[v main@RGBVal RGBVal `S62  1 a 8 140 ]
-"79
-[v main@clearRef clearRef `d  1 a 4 134 ]
-"80
-[v main@whiteC whiteC `d  1 a 4 128 ]
-"88
-[v main@index index `ui  1 a 2 157 ]
-"90
-[v main@colorNum colorNum `ui  1 a 2 138 ]
 "89
-[v main@forwardCount forwardCount `ui  1 a 2 132 ]
-"81
-[v main@carGo carGo `uc  1 a 1 148 ]
-"157
+[v main@motorLeft motorLeft `S107  1 a 9 179 ]
+[v main@motorRight motorRight `S107  1 a 9 170 ]
+[s S62 RGB 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+"84
+[v main@whiteRGBVal whiteRGBVal `S62  1 a 8 160 ]
+"83
+[v main@ambientRGBVal ambientRGBVal `S62  1 a 8 152 ]
+"82
+[v main@RGBVal RGBVal `S62  1 a 8 143 ]
+"85
+[v main@clearRef clearRef `d  1 a 4 137 ]
+"86
+[v main@whiteC whiteC `d  1 a 4 131 ]
+"94
+[v main@index index `ui  1 a 2 168 ]
+"96
+[v main@colorNum colorNum `ui  1 a 2 141 ]
+"95
+[v main@forwardCount forwardCount `ui  1 a 2 135 ]
+"87
+[v main@carGo carGo `uc  1 a 1 151 ]
+"164
 } 0
 "115 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/color.c
 [v _whiteCal whiteCal `(v  1 e 1 0 ]
@@ -913,23 +913,23 @@
 [v whiteCal@v v `*.39S62  1 p 2 17 ]
 "127
 } 0
-"223
+"224
 [v _return_home_turns return_home_turns `(v  1 e 1 0 ]
 {
-"259
-[v return_home_turns@i i `i  1 a 2 150 ]
+"260
+[v return_home_turns@i i `i  1 a 2 143 ]
+"229
+[v return_home_turns@string1 string1 `[100]uc  1 a 100 43 ]
 "228
-[v return_home_turns@string1 string1 `[150]uc  1 a 150 0 ]
-"227
-[v return_home_turns@k k `i  1 a 2 152 ]
-"223
+[v return_home_turns@k k `i  1 a 2 145 ]
+"224
 [v return_home_turns@turn_history turn_history `*.39ui  1 p 2 31 ]
 [v return_home_turns@counter_history counter_history `*.39ui  1 p 2 33 ]
 [v return_home_turns@index index `ui  1 p 2 35 ]
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v return_home_turns@mL mL `*.39S107  1 p 2 37 ]
 [v return_home_turns@mR mR `*.39S107  1 p 2 39 ]
-"287
+"288
 } 0
 "9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
@@ -1070,13 +1070,13 @@
 {
 "115
 } 0
-"134 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
+"132 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
 [v _forward forward `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v forward@mL mL `*.39S107  1 p 2 23 ]
 [v forward@mR mR `*.39S107  1 p 2 25 ]
-"154
+"152
 } 0
 "118 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\serialTest.c
 [v _TxBufferedString TxBufferedString `(v  1 e 1 0 ]
@@ -1097,11 +1097,11 @@
 {
 "42
 } 0
-"12 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
+"10 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
 [v _initDCmotorsPWM initDCmotorsPWM `(v  1 e 1 0 ]
 {
 [v initDCmotorsPWM@PWMperiod PWMperiod `i  1 p 2 4 ]
-"73
+"71
 } 0
 "8 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/color.c
 [v _color_click_init color_click_init `(v  1 e 1 0 ]
@@ -1126,27 +1126,27 @@
 [v _colorDetect colorDetect `(ui  1 e 2 0 ]
 {
 [s S62 RGB 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
-"132
+"133
 [v colorDetect@RGBVal RGBVal `S62  1 a 8 32 ]
-"146
+"147
 [v colorDetect@bluePrint bluePrint `f  1 a 4 48 ]
-"145
+"146
 [v colorDetect@greenPrint greenPrint `f  1 a 4 44 ]
-"144
+"145
 [v colorDetect@redPrint redPrint `f  1 a 4 40 ]
-"141
+"142
 [v colorDetect@whiteB whiteB `f  1 a 4 20 ]
-"140
+"141
 [v colorDetect@whiteG whiteG `f  1 a 4 16 ]
-"139
+"140
 [v colorDetect@whiteR whiteR `f  1 a 4 12 ]
-"148
+"149
 [v colorDetect@colour_ref colour_ref `ui  1 a 2 30 ]
-"137
+"138
 [v colorDetect@ambientB ambientB `ui  1 a 2 28 ]
-"136
+"137
 [v colorDetect@ambientG ambientG `ui  1 a 2 26 ]
-"135
+"136
 [v colorDetect@ambientR ambientR `ui  1 a 2 24 ]
 "130
 [v colorDetect@clearRef clearRef `d  1 p 4 0 ]
@@ -1155,90 +1155,90 @@
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v colorDetect@mL mL `*.39S107  1 p 2 8 ]
 [v colorDetect@mR mR `*.39S107  1 p 2 10 ]
-"220
+"221
 } 0
-"297 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
+"295 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
 [v _turn_180 turn_180 `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v turn_180@mL mL `*.39S107  1 p 2 29 ]
 [v turn_180@mR mR `*.39S107  1 p 2 31 ]
-"323
+"338
 } 0
-"326
+"341
 [v _turnRight_135 turnRight_135 `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v turnRight_135@mL mL `*.39S107  1 p 2 29 ]
 [v turnRight_135@mR mR `*.39S107  1 p 2 31 ]
-"351
+"366
 } 0
-"355
+"370
 [v _turnLeft_135 turnLeft_135 `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v turnLeft_135@mL mL `*.39S107  1 p 2 29 ]
 [v turnLeft_135@mR mR `*.39S107  1 p 2 31 ]
-"380
+"395
 } 0
-"383
+"398
 [v _reverseSquareRight reverseSquareRight `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v reverseSquareRight@mL mL `*.39S107  1 p 2 35 ]
 [v reverseSquareRight@mR mR `*.39S107  1 p 2 37 ]
-"397
+"412
 } 0
-"269
+"267
 [v _turnRight_90 turnRight_90 `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v turnRight_90@mL mL `*.39S107  1 p 2 29 ]
 [v turnRight_90@mR mR `*.39S107  1 p 2 31 ]
-"294
+"292
 } 0
-"401
+"416
 [v _reverseSquareLeft reverseSquareLeft `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v reverseSquareLeft@mL mL `*.39S107  1 p 2 35 ]
 [v reverseSquareLeft@mR mR `*.39S107  1 p 2 37 ]
-"414
+"429
 } 0
-"240
+"238
 [v _turnLeft_90 turnLeft_90 `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v turnLeft_90@mL mL `*.39S107  1 p 2 29 ]
 [v turnLeft_90@mR mR `*.39S107  1 p 2 31 ]
-"265
+"263
 } 0
-"117
+"115
 [v _stop stop `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v stop@mL mL `*.39S107  1 p 2 23 ]
 [v stop@mR mR `*.39S107  1 p 2 25 ]
-"131
+"129
 } 0
-"157
+"155
 [v _reverse reverse `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v reverse@mL mL `*.39S107  1 p 2 23 ]
 [v reverse@mR mR `*.39S107  1 p 2 25 ]
-"178
+"176
 } 0
-"94
+"92
 [v _setMotorPWM setMotorPWM `(v  1 e 1 0 ]
 {
-"96
+"94
 [v setMotorPWM@negDuty negDuty `uc  1 a 1 22 ]
 [v setMotorPWM@posDuty posDuty `uc  1 a 1 21 ]
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
-"94
+"92
 [v setMotorPWM@m m `*.39S107  1 p 2 17 ]
-"114
+"112
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -1438,13 +1438,13 @@
 {
 "25
 } 0
-"75 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
+"73 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/dc_motor.c
 [v _DCmotorsInit DCmotorsInit `(v  1 e 1 0 ]
 {
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v DCmotorsInit@mL mL `*.39S107  1 p 2 4 ]
 [v DCmotorsInit@mR mR `*.39S107  1 p 2 6 ]
-"90
+"88
 } 0
 "132 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\serialTest.c
 [v _HighISR HighISR `IIH(v  1 e 1 0 ]

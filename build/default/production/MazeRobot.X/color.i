@@ -24650,7 +24650,6 @@ void whiteCal (RGB *v){
 
 unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
 
-
         RGB RGBVal;
         getColor(&RGBVal);
 
@@ -24667,7 +24666,7 @@ unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal,
         float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
         float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
 
-        unsigned int colour_ref;
+        unsigned int colour_ref = 11;
 
         if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
         if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
@@ -24675,9 +24674,6 @@ unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal,
 
 
         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        turn_180(mL,mR);
-        _delay((unsigned long)((2)*(64000000/4000.0)));
         colour_ref = 8;
         }
 
@@ -24716,7 +24712,7 @@ unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal,
         }
 
 
-        if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
+        else if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint > 0.8 & bluePrint < 0.95)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
         reverseSquareLeft(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
@@ -24749,8 +24745,14 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
 {
 
 
-    for (int k = index; k >=0; k --){
-# 242 "MazeRobot.X/color.c"
+    for (int k = (index); k >= 0; k--){
+            char string1[150];
+            _delay((unsigned long)((2)*(64000000/4000.0)));
+            sprintf(string1,"K:%d I:%d C:%d T:%d \r",k,index,counter_history[k],turn_history[k]);
+            TxBufferedString(string1);
+            sendTxBuf();
+            _delay((unsigned long)((2)*(64000000/4000.0)));
+
             switch (turn_history[k]){
                 case 1:
                     turnLeft_90(mL,mR);
@@ -24782,11 +24784,12 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
                     }
                     break;
                 default:
+                    stop(mL,mR);
                     break;
-# 288 "MazeRobot.X/color.c"
+
+            }
+# 284 "MazeRobot.X/color.c"
             _delay((unsigned long)((50)*(64000000/4000.0)));
         }
 
     }
-
-}

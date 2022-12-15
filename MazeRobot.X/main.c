@@ -29,8 +29,6 @@ void main(void){
     initDCmotorsPWM(199);       //change this to a variable
     //Interrupts_init();
     
-    
-    
     // intialisation variables
     
     LATDbits.LATD7=0;   //set initial output state for left LED
@@ -54,15 +52,11 @@ void main(void){
     LATDbits.LATD3 = 0;     //iniitalise m beam
     TRISDbits.TRISD3 = 0;
     
-    
     LATDbits.LATD4 = 1;
     LATFbits.LATF0 = 1; 
     LATHbits.LATH0 = 1;
     LATFbits.LATF0 = 1; 
     LATDbits.LATD3 = 1;
-    
-    
-    
     
     LATGbits.LATG0=1;   //set initial output state  RED
     LATEbits.LATE7=1;   //set initial output state  GREEN
@@ -79,8 +73,6 @@ void main(void){
     TRISFbits.TRISF3=1; //set TRIS value for pin (input)
     ANSELFbits.ANSELF3=0; //turn off analogue input on pin  
     
-    char testString[20];
-    
     RGB RGBVal;
     RGB ambientRGBVal;
     RGB whiteRGBVal;
@@ -91,36 +83,18 @@ void main(void){
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
     
-    
-    /*
-    unsigned int ambientR = 30;
-    unsigned int ambientG = 12;
-    unsigned int ambientB = 10;
-    float ambientC = 56.0;
-    
-    float whiteR = 68.0;
-    float whiteG = 57.0;
-    float whiteB = 54.0;
-    float whiteC = 195.0;
-    
-    
-    float redPrint = 0.0;
-    float bluePrint = 0.0;
-    float greenPrint = 0.0;
-    */
-    
-    unsigned int turn_history[99];
-    unsigned int counter_history[99];
+    unsigned int turn_history[32];
+    unsigned int counter_history[32];
     unsigned int index = 0;
     unsigned int forwardCount = 0;
     unsigned int colorNum = 0;
     
-    ambientCal (&ambientRGBVal);
+    ambientCal(&ambientRGBVal);
     
     while(1){
-        getColor(&RGBVal);
+        getColor(&RGBVal);  //could be messing it
         
-        if(!PORTFbits.RF2 & !PORTFbits.RF3){                // turn the car on and off
+        if(!PORTFbits.RF2 && !PORTFbits.RF3){                // turn the car on and off
             LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;            
             __delay_ms(500);
             LATDbits.LATD7 = 0 , LATHbits.LATH3 = 0;
@@ -141,36 +115,38 @@ void main(void){
         whiteC = whiteRGBVal.C;
         clearRef = RGBVal.C/whiteC;     // this forces it to be a float
         
-        if ((clearRef > 0.12) & carGo){         //waits till car gets close to wall
+        if ((clearRef > 0.12) && carGo){         //waits till car gets close to wall
+                  
+            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
+            
+            if (colorNum < 9){
+            
             turn_history[index] = 0;
             counter_history[index] = forwardCount;  
                     
             index +=1;
             forwardCount = 0;
-            
-            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
-            
+
             if (colorNum == 8){
+                turn_180(&motorLeft,&motorRight);
                 LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1; 
-                return_home_turns(&turn_history, &counter_history, (index), &motorLeft, &motorRight);
-                carGo = 0;
-                colorNum = 0;                        
+                return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);
+                carGo = 0;                     
             }
-            
-            else{     
             turn_history[index] = colorNum;  
             counter_history[index] = 1;
-            colorNum = 0;
-            }
             
             index += 1;
             __delay_ms(500);
+            }
+            
         }
         
         if (carGo){
             forward(&motorLeft,&motorRight);
             LATDbits.LATD4 = !LATDbits.LATD4;
             forwardCount +=1;
+            
         }
         
         else{stop(&motorLeft,&motorRight);}
