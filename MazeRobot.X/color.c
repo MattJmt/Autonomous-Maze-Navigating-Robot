@@ -127,7 +127,7 @@ void whiteCal (RGB *v){
 }
 
 
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
+unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
         
     
         RGB RGBVal;
@@ -160,37 +160,18 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
         //white    
         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint >  0.9)){     
         __delay_ms(2);
-        
+        turn_180(mL,mR);
         __delay_ms(2);
+        co1our_ref = 8;
         }    
          
         //red
         if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint >  0.8)){ 
-            turnRight_90(mL,mR);
-            __delay_ms(2);
-        }
-        
-        //Orange
-        if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint >  0.5)){
         __delay_ms(2);
-        turnRight_135(mL,mR);
+        turnRight_90(mL,mR);
         __delay_ms(2);
-        
-        }    
-        
-        //Yellow
-        if ((redPrint > 1.0) & (greenPrint  > 0.8) & (bluePrint < 0.8)){
-            
-        __delay_ms(2);
-        reverseSquareRight(mL,mR);
-        __delay_ms(2);
-        }    
-        
-        //Blue
-        if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
-        __delay_ms(2);
-        turn_180(mL,mR);
-        __delay_ms(2);
+        co1our_ref = 1;
+
         }
         
         //Green
@@ -198,25 +179,72 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
         __delay_ms(2);
         turnLeft_90(mL,mR);
         __delay_ms(2);
+        co1our_ref = 2;
         }
         
-        //Light Blue
-        if ((redPrint < 0.7) & (greenPrint >  1.0)& (bluePrint > 1.0)){
+        //Blue
+        if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
         __delay_ms(2);
-        turnLeft_135(mL,mR);
+        turn_180(mL,mR);
         __delay_ms(2);
-        }          
+        co1our_ref = 3;
+        }
+        
+        //Yellow
+        if ((redPrint > 1.0) & (greenPrint  > 0.8) & (bluePrint < 0.8)){
+            
+        __delay_ms(2);
+        reverseSquareRight(mL,mR);
+        __delay_ms(2);
+        co1our_ref = 4;
+        }    
         
         //Pink
         if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint >  0.8 & bluePrint < 0.95)){
         __delay_ms(2);
         reverseSquareLeft(mL,mR);
         __delay_ms(2);
+        co1our_ref = 5;
         } 
         
+        //Orange
+        if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint >  0.5)){
+        __delay_ms(2);
+        turnRight_135(mL,mR);
+        __delay_ms(2);
+        co1our_ref = 6;
         
+        }            
         
+        //Light Blue
+        if ((redPrint < 0.7) & (greenPrint >  1.0)& (bluePrint > 1.0)){
+        __delay_ms(2);
+        turnLeft_135(mL,mR);
+        __delay_ms(2);
+        co1our_ref = 7;
         
+        }          
+        
+
+            
+        
+        return colour_ref;
     
-    
+}
+
+// function to reverse the turn and count the number of times the forward function was looped 
+void return_home_turns(unsigned int turn_history[], unsigned int counter_history[], unsigned int index) 
+{
+    for (int k = 0, k < index; k ++){
+        if (turn_history[index] == 1){turnLeft_90(mL,mR);} // Red
+        else if (turn_history[index] == 2){turnRight_90(mL,mR);} // Green
+        else if (turn_history[index] == 3){turn_180(mL,mR);} // Blue
+        else if (turn_history[index] == 4){turnLeft_90(mL,mR);} //Yellow
+        else if (turn_history[index] == 5){turnRight_90(mL,mR);} // Pink
+        else if (turn_history[index] == 6){turnLetf_135(mL,mR);} // Orange
+        else if (turn_history[index] == 7){turnRight_135(mL,mR);} // Light Blue
+        
+     
+        }
+                                    
 }

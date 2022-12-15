@@ -137,11 +137,11 @@ void forward(DC_motor *mL, DC_motor *mR)
     mL->brakemode = 1;   
     mL->brakemode = 1; 
     
-    while ((mL->power)<25 && (mR->power)<25){
-        if ((mL->power) < 25){
+    while ((mL->power)<80 && (mR->power)<80){
+        if ((mL->power) < 80){
             mL->power += 5;
         }
-        if ((mR->power) <25){
+        if ((mR->power) < 80){
             mR->power += 5;     
         } 
 
