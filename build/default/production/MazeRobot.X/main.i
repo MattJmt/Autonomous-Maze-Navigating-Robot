@@ -24403,7 +24403,7 @@ char *tempnam(const char *, const char *);
 
 
 
-int turning_time45;
+int turning_time90;
 int reverse_time;
 
 typedef struct DC_motor {
@@ -24420,8 +24420,6 @@ void initDCmotorsPWM(int PWMperiod);
 void DCmotorsInit(DC_motor *mL, DC_motor *mR);
 void setMotorPWM(DC_motor *m);
 void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR);
-void turnRight(DC_motor *mL, DC_motor *mR);
 void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void turnLeft_90(DC_motor *mL, DC_motor *mR);
@@ -24579,7 +24577,6 @@ void main(void){
 
 
 
-
     LATDbits.LATD7=0;
     TRISDbits.TRISD7=0;
 
@@ -24697,8 +24694,8 @@ void main(void){
 
         else{stop(&motorLeft,&motorRight);}
 
-        _delay((unsigned long)((50)*(64000000/4000.0)));
+        _delay((unsigned long)((25)*(64000000/4000.0)));
 
-        if (forwardCount > 2000){return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);}
+        if (forwardCount > 4000){return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);}
     }
 }

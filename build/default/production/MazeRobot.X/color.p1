@@ -47,26 +47,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/dc_motor.h: 10: typedef struct DC_motor {
 [s S2017 `uc 1 `uc 1 `uc 1 `ui 1 `*uc 1 `*uc 1 ]
 [n S2017 DC_motor power direction brakemode PWMperiod posDutyHighByte negDutyHighByte ]
-"29
-[; ;MazeRobot.X/dc_motor.h: 29: void turnRight_90(DC_motor *mL, DC_motor *mR);
+"27
+[; ;MazeRobot.X/dc_motor.h: 27: void turnRight_90(DC_motor *mL, DC_motor *mR);
 [v _turnRight_90 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
-"28
-[; ;MazeRobot.X/dc_motor.h: 28: void turnLeft_90(DC_motor *mL, DC_motor *mR);
+"26
+[; ;MazeRobot.X/dc_motor.h: 26: void turnLeft_90(DC_motor *mL, DC_motor *mR);
 [v _turnLeft_90 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
-"30
-[; ;MazeRobot.X/dc_motor.h: 30: void turn_180(DC_motor *mL, DC_motor *mR);
+"28
+[; ;MazeRobot.X/dc_motor.h: 28: void turn_180(DC_motor *mL, DC_motor *mR);
 [v _turn_180 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
-"33
-[; ;MazeRobot.X/dc_motor.h: 33: void reverseSquareRight(DC_motor *mL, DC_motor *mR);
-[v _reverseSquareRight `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
-"34
-[; ;MazeRobot.X/dc_motor.h: 34: void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
-[v _reverseSquareLeft `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
 "31
-[; ;MazeRobot.X/dc_motor.h: 31: void turnRight_135(DC_motor *mL, DC_motor *mR);
-[v _turnRight_135 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+[; ;MazeRobot.X/dc_motor.h: 31: void reverseSquareRight(DC_motor *mL, DC_motor *mR);
+[v _reverseSquareRight `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
 "32
-[; ;MazeRobot.X/dc_motor.h: 32: void turnLeft_135(DC_motor *mL, DC_motor *mR);
+[; ;MazeRobot.X/dc_motor.h: 32: void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
+[v _reverseSquareLeft `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"29
+[; ;MazeRobot.X/dc_motor.h: 29: void turnRight_135(DC_motor *mL, DC_motor *mR);
+[v _turnRight_135 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"30
+[; ;MazeRobot.X/dc_motor.h: 30: void turnLeft_135(DC_motor *mL, DC_motor *mR);
 [v _turnLeft_135 `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
 "109 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
 [; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
@@ -77,8 +77,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39
 [; ;MazeRobot.X/serialTest.h: 39: void sendTxBuf(void);
 [v _sendTxBuf `(v ~T0 @X0 0 ef ]
-"26 MazeRobot.X/dc_motor.h
-[; ;MazeRobot.X/dc_motor.h: 26: void forward(DC_motor *mL, DC_motor *mR);
+"24 MazeRobot.X/dc_motor.h
+[; ;MazeRobot.X/dc_motor.h: 24: void forward(DC_motor *mL, DC_motor *mR);
 [v _forward `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
 "23
 [; ;MazeRobot.X/dc_motor.h: 23: void stop(DC_motor *mL, DC_motor *mR);
@@ -2058,8 +2058,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "7 MazeRobot.X/dc_motor.h
-[; ;MazeRobot.X/dc_motor.h: 7: int turning_time45;
-[v _turning_time45 `i ~T0 @X0 1 e ]
+[; ;MazeRobot.X/dc_motor.h: 7: int turning_time90;
+[v _turning_time90 `i ~T0 @X0 1 e ]
 "8
 [; ;MazeRobot.X/dc_motor.h: 8: int reverse_time;
 [v _reverse_time `i ~T0 @X0 1 e ]
@@ -2711,10 +2711,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/color.c: 224: {
 [f ]
 "227
-[; ;MazeRobot.X/color.c: 227:     for (int k = (index); k >= 0; k--){
+[; ;MazeRobot.X/color.c: 227:     for (int k = (index-2); k >= 0; k--){
 {
 [v _k `i ~T0 @X0 1 a ]
-[e = _k -> _index `i ]
+[e = _k -> - _index -> -> 2 `i `ui `i ]
 [e $ >= _k -> 0 `i 2054  ]
 [e $U 2055  ]
 [e :U 2054 ]
@@ -2775,78 +2775,84 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/color.c: 246:                     turnLeft_90(mL,mR);
 [e ( _turnLeft_90 (2 , _mL _mR ]
 "247
-[; ;MazeRobot.X/color.c: 247:                     break;
-[e $U 2057  ]
+[; ;MazeRobot.X/color.c: 247:                     counter_history[k-1] -= 10;
+[e =- *U + _counter_history * -> - _k -> 1 `i `x -> -> # *U _counter_history `i `x -> -> 10 `i `ui ]
 "248
-[; ;MazeRobot.X/color.c: 248:                 case 5:
-[e :U 2063 ]
+[; ;MazeRobot.X/color.c: 248:                     break;
+[e $U 2057  ]
 "249
-[; ;MazeRobot.X/color.c: 249:                     turnRight_90(mL,mR);
-[e ( _turnRight_90 (2 , _mL _mR ]
+[; ;MazeRobot.X/color.c: 249:                 case 5:
+[e :U 2063 ]
 "250
-[; ;MazeRobot.X/color.c: 250:                     break;
-[e $U 2057  ]
+[; ;MazeRobot.X/color.c: 250:                     turnRight_90(mL,mR);
+[e ( _turnRight_90 (2 , _mL _mR ]
 "251
-[; ;MazeRobot.X/color.c: 251:                 case 6:
-[e :U 2064 ]
+[; ;MazeRobot.X/color.c: 251:                     counter_history[k-1] -= 10;
+[e =- *U + _counter_history * -> - _k -> 1 `i `x -> -> # *U _counter_history `i `x -> -> 10 `i `ui ]
 "252
-[; ;MazeRobot.X/color.c: 252:                     turnLeft_135(mL,mR);
-[e ( _turnLeft_135 (2 , _mL _mR ]
+[; ;MazeRobot.X/color.c: 252:                     break;
+[e $U 2057  ]
 "253
-[; ;MazeRobot.X/color.c: 253:                     break;
-[e $U 2057  ]
+[; ;MazeRobot.X/color.c: 253:                 case 6:
+[e :U 2064 ]
 "254
-[; ;MazeRobot.X/color.c: 254:                 case 7:
-[e :U 2065 ]
+[; ;MazeRobot.X/color.c: 254:                     turnLeft_135(mL,mR);
+[e ( _turnLeft_135 (2 , _mL _mR ]
 "255
-[; ;MazeRobot.X/color.c: 255:                     turnRight_135(mL,mR);
-[e ( _turnRight_135 (2 , _mL _mR ]
-"256
-[; ;MazeRobot.X/color.c: 256:                     break;
+[; ;MazeRobot.X/color.c: 255:                     break;
 [e $U 2057  ]
+"256
+[; ;MazeRobot.X/color.c: 256:                 case 7:
+[e :U 2065 ]
 "257
-[; ;MazeRobot.X/color.c: 257:                 case 0:
-[e :U 2066 ]
+[; ;MazeRobot.X/color.c: 257:                     turnRight_135(mL,mR);
+[e ( _turnRight_135 (2 , _mL _mR ]
 "258
-[; ;MazeRobot.X/color.c: 258:                     forward(mL,mR);
-[e ( _forward (2 , _mL _mR ]
+[; ;MazeRobot.X/color.c: 258:                     break;
+[e $U 2057  ]
 "259
-[; ;MazeRobot.X/color.c: 259:                     int i = (counter_history[k]-2);
+[; ;MazeRobot.X/color.c: 259:                 case 0:
+[e :U 2066 ]
+"260
+[; ;MazeRobot.X/color.c: 260:                     forward(mL,mR);
+[e ( _forward (2 , _mL _mR ]
+"261
+[; ;MazeRobot.X/color.c: 261:                     int i = (counter_history[k]-2);
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> - *U + _counter_history * -> _k `x -> -> # *U _counter_history `i `x -> -> 2 `i `ui `i ]
-"260
-[; ;MazeRobot.X/color.c: 260:                     while(i>0){
+"262
+[; ;MazeRobot.X/color.c: 262:                     while(i>0){
 [e $U 2067  ]
 [e :U 2068 ]
 {
-"261
-[; ;MazeRobot.X/color.c: 261:                     i--;
-[e -- _i -> 1 `i ]
-"262
-[; ;MazeRobot.X/color.c: 262:                     _delay((unsigned long)((50)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "263
-[; ;MazeRobot.X/color.c: 263:                     }
+[; ;MazeRobot.X/color.c: 263:                     i--;
+[e -- _i -> 1 `i ]
+"264
+[; ;MazeRobot.X/color.c: 264:                     _delay((unsigned long)((25)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 25 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"265
+[; ;MazeRobot.X/color.c: 265:                     }
 }
 [e :U 2067 ]
-"260
-[; ;MazeRobot.X/color.c: 260:                     while(i>0){
+"262
+[; ;MazeRobot.X/color.c: 262:                     while(i>0){
 [e $ > _i -> 0 `i 2068  ]
 [e :U 2069 ]
-"264
-[; ;MazeRobot.X/color.c: 264:                     break;
-[e $U 2057  ]
-"265
-[; ;MazeRobot.X/color.c: 265:                 default:
-[e :U 2070 ]
 "266
-[; ;MazeRobot.X/color.c: 266:                     stop(mL,mR);
-[e ( _stop (2 , _mL _mR ]
-"267
-[; ;MazeRobot.X/color.c: 267:                     break;
+[; ;MazeRobot.X/color.c: 266:                     break;
 [e $U 2057  ]
+"267
+[; ;MazeRobot.X/color.c: 267:                 default:
+[e :U 2070 ]
+"268
+[; ;MazeRobot.X/color.c: 268:                     stop(mL,mR);
+[e ( _stop (2 , _mL _mR ]
 "269
-[; ;MazeRobot.X/color.c: 269:             }
+[; ;MazeRobot.X/color.c: 269:                     break;
+[e $U 2057  ]
+"271
+[; ;MazeRobot.X/color.c: 271:             }
 }
 [e $U 2057  ]
 [e :U 2058 ]
@@ -2860,18 +2866,18 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 0 `i `ui 2066
  2070 ]
 [e :U 2057 ]
-"270
-[; ;MazeRobot.X/color.c: 270:             _delay((unsigned long)((50)*(64000000/4000.0)));
+"272
+[; ;MazeRobot.X/color.c: 272:             _delay((unsigned long)((50)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"271
-[; ;MazeRobot.X/color.c: 271:         }
+"273
+[; ;MazeRobot.X/color.c: 273:         }
 }
 [e -- _k -> 1 `i ]
 [e $ >= _k -> 0 `i 2054  ]
 [e :U 2055 ]
 }
-"273
-[; ;MazeRobot.X/color.c: 273:     }
+"275
+[; ;MazeRobot.X/color.c: 275:     }
 [e :UE 2053 ]
 }
 [p f _sprintf 8388736 ]

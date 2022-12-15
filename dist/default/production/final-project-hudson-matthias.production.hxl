@@ -12,14 +12,14 @@
   0h - 3h		(dist/default/production\final-project-hudson-matthias.production.hex)
   8h - 79h		(dist/default/production\final-project-hudson-matthias.production.hex)
   E00h - E26h		(dist/default/production\final-project-hudson-matthias.production.hex)
-  E28h - 4CA3h		(dist/default/production\final-project-hudson-matthias.production.hex)
+  E28h - 4D0Dh		(dist/default/production\final-project-hudson-matthias.production.hex)
   200000h - 20000Fh		(dist/default/production\final-project-hudson-matthias.production.hex)
   300000h - 30000Bh		(dist/default/production\final-project-hudson-matthias.production.hex)
  Unused ranges:
   4h - 7h
   7Ah - DFFh
   E27h - E27h
-  4CA4h - 1FFFFFh
+  4D0Eh - 1FFFFFh
   200010h - 2FFFFFh
 
 ### Hex Memory Map ###
@@ -1040,7 +1040,13 @@
 00004C70 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00004C80 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00004C90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00004CA0 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
+00004CA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CB0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CD0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004CF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00004D00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- --
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------

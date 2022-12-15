@@ -24389,7 +24389,7 @@ char *tempnam(const char *, const char *);
 
 
 
-int turning_time45;
+int turning_time90;
 int reverse_time;
 
 typedef struct DC_motor {
@@ -24406,8 +24406,6 @@ void initDCmotorsPWM(int PWMperiod);
 void DCmotorsInit(DC_motor *mL, DC_motor *mR);
 void setMotorPWM(DC_motor *m);
 void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR);
-void turnRight(DC_motor *mL, DC_motor *mR);
 void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void turnLeft_90(DC_motor *mL, DC_motor *mR);
@@ -24745,7 +24743,7 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
 {
 
 
-    for (int k = (index); k >= 0; k--){
+    for (int k = (index-2); k >= 0; k--){
             char string1[150];
             _delay((unsigned long)((2)*(64000000/4000.0)));
             sprintf(string1,"K:%d I:%d C:%d T:%d \r",k,index,counter_history[k],turn_history[k]);
@@ -24765,9 +24763,11 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
                     break;
                 case 4:
                     turnLeft_90(mL,mR);
+                    counter_history[k-1] -= 10;
                     break;
                 case 5:
                     turnRight_90(mL,mR);
+                    counter_history[k-1] -= 10;
                     break;
                 case 6:
                     turnLeft_135(mL,mR);
@@ -24780,7 +24780,7 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
                     int i = (counter_history[k]-2);
                     while(i>0){
                     i--;
-                    _delay((unsigned long)((50)*(64000000/4000.0)));
+                    _delay((unsigned long)((25)*(64000000/4000.0)));
                     }
                     break;
                 default:

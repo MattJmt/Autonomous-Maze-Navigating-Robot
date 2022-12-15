@@ -88,7 +88,7 @@ unsigned int color_read_Clear(void)
 }
 
 
-void getColor (RGB *v){
+void getColor (RGB *v){                 // sets the color values for red green blue and clear
     v->R = color_read_Red();
     v->G = color_read_Green();
     v->B = color_read_Blue(); 
@@ -96,7 +96,7 @@ void getColor (RGB *v){
 }
 
 
-void ambientCal (RGB *v){
+void ambientCal (RGB *v){           // function to calibrate the ambient light
    
     
     for(int i = 0;i<20;i++){
@@ -112,7 +112,7 @@ void ambientCal (RGB *v){
 }
 
 
-void whiteCal (RGB *v){
+void whiteCal (RGB *v){             // function to calibrate the light from white card
     
     for(int i = 0;i<20;i++){
             LATDbits.LATD7 = !LATDbits.LATD7;
@@ -127,32 +127,32 @@ void whiteCal (RGB *v){
 }
 
 
-unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
+unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){       // main color detection function
         
-        RGB RGBVal;
+        RGB RGBVal;         // gets currnet color reading
         getColor(&RGBVal);
 
-        unsigned int ambientR = ambientRGBVal->R;
+        unsigned int ambientR = ambientRGBVal->R;   // sets ambient red green and blue values
         unsigned int ambientG = ambientRGBVal->G;
         unsigned int ambientB = ambientRGBVal->B;
 
-        float whiteR = whiteRGBVal->R;
+        float whiteR = whiteRGBVal->R;          // set white card red green and blue values
         float whiteG = whiteRGBVal->G;
         float whiteB = whiteRGBVal->B;
         float whiteC = whiteRGBVal->C;
         
-        float redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
-        float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
-        float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
+        float redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));         //function to normalise the current red green and blue values depending on ambient conditions
+        float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));       // allows for accurate color calibration in any conditions
+        float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));        //requires only ambient and white card light for calibration sequence
         
-        unsigned int colour_ref = 11;
+        unsigned int colour_ref = 11;       // set defaul value of color outside of expected range
         
-        if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
-        if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
+        if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}             // ensure that the red green and blue values fall within expected range, usualy between 0 and 1
+        if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}        // this adds extra security to color detection function
         if ((bluePrint < 0) | (bluePrint > 2)){ bluePrint = 0.0;}            
              
         //white    
-        if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint >  0.9)){     
+        if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint >  0.9)){            // rbg values for each color taken from initial color sensor calibration, but DONT require change for new environment  
         colour_ref = 8;
         }    
          
@@ -224,45 +224,39 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
 {
 
     
-    for (int k = (index); k >= 0; k--){    
-            char string1[150];
-            __delay_ms(2);
-            sprintf(string1,"K:%d I:%d C:%d T:%d \r",k,index,counter_history[k],turn_history[k]);
-            TxBufferedString(string1);   // send to pc
-            sendTxBuf();
-            __delay_ms(2);
-            
-            switch (turn_history[k]){
-                case 1:
+    for (int k = (index); k >= 0; k--){    // set up a loop in the range of the amount of instructions recorded (index)
+        
+            switch (turn_history[k]){                       // switch case to read the instruction at a specificed index (k)
+                case 1:                             //Red
                     turnLeft_90(mL,mR);
                     break;
-                case 2:
+                case 2:                             //Green
                     turnRight_90(mL,mR);
                     break;
-                case 3:
+                case 3:                             //Blue
                     turn_180(mL,mR);
                     break;
-                case 4:
+                case 4:                             //Yellow
                     turnLeft_90(mL,mR);
                     break;
-                case 5:
+                case 5:                             //pink
                     turnRight_90(mL,mR);
                     break;
-                case 6:
+                case 6:                             //orange
                     turnLeft_135(mL,mR);
                     break;
-                case 7:
+                case 7:                             // light blue
                     turnRight_135(mL,mR);
                     break;
-                case 0:
+                case 0:                             //forward
                     forward(mL,mR);
-                    int i = (counter_history[k]-2);
+                    int i = (counter_history[k]-2); // read the "time" value of the forward instruction and run same amount of iterations as recorder in initial traversal of maze
                     while(i>0){
                     i--;
                     __delay_ms(50);
                     }
                     break;
-                default:
+                default:                            // in erronious cases stop the robot temporarily
                     stop(mL,mR);
                     break;
                
