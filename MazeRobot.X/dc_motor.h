@@ -4,7 +4,7 @@
 #include <xc.h>
 
 #define _XTAL_FREQ 64000000
-int turning_time45;
+int turning_time90;
 int reverse_time;
 
 typedef struct DC_motor { //definition of DC_motor structure
@@ -18,13 +18,11 @@ typedef struct DC_motor { //definition of DC_motor structure
 
 //function prototypes
 void initDCmotorsPWM(int PWMperiod); // function to setup PWM
-void DCmotorsInit(DC_motor *mL, DC_motor *mR);
-void setMotorPWM(DC_motor *m);
-void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR);
-void turnRight(DC_motor *mL, DC_motor *mR);
-void forward(DC_motor *mL, DC_motor *mR);
-void reverse(DC_motor *mL, DC_motor *mR);
+void DCmotorsInit(DC_motor *mL, DC_motor *mR);          // Initialise 
+void setMotorPWM(DC_motor *m);                          // Send motor structure variables as PWM to CCP
+void stop(DC_motor *mL, DC_motor *mR);                  // Stop
+void forward(DC_motor *mL, DC_motor *mR);               // Forward
+void reverse(DC_motor *mL, DC_motor *mR);               // Reverse
 void turnLeft_90(DC_motor *mL, DC_motor *mR);           //Green
 void turnRight_90(DC_motor *mL, DC_motor *mR);          //Red
 void turn_180(DC_motor *mL, DC_motor *mR);              //Blue

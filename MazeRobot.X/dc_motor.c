@@ -2,8 +2,8 @@
 #include "dc_motor.h"
 
 //Calibration 
-//int turning_time45 = 187; // time period elapsed to achieve a 45 degree rotation
-int turning_time45 = 165;
+//int turning_time90 = 187; // time period elapsed to achieve a 90 degree rotation
+int turning_time90 = 165;
 
 int reverse_time = 650; //time period elapsed when reversing after detecting a colour (this is different to square reverse)
 
@@ -116,16 +116,16 @@ void setMotorPWM(DC_motor *m)
 //function to stop the robot gradually 
 void stop(DC_motor *mL, DC_motor *mR){
     
-    while ((mL->power)>0 && (mR->power)>0){
-        if ((mL->power) >0){
-            mL->power -= 5;
+    while ((mL->power)>0 && (mR->power)>0){     //gradually slow-down the motor speed until it comes to rest
+        if ((mL->power) >0){                
+            mL->power -= 5;            //slow down left motor
         }
         if ((mR->power) >0){
-            mR->power -= 5;     
+            mR->power -= 5;     //slow down right motor
         }
        
-        setMotorPWM(mL);
-        setMotorPWM(mR);
+        setMotorPWM(mL); //set CCP PWM output from the values in the motor structure
+        setMotorPWM(mR); //set CCP PWM output from the values in the motor structure
     }
     __delay_ms(100);
 }
@@ -133,107 +133,48 @@ void stop(DC_motor *mL, DC_motor *mR){
 //function to make the robot gradually move forward
 void forward(DC_motor *mL, DC_motor *mR)
 {
-    mL->direction = 1;
-    mR->direction = 1;
+    mL->direction = 1;          //set left motors direction to forward
+    mR->direction = 1;          //set right motors direction to forward
     
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
+    mL->brakemode = 1;          //  set left motors brakemode to slow decay
+    mL->brakemode = 1;          //  set right motors brakemode to slow decay
     
-    while ((mL->power)<40 && (mR->power)<40){
+    while ((mL->power)<40 && (mR->power)<40){       // limit max forward speed to 40 %
         if ((mL->power) < 40){
-            mL->power += 5;
+            mL->power += 5;                         // gradually increase left motor speed to 40%
         }
         if ((mR->power) < 40){
-            mR->power += 5;     
+            mR->power += 5;                         // gradually increase right motor speed to 40%  
         } 
 
     }
-    setMotorPWM(mL);
-    setMotorPWM(mR);
+    setMotorPWM(mL);       //set CCP PWM output from the values in the motor structure
+    setMotorPWM(mR);      //set CCP PWM output from the values in the motor structure
     //__delay_ms(time_period);
 }
 
 //function to make the robot gradually reverse
 void reverse(DC_motor *mL, DC_motor *mR)
 {
-    mL->direction = 0;
-    mR->direction = 0;
+    mL->direction = 0;          //set left motors direction to reverse
+    mR->direction = 0;          //set right motors direction to forward
     
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
+    mL->brakemode = 1;          //  set left motors brakemode to slow decay
+    mL->brakemode = 1;          //  set right motors brakemode to slow decay
     
-    while ((mL->power)<25 && (mR->power)<25){
-        if ((mL->power) < 25){
-            mL->power += 5;
+    while ((mL->power)<25 && (mR->power)<25){        // limit max forward speed to 25 %
+        if ((mL->power) < 25){           // limit max forward speed to 25 %
+            mL->power += 5;              //gradually increase left motor speed
         }
-        if ((mR->power) <25){
-            mR->power += 5;     
+        if ((mR->power) <25){       // limit max forward speed to 25 %
+            mR->power += 5;         //gradually increase right motor speed
         } 
 
     }
-    setMotorPWM(mL);
-    setMotorPWM(mR);
+    setMotorPWM(mL);        //set CCP PWM output from the values in the motor structure
+    setMotorPWM(mR);        //set CCP PWM output from the values in the motor structure
     
   // __delay_ms(time_period);
-}
-
-//function to make the robot turn left 
-void turnLeft(DC_motor *mL, DC_motor *mR)
-{    
-   
-    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
-    __delay_ms(100);
-    
-    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(reverse_time);
-    
-    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
-    
-    mL->direction = 0;
-    mR->direction = 1;
-    
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
-    
-    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
-        mL->power += 10;                   // Gradually increase the left motor power
-        mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-    }
-   __delay_ms(turning_time45);
-    
-    stop(mL, mR);
-    
-
-}
-
-void turnRight(DC_motor *mL, DC_motor *mR)
-{    
-    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
-    __delay_ms(100);
-    
-    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(reverse_time);
-    
-    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
-    
-    mL->direction = 1;
-    mR->direction = 0;
-    
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
-  
-    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
-        mL->power += 10;                   // Gradually increase the left motor power
-        mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-    }
-   __delay_ms(turning_time45);
-    
-    stop(mL, mR);
-    
 }
 
 /***GREEN***/    
@@ -248,20 +189,20 @@ void turnLeft_90(DC_motor *mL, DC_motor *mR)            //Green
     
     stop(mL, mR);   // buggy must me at rest for a more accurate turn.
     
-    mL->direction = 0;
-    mR->direction = 1;
+    mL->direction = 0;      //set left motors direction to reverse
+    mR->direction = 1;      //set right motors direction to forward
     
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
-    
-    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+    mL->brakemode = 1;      //  set left motors brakemode to slow decay
+    mL->brakemode = 1;      //  set left motors brakemode to slow decay
+        
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 80%
         mL->power += 10;                   // Gradually increase the left motor power
         mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
+        setMotorPWM(mL);                    //set CCP PWM output from the values in the motor structure
+        setMotorPWM(mR);                    //set CCP PWM output from the values in the motor structure
     }
-   __delay_ms(turning_time45);
-    stop(mL, mR);
+   __delay_ms(turning_time90);              //increment a delay equivalent to the calibrated 90 degree
+    stop(mL, mR);                           // stop buggy for next turn
 }
 
 
@@ -272,23 +213,23 @@ void turnRight_90(DC_motor *mL, DC_motor *mR) //Red
     __delay_ms(100);
     
     reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(reverse_time);
+    __delay_ms(reverse_time);   //increment a delay equivalent to the distance of centre of square from wall
     
     stop(mL, mR);   // buggy must me at rest for a more accurate turn.
     
-    mL->direction = 1;
-    mR->direction = 0;
+    mL->direction = 1;      //set left motors direction to forward
+    mR->direction = 0;      //set right motors direction to reverse
     
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
+    mL->brakemode = 1;      //  set left motors brakemode to slow decay
+    mL->brakemode = 1;      //  set left motors brakemode to slow decay
   
     while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
         mL->power += 10;                   // Gradually increase the left motor power
         mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
+        setMotorPWM(mL);                    //set CCP PWM output from the values in the motor structure
+        setMotorPWM(mR);                    //set CCP PWM output from the values in the motor structure
     }
-   __delay_ms(turning_time45);
+   __delay_ms(turning_time90);          //increment a delay equivalent to the calibrated 90 degree
    
     stop(mL, mR);
 }
@@ -305,20 +246,19 @@ void turn_180(DC_motor *mL, DC_motor *mR)
     
     stop(mL, mR);   // buggy must me at rest for a more accurate turn.
     
-    mL->direction = 1;
-    mR->direction = 0;
+    mL->direction = 1;           //set left motors direction to forward
+    mR->direction = 0;           //set right motors direction to reverse
     
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
+    mL->brakemode = 1;          //  set left motors brakemode to slow decay
+    mL->brakemode = 1;          //  set left motors brakemode to slow decay
   
-    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 80%
         mL->power += 10;                   // Gradually increase the left motor power
         mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
+        setMotorPWM(mL);            //set CCP PWM output from the values in the motor structure
+        setMotorPWM(mR);            //set CCP PWM output from the values in the motor structure
     }
-   __delay_ms(1.75*turning_time45);
-    
+   __delay_ms(1.75*turning_time90);     //increment a delay equivalent to a 180 degree turn    
     stop(mL, mR);
 }
 
@@ -329,23 +269,23 @@ void turnRight_135(DC_motor *mL, DC_motor *mR) //Orange
     __delay_ms(100);
     
     reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(reverse_time);
+    __delay_ms(reverse_time);       //increment a delay equivalent to the distance of centre of square from wall
     
     stop(mL, mR);   // buggy must me at rest for a more accurate turn.
     
-    mL->direction = 1;
-    mR->direction = 0;
+    mL->direction = 1;          //set left motors direction to forward
+    mR->direction = 0;          //set right motors direction to reverse
     
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
+    mL->brakemode = 1;          //  set left motors brakemode to slow decay
+    mL->brakemode = 1;          //  set left motors brakemode to slow decay
   
     while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
         mL->power += 10;                   // Gradually increase the left motor power
         mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
+        setMotorPWM(mL);                //set CCP PWM output from the values in the motor structure
+        setMotorPWM(mR);                //set CCP PWM output from the values in the motor structure
     }
-   __delay_ms(1.5*turning_time45);
+   __delay_ms(1.5*turning_time90);      //increment a delay equivalent to a 135 degree turn  
     
     stop(mL, mR);
 }
@@ -359,23 +299,23 @@ void turnLeft_135(DC_motor *mL, DC_motor *mR)          //Light Blue
     __delay_ms(100);
     
     reverse(mL, mR);    // reverse from the wall to avoid collision when turning
-    __delay_ms(reverse_time);
+    __delay_ms(reverse_time);       //increment a delay equivalent to the distance of centre of square from wall
     
     stop(mL, mR);   // buggy must me at rest for a more accurate turn.
     
-    mL->direction = 0;
-    mR->direction = 1;
+    mL->direction = 0;          //set left motors direction to reverse
+    mR->direction = 1;          //set right motors direction to forward
     
-    mL->brakemode = 1;   
-    mL->brakemode = 1; 
+    mL->brakemode = 1;          //  set left motors brakemode to slow decay
+    mL->brakemode = 1;          //  set left motors brakemode to slow decay
     
     while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
         mL->power += 10;                   // Gradually increase the left motor power
         mR->power += 10;                   // Gradually increase the right motor power
-        setMotorPWM(mL);
-        setMotorPWM(mR);
+        setMotorPWM(mL);                //set CCP PWM output from the values in the motor structure
+        setMotorPWM(mR);                //set CCP PWM output from the values in the motor structure
     }
-   __delay_ms(1.5*turning_time45);
+   __delay_ms(1.5*turning_time90);      //increment a delay equivalent to a 135 degree turn  
     stop(mL, mR);
 }
 
