@@ -24684,6 +24684,6 @@ void main(void){
         else{stop(&motorLeft,&motorRight);}
 
         _delay((unsigned long)((100)*(64000000/4000.0)));
-# 265 "MazeRobot.X/main.c"
+# 262 "MazeRobot.X/main.c"
     }
 }

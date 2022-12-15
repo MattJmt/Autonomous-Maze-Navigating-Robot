@@ -24270,8 +24270,8 @@ void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
 
 
 
-int turning_time45 = 200;
-int reverse_time = 200;
+int turning_time45 = 187;
+int reverse_time = 700;
 
 
 
@@ -24526,7 +24526,7 @@ void turnLeft_90(DC_motor *mL, DC_motor *mR)
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-   _delay((unsigned long)((2*turning_time45)*(64000000/4000.0)));
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
     stop(mL, mR);
 }
 
@@ -24563,27 +24563,8 @@ void turnRight_90(DC_motor *mL, DC_motor *mR)
 void turn_180(DC_motor *mL, DC_motor *mR)
 {
 
-    stop(mL, mR);
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-
-    reverse(mL, mR);
-    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
-
-    stop(mL, mR);
-
-    mL->direction = 0;
-    mR->direction = 1;
-
-    mL->brakemode = 1;
-    mL->brakemode = 1;
-
-    while((mL->power < 70) || (mR->power < 70)){
-        mL->power += 10;
-        mR->power += 10;
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-    }
-   _delay((unsigned long)((4*turning_time45)*(64000000/4000.0)));
+    turnRight(mL,mR);
+    turnRight(mL,mR);
     stop(mL, mR);
 }
 
@@ -24610,7 +24591,7 @@ void turnRight_135(DC_motor *mL, DC_motor *mR)
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+   _delay((unsigned long)((1.5*turning_time45)*(64000000/4000.0)));
 
     stop(mL, mR);
 }
@@ -24648,11 +24629,13 @@ void turnLeft_135(DC_motor *mL, DC_motor *mR)
 void reverseSquareRight(DC_motor *mL, DC_motor *mR)
 {
 
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
     stop(mL, mR);
-    _delay((unsigned long)((100)*(64000000/4000.0)));
 
     reverse(mL, mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
+    _delay((unsigned long)((2*reverse_time)*(64000000/4000.0)));
 
     turnRight_90(mL,mR);
 
@@ -24663,12 +24646,13 @@ void reverseSquareRight(DC_motor *mL, DC_motor *mR)
 
 void reverseSquareLeft(DC_motor *mL, DC_motor *mR)
 {
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
 
     stop(mL, mR);
-    _delay((unsigned long)((100)*(64000000/4000.0)));
 
     reverse(mL, mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
+    _delay((unsigned long)((2*reverse_time)*(64000000/4000.0)));
 
     turnLeft_90(mL,mR);
 

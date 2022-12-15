@@ -2506,13 +2506,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "154
 [; ;MazeRobot.X/main.c: 154:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"265
-[; ;MazeRobot.X/main.c: 265:     }
+"262
+[; ;MazeRobot.X/main.c: 262:     }
 }
 [e :U 2020 ]
 [e $U 2021  ]
 [e :U 2022 ]
-"266
-[; ;MazeRobot.X/main.c: 266: }
+"263
+[; ;MazeRobot.X/main.c: 263: }
 [e :UE 2019 ]
 }
