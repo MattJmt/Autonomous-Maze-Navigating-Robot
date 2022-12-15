@@ -2811,9 +2811,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/color.c: 258:                     forward(mL,mR);
 [e ( _forward (2 , _mL _mR ]
 "259
-[; ;MazeRobot.X/color.c: 259:                     int i = counter_history[k];
+[; ;MazeRobot.X/color.c: 259:                     int i = (counter_history[k]-2);
 [v _i `i ~T0 @X0 1 a ]
-[e = _i -> *U + _counter_history * -> _k `x -> -> # *U _counter_history `i `x `i ]
+[e = _i -> - *U + _counter_history * -> _k `x -> -> # *U _counter_history `i `x -> -> 2 `i `ui `i ]
 "260
 [; ;MazeRobot.X/color.c: 260:                     while(i>0){
 [e $U 2067  ]
@@ -2860,18 +2860,18 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 0 `i `ui 2066
  2070 ]
 [e :U 2057 ]
-"284
-[; ;MazeRobot.X/color.c: 284:             _delay((unsigned long)((50)*(64000000/4000.0)));
+"270
+[; ;MazeRobot.X/color.c: 270:             _delay((unsigned long)((50)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"285
-[; ;MazeRobot.X/color.c: 285:         }
+"271
+[; ;MazeRobot.X/color.c: 271:         }
 }
 [e -- _k -> 1 `i ]
 [e $ >= _k -> 0 `i 2054  ]
 [e :U 2055 ]
 }
-"287
-[; ;MazeRobot.X/color.c: 287:     }
+"273
+[; ;MazeRobot.X/color.c: 273:     }
 [e :UE 2053 ]
 }
 [p f _sprintf 8388736 ]

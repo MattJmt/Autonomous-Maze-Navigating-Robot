@@ -17,8 +17,6 @@
 #include "serialTest.h"
 #include "interrupts.h"
 #include "timers.h"
-//#include "interupts2.h"
-
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
@@ -83,8 +81,8 @@ void main(void){
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
     
-    unsigned int turn_history[32];
-    unsigned int counter_history[32];
+    unsigned int turn_history[100];
+    unsigned int counter_history[100];
     unsigned int index = 0;
     unsigned int forwardCount = 0;
     unsigned int colorNum = 0;
@@ -134,25 +132,23 @@ void main(void){
                 carGo = 0;                     
             }
             turn_history[index] = colorNum;  
-            counter_history[index] = 1;
-            
+            counter_history[index] = 1;            
             index += 1;
             __delay_ms(500);
-            }
-            
+            }  
         }
         
         if (carGo){
             forward(&motorLeft,&motorRight);
             LATDbits.LATD4 = !LATDbits.LATD4;
             forwardCount +=1;
-            
         }
         
         else{stop(&motorLeft,&motorRight);}
         
         __delay_ms(50);
-    
+        
+        if (forwardCount > 2000){return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);}
     }
 }
 

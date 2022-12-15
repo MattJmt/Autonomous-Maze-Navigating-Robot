@@ -121,7 +121,7 @@
 [v _I2C_2_Master_Write I2C_2_Master_Write `(v  1 e 1 0 ]
 "51
 [v _I2C_2_Master_Read I2C_2_Master_Read `(uc  1 e 1 0 ]
-"25 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/main.c
+"23 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/main.c
 [v _main main `(v  1 e 1 0 ]
 "5 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\serialTest.c
 [v _initUSART4 initUSART4 `(v  1 e 1 0 ]
@@ -871,37 +871,37 @@
 [v _flags flags `uc  1 s 1 flags ]
 "125
 [v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
-"25 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/main.c
+"23 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"86
-[v main@turn_history turn_history `[32]ui  1 a 64 64 ]
-"87
-[v main@counter_history counter_history `[32]ui  1 a 64 0 ]
+"84
+[v main@turn_history turn_history `[100]ui  1 a 200 0 ]
+"85
+[v main@counter_history counter_history `[100]ui  1 a 200 0 ]
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
-"83
-[v main@motorLeft motorLeft `S107  1 a 9 176 ]
-[v main@motorRight motorRight `S107  1 a 9 167 ]
-[s S62 RGB 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
-"78
-[v main@whiteRGBVal whiteRGBVal `S62  1 a 8 159 ]
-"77
-[v main@ambientRGBVal ambientRGBVal `S62  1 a 8 149 ]
-"76
-[v main@RGBVal RGBVal `S62  1 a 8 140 ]
-"79
-[v main@clearRef clearRef `d  1 a 4 134 ]
-"80
-[v main@whiteC whiteC `d  1 a 4 128 ]
-"88
-[v main@index index `ui  1 a 2 157 ]
-"90
-[v main@colorNum colorNum `ui  1 a 2 138 ]
-"89
-[v main@forwardCount forwardCount `ui  1 a 2 132 ]
 "81
-[v main@carGo carGo `uc  1 a 1 148 ]
-"157
+[v main@motorLeft motorLeft `S107  1 a 9 103 ]
+[v main@motorRight motorRight `S107  1 a 9 94 ]
+[s S62 RGB 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+"76
+[v main@whiteRGBVal whiteRGBVal `S62  1 a 8 84 ]
+"75
+[v main@ambientRGBVal ambientRGBVal `S62  1 a 8 76 ]
+"74
+[v main@RGBVal RGBVal `S62  1 a 8 67 ]
+"77
+[v main@clearRef clearRef `d  1 a 4 59 ]
+"78
+[v main@whiteC whiteC `d  1 a 4 55 ]
+"86
+[v main@index index `ui  1 a 2 92 ]
+"88
+[v main@colorNum colorNum `ui  1 a 2 65 ]
+"87
+[v main@forwardCount forwardCount `ui  1 a 2 63 ]
+"79
+[v main@carGo carGo `uc  1 a 1 75 ]
+"153
 } 0
 "115 C:\Users\44795\Documents\GitHub\final-project-hudson-matthias\MazeRobot.X/color.c
 [v _whiteCal whiteCal `(v  1 e 1 0 ]
@@ -929,7 +929,7 @@
 [s S107 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `uc 1 brakemode 1 2 `ui 1 PWMperiod 2 3 `*.39uc 1 posDutyHighByte 2 5 `*.39uc 1 negDutyHighByte 2 7 ]
 [v return_home_turns@mL mL `*.39S107  1 p 2 37 ]
 [v return_home_turns@mR mR `*.39S107  1 p 2 39 ]
-"287
+"273
 } 0
 "9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]

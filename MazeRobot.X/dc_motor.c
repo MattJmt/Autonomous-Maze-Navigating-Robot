@@ -3,9 +3,9 @@
 
 //Calibration 
 //int turning_time45 = 187; // time period elapsed to achieve a 45 degree rotation
-int turning_time45 = 170;
+int turning_time45 = 165;
 
-int reverse_time = 700; //time period elapsed when reversing after detecting a colour (this is different to square reverse)
+int reverse_time = 650; //time period elapsed when reversing after detecting a colour (this is different to square reverse)
 
 
 // function initialise T2 and CCP for DC motor control
@@ -375,7 +375,7 @@ void turnLeft_135(DC_motor *mL, DC_motor *mR)          //Light Blue
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-   __delay_ms(3*turning_time45);
+   __delay_ms(1.5*turning_time45);
     stop(mL, mR);
 }
 

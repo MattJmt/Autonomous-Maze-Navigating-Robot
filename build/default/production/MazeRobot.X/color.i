@@ -24777,7 +24777,7 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
                     break;
                 case 0:
                     forward(mL,mR);
-                    int i = counter_history[k];
+                    int i = (counter_history[k]-2);
                     while(i>0){
                     i--;
                     _delay((unsigned long)((50)*(64000000/4000.0)));
@@ -24788,7 +24788,6 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
                     break;
 
             }
-# 284 "MazeRobot.X/color.c"
             _delay((unsigned long)((50)*(64000000/4000.0)));
         }
 

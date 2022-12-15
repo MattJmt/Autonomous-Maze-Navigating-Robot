@@ -24571,8 +24571,6 @@ void write16bitTMR0val(unsigned int);
 
 
 
-
-
 void main(void){
 
     color_click_init();
@@ -24634,8 +24632,8 @@ void main(void){
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
 
-    unsigned int turn_history[32];
-    unsigned int counter_history[32];
+    unsigned int turn_history[100];
+    unsigned int counter_history[100];
     unsigned int index = 0;
     unsigned int forwardCount = 0;
     unsigned int colorNum = 0;
@@ -24686,23 +24684,21 @@ void main(void){
             }
             turn_history[index] = colorNum;
             counter_history[index] = 1;
-
             index += 1;
             _delay((unsigned long)((500)*(64000000/4000.0)));
             }
-
         }
 
         if (carGo){
             forward(&motorLeft,&motorRight);
             LATDbits.LATD4 = !LATDbits.LATD4;
             forwardCount +=1;
-
         }
 
         else{stop(&motorLeft,&motorRight);}
 
         _delay((unsigned long)((50)*(64000000/4000.0)));
 
+        if (forwardCount > 2000){return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);}
     }
 }

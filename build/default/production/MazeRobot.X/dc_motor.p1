@@ -2273,16 +2273,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/dc_motor.h: 8: int reverse_time;
 [v _reverse_time `i ~T0 @X0 1 e ]
 "6 MazeRobot.X/dc_motor.c
-[; ;MazeRobot.X/dc_motor.c: 6: int turning_time45 = 170;
+[; ;MazeRobot.X/dc_motor.c: 6: int turning_time45 = 165;
 [v _turning_time45 `i ~T0 @X0 1 e ]
 [i _turning_time45
--> 170 `i
+-> 165 `i
 ]
 "8
-[; ;MazeRobot.X/dc_motor.c: 8: int reverse_time = 700;
+[; ;MazeRobot.X/dc_motor.c: 8: int reverse_time = 650;
 [v _reverse_time `i ~T0 @X0 1 e ]
 [i _reverse_time
--> 700 `i
+-> 650 `i
 ]
 "12
 [; ;MazeRobot.X/dc_motor.c: 12: void initDCmotorsPWM(int PWMperiod){
@@ -3250,8 +3250,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ || < -> . *U _mL 0 `i -> 80 `i < -> . *U _mR 0 `i -> 80 `i 2067  ]
 [e :U 2068 ]
 "378
-[; ;MazeRobot.X/dc_motor.c: 378:    _delay((unsigned long)((3*turning_time45)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> * -> 3 `i _turning_time45 `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;MazeRobot.X/dc_motor.c: 378:    _delay((unsigned long)((1.5*turning_time45)*(64000000/4000.0)));
+[e ( __delay (1 -> * * .1.5 -> _turning_time45 `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "379
 [; ;MazeRobot.X/dc_motor.c: 379:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]

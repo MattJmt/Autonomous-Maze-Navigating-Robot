@@ -24271,9 +24271,9 @@ void reverseSquareLeft(DC_motor *mL, DC_motor *mR);
 
 
 
-int turning_time45 = 170;
+int turning_time45 = 165;
 
-int reverse_time = 700;
+int reverse_time = 650;
 
 
 
@@ -24643,7 +24643,7 @@ void turnLeft_135(DC_motor *mL, DC_motor *mR)
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-   _delay((unsigned long)((3*turning_time45)*(64000000/4000.0)));
+   _delay((unsigned long)((1.5*turning_time45)*(64000000/4000.0)));
     stop(mL, mR);
 }
 

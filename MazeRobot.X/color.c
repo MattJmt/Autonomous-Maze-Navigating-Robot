@@ -256,7 +256,7 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
                     break;
                 case 0:
                     forward(mL,mR);
-                    int i = counter_history[k];
+                    int i = (counter_history[k]-2);
                     while(i>0){
                     i--;
                     __delay_ms(50);
@@ -267,20 +267,6 @@ void return_home_turns(unsigned int *turn_history, unsigned int *counter_history
                     break;
                
             }
-
-        
-            
-                
-            /*
-            if (turn_history[k] == 1){turnLeft_90(mL,mR);} // Red
-            else if (turn_history[k] == 2){turnRight_90(mL,mR);} // Green
-            else if (turn_history[k] == 3){turn_180(mL,mR);} // Blue
-            else if (turn_history[k] == 4){turnLeft_90(mL,mR);} //Yellow
-            else if (turn_history[k] == 5){turnRight_90(mL,mR);} // Pink
-            else if (turn_history[k] == 6){turnLeft_135(mL,mR);} // Orange
-            else if (turn_history[k] == 7){turnRight_135(mL,mR);} // Light Blue
-            else if (turn_history[k] == 0){forward(mL,mR);} // forward
-            */
             __delay_ms(50);
         }
         
