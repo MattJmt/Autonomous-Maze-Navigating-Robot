@@ -24388,6 +24388,9 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 12 "main.c" 2
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdbool.h" 1 3
+# 13 "main.c" 2
+
 # 1 "./color.h" 1
 
 
@@ -24400,7 +24403,7 @@ char *tempnam(const char *, const char *);
 
 
 
-int turning_time45;
+int turning_time90;
 int reverse_time;
 
 typedef struct DC_motor {
@@ -24417,8 +24420,6 @@ void initDCmotorsPWM(int PWMperiod);
 void DCmotorsInit(DC_motor *mL, DC_motor *mR);
 void setMotorPWM(DC_motor *m);
 void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR);
-void turnRight(DC_motor *mL, DC_motor *mR);
 void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void turnLeft_90(DC_motor *mL, DC_motor *mR);
@@ -24464,8 +24465,9 @@ typedef struct RGB {
 void getColor(RGB *v);
 void ambientCal(RGB *v);
 void whiteCal(RGB *v);
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
-# 13 "main.c" 2
+unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+void return_home_turns(unsigned int *turn_history, unsigned int *counter_history, unsigned int index, DC_motor *mL, DC_motor *mR);
+# 14 "main.c" 2
 
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
@@ -24500,7 +24502,7 @@ void I2C_2_Master_Write(unsigned char data_byte);
 
 
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 14 "main.c" 2
+# 15 "main.c" 2
 
 
 # 1 "./serialTest.h" 1
@@ -24533,7 +24535,7 @@ char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 16 "main.c" 2
+# 17 "main.c" 2
 
 # 1 "./interrupts.h" 1
 
@@ -24547,7 +24549,7 @@ unsigned int on_period,off_period;
 
 void Interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 17 "main.c" 2
+# 18 "main.c" 2
 
 # 1 "./timers.h" 1
 
@@ -24562,9 +24564,7 @@ unsigned int on_period,off_period;
 
 void Timer0_init(void);
 void write16bitTMR0val(unsigned int);
-# 18 "main.c" 2
-
-
+# 19 "main.c" 2
 
 
 
@@ -24574,8 +24574,6 @@ void main(void){
     color_click_init();
     initUSART4();
     initDCmotorsPWM(199);
-
-
 
 
 
@@ -24601,15 +24599,11 @@ void main(void){
     LATDbits.LATD3 = 0;
     TRISDbits.TRISD3 = 0;
 
-
     LATDbits.LATD4 = 1;
     LATFbits.LATF0 = 1;
     LATHbits.LATH0 = 1;
     LATFbits.LATF0 = 1;
     LATDbits.LATD3 = 1;
-
-
-
 
     LATGbits.LATG0=1;
     LATEbits.LATE7=1;
@@ -24626,35 +24620,83 @@ void main(void){
     TRISFbits.TRISF3=1;
     ANSELFbits.ANSELF3=0;
 
-    char testString[20];
-    char string1[20];
-    char string2[20];
-    char string3[20];
-    char string4[20];
-    char string5[20];
-
-
     RGB RGBVal;
     RGB ambientRGBVal;
     RGB whiteRGBVal;
     double clearRef = 0.0;
     double whiteC = 19000.0;
+    unsigned char carGo = 0;
 
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
-# 249 "main.c"
-    TRISFbits.TRISF2=1;
-    ANSELFbits.ANSELF2=0;
 
-    if (!PORTFbits.RF2){
-        while (1) {
+    unsigned int turn_history[100];
+    unsigned int counter_history[100];
+    unsigned int index = 0;
+    unsigned int forwardCount = 0;
+    unsigned int colorNum = 0;
 
+    ambientCal(&ambientRGBVal);
 
+    while(1){
+        getColor(&RGBVal);
 
-            reverseSquareRight(&motorLeft, &motorRight);
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-
-
+        if(!PORTFbits.RF2 && !PORTFbits.RF3){
+            LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD7 = 0 , LATHbits.LATH3 = 0;
+            carGo = !carGo;
         }
+
+
+        if (!PORTFbits.RF2 & PORTFbits.RF3){
+            ambientCal (&ambientRGBVal);
+        }
+
+        if (!PORTFbits.RF3 & PORTFbits.RF2){
+            whiteCal (&whiteRGBVal);
+        }
+
+        LATHbits.LATH3=!LATHbits.LATH3;
+
+        whiteC = whiteRGBVal.C;
+        clearRef = RGBVal.C/whiteC;
+
+        if ((clearRef > 0.12) && carGo){
+
+            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
+
+            if (colorNum < 9){
+
+            turn_history[index] = 0;
+            counter_history[index] = forwardCount;
+
+            index +=1;
+            forwardCount = 0;
+
+            if (colorNum == 8){
+                turn_180(&motorLeft,&motorRight);
+                LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
+                return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);
+                carGo = 0;
+            }
+            turn_history[index] = colorNum;
+            counter_history[index] = 1;
+            index += 1;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            }
+        }
+
+        if (carGo){
+            forward(&motorLeft,&motorRight);
+            LATDbits.LATD4 = !LATDbits.LATD4;
+            forwardCount +=1;
+        }
+
+        else{stop(&motorLeft,&motorRight);}
+
+        _delay((unsigned long)((50)*(64000000/4000.0)));
+
+        if (forwardCount > 2000){return_home_turns(&turn_history,&counter_history, (index), &motorLeft, &motorRight);}
     }
 }
