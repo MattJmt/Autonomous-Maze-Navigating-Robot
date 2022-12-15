@@ -72,7 +72,7 @@ serial.c/.h  | Debugging of the Color Clicker and i2c codes.
 
 The main code is present in main.c
 
-It initialises the color click, serial and DC motor functions. It starts by calibrating both the ambient light and the colour of a white card. It then moves forward until it detects a wall, at which points it pulls the assigned instruction from the 'colorDetect' function. The 'turn_histroy[index] array stores the previous movement. The amount of times it loops through the 'forward' function in-between movements is counted by the counter_history[index] array. In the case where no colour card is detected for 20 seconds, the 'return_home' function is triggered. 
+It initialises the color click, serial and DC motor functions. It starts by calibrating both the ambient light and the colour of a white card. It then moves forward until it detects a wall, at which points it pulls the assigned instruction from the 'colorDetect' function. The 'turn_history[index]' array stores the previous movement. The amount of times it loops through the 'forward' function in-between movements is counted by the 'counter_history[index]' array. In the case where no colour card is detected for 20 seconds, the 'return_home' function is triggered. 
 
 ```
 ambientCal(&ambientRGBVal);         // calibrate ambient light on startup
