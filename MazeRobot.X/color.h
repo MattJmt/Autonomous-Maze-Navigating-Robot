@@ -37,7 +37,6 @@ typedef struct RGB { //definition of DC_motor structure
 void getColor(RGB *v);
 void ambientCal(RGB *v);
 void whiteCal(RGB *v);
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
-
-
+unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+void return_home_turns(unsigned int *turn_history, unsigned int *counter_history, unsigned int index, DC_motor *mL, DC_motor *mR);
 #endif

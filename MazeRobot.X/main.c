@@ -80,12 +80,6 @@ void main(void){
     ANSELFbits.ANSELF3=0; //turn off analogue input on pin  
     
     char testString[20];
-    char string1[20];
-    char string2[20];
-    char string3[20];
-    char string4[20];
-    char string5[20];
-    
     
     RGB RGBVal;
     RGB ambientRGBVal;
@@ -115,150 +109,74 @@ void main(void){
     float greenPrint = 0.0;
     */
     
+    unsigned int turn_history[99];
+    unsigned int counter_history[99];
+    unsigned int index = 0;
+    unsigned int forwardCount = 0;
+    unsigned int colorNum = 0;
+    
     ambientCal (&ambientRGBVal);
     
     while(1){
         getColor(&RGBVal);
         
-        if(!PORTFbits.RF2 & !PORTFbits.RF3){
-            LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
-            __delay_ms(1000);
+        if(!PORTFbits.RF2 & !PORTFbits.RF3){                // turn the car on and off
+            LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;            
+            __delay_ms(500);
             LATDbits.LATD7 = 0 , LATHbits.LATH3 = 0;
-            carGo = !carGo;}
+            carGo = !carGo;
+        }
         
         //add something here to calibrate ambient
-        if (!PORTFbits.RF2 & PORTFbits.RF3){
+        if (!PORTFbits.RF2 & PORTFbits.RF3){        // manually calibrate ambient
             ambientCal (&ambientRGBVal);            
         }
         
-        if (!PORTFbits.RF3 & PORTFbits.RF2){
+        if (!PORTFbits.RF3 & PORTFbits.RF2){            // manually calibrate white
             whiteCal (&whiteRGBVal);           
         }            
         
-        LATHbits.LATH3=!LATHbits.LATH3;
-        
+        LATHbits.LATH3=!LATHbits.LATH3;         //light to let user know car is running
         
         whiteC = whiteRGBVal.C;
         clearRef = RGBVal.C/whiteC;     // this forces it to be a float
         
-        if ((clearRef > 0.12) & carGo){
-            colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);  
+        if ((clearRef > 0.12) & carGo){         //waits till car gets close to wall
+            turn_history[index] = 0;
+            counter_history[index] = forwardCount;  
+                    
+            index +=1;
+            forwardCount = 0;
             
+            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
+            
+            if (colorNum == 8){
+                LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1; 
+                return_home_turns(&turn_history, &counter_history, (index), &motorLeft, &motorRight);
+                carGo = 0;
+                colorNum = 0;                        
+            }
+            
+            else{     
+            turn_history[index] = colorNum;  
+            counter_history[index] = 1;
+            colorNum = 0;
+            }
+            
+            index += 1;
             __delay_ms(500);
         }
         
-        if (carGo){forward(&motorLeft,&motorRight);}
+        if (carGo){
+            forward(&motorLeft,&motorRight);
+            LATDbits.LATD4 = !LATDbits.LATD4;
+            forwardCount +=1;
+        }
         
         else{stop(&motorLeft,&motorRight);}
         
-        __delay_ms(100);
-        
-        /*
-        sprintf(string4,"  C: %d  %d  %f \r",RGBVal.C, whiteRGBVal.C, clearRef);
-        TxBufferedString(string4);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-         */
-        
-        
-        /*    
-     
-        FOR DEBUGGING
-          
-                
-        redPrint = (RGBVal.R-ambientR)/((whiteR-(float)ambientR)*(clearRef));
-        greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
-        bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
-        
-        if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
-        if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
-        if ((bluePrint < 0) | (bluePrint > 2)){ bluePrint = 0.0;}
-        
-        
-        
-        if (clearRef > 0.12){
-            
-        if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint >  0.9)){
-        sprintf(string5,"White");
-        TxBufferedString(string5);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        }    
-            
-        if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint >  0.8)){
-        sprintf(string5,"Red");
-        TxBufferedString(string5);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        }
-        
-        if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint >  0.5)){
-        sprintf(string5,"Orange");
-        TxBufferedString(string5);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        }    
-        
-        if ((redPrint > 1.0) & (greenPrint  > 0.8) & (bluePrint < 0.8)){
-        sprintf(string5,"Yellow");
-        TxBufferedString(string5);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        }    
-        
-        if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
-        sprintf(string5,"Blue");
-        TxBufferedString(string5);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        }
-        
-        if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
-        sprintf(string5,"Green");
-        TxBufferedString(string5);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        }
-        
-        if ((redPrint < 0.7) & (greenPrint >  1.0)& (bluePrint > 1.0)){
-        sprintf(string5,"Light Blue");
-        TxBufferedString(string5);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        }          
-        
-        if ((redPrint > 0.95) & (greenPrint > 0.8 & greenPrint < 0.9) & (bluePrint >  0.8 & bluePrint < 0.95)){
-        sprintf(string5,"Pink");
-        TxBufferedString(string5);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        } 
-        
-        }
-        
-        sprintf(string4,"  C:  %f ",clearRef);
-        TxBufferedString(string4);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        
-        sprintf(string1,"Red: %f ",(redPrint));
-        TxBufferedString(string1);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        
-        sprintf(string2,"Green: %f ",(greenPrint));
-        TxBufferedString(string2);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-            
-        sprintf(string3,"Blue:  %f \r",(bluePrint));
-        TxBufferedString(string3);   // send to pc
-        sendTxBuf();
-        __delay_ms(2);
-        
-        */
+        __delay_ms(50);
     
-        
     }
 }
 

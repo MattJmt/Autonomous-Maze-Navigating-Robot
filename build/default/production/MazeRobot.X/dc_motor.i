@@ -24405,11 +24405,11 @@ void forward(DC_motor *mL, DC_motor *mR)
     mL->brakemode = 1;
     mL->brakemode = 1;
 
-    while ((mL->power)<25 && (mR->power)<25){
-        if ((mL->power) < 25){
+    while ((mL->power)<40 && (mR->power)<40){
+        if ((mL->power) < 40){
             mL->power += 5;
         }
-        if ((mR->power) <25){
+        if ((mR->power) < 40){
             mR->power += 5;
         }
 
@@ -24563,8 +24563,45 @@ void turnRight_90(DC_motor *mL, DC_motor *mR)
 void turn_180(DC_motor *mL, DC_motor *mR)
 {
 
-    turnRight(mL,mR);
-    turnRight(mL,mR);
+    stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+
+    stop(mL, mR);
+
+    mL->direction = 1;
+    mR->direction = 0;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+
+   stop(mL, mR);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    mL->direction = 1;
+    mR->direction = 0;
+
+    mL->brakemode = 1;
+    mL->brakemode = 1;
+
+    while((mL->power < 80) || (mR->power < 80)){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+
     stop(mL, mR);
 }
 

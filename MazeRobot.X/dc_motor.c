@@ -137,11 +137,11 @@ void forward(DC_motor *mL, DC_motor *mR)
     mL->brakemode = 1;   
     mL->brakemode = 1; 
     
-    while ((mL->power)<80 && (mR->power)<80){
-        if ((mL->power) < 80){
+    while ((mL->power)<40 && (mR->power)<40){
+        if ((mL->power) < 40){
             mL->power += 5;
         }
-        if ((mR->power) < 80){
+        if ((mR->power) < 40){
             mR->power += 5;     
         } 
 
@@ -287,7 +287,7 @@ void turnRight_90(DC_motor *mL, DC_motor *mR) //Red
         setMotorPWM(mR);
     }
    __delay_ms(turning_time45);
-    
+   
     stop(mL, mR);
 }
 
@@ -295,8 +295,45 @@ void turnRight_90(DC_motor *mL, DC_motor *mR) //Red
 void turn_180(DC_motor *mL, DC_motor *mR)              
 {
    
-    turnRight(mL,mR);
-    turnRight(mL,mR);
+    stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    reverse(mL, mR);    // reverse from the wall to avoid collision when turning
+    __delay_ms(reverse_time);
+    
+    stop(mL, mR);   // buggy must me at rest for a more accurate turn.
+    
+    mL->direction = 1;
+    mR->direction = 0;
+    
+    mL->brakemode = 1;   
+    mL->brakemode = 1; 
+  
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   __delay_ms(turning_time45);
+   
+   stop(mL, mR);       // buggy must me at rest for a more accurate turn.
+    __delay_ms(100);
+    
+    mL->direction = 1;
+    mR->direction = 0;
+    
+    mL->brakemode = 1;   
+    mL->brakemode = 1; 
+  
+    while((mL->power < 80) || (mR->power < 80)){                 // Limit the motor power to 70%
+        mL->power += 10;                   // Gradually increase the left motor power
+        mR->power += 10;                   // Gradually increase the right motor power
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+   __delay_ms(turning_time45);
+    
     stop(mL, mR);
 }
 

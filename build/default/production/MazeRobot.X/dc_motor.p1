@@ -2612,13 +2612,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/dc_motor.c: 138:     mL->brakemode = 1;
 [e = . *U _mL 2 -> -> 1 `i `uc ]
 "140
-[; ;MazeRobot.X/dc_motor.c: 140:     while ((mL->power)<25 && (mR->power)<25){
+[; ;MazeRobot.X/dc_motor.c: 140:     while ((mL->power)<40 && (mR->power)<40){
 [e $U 2030  ]
 [e :U 2031 ]
 {
 "141
-[; ;MazeRobot.X/dc_motor.c: 141:         if ((mL->power) < 25){
-[e $ ! < -> . *U _mL 0 `i -> 25 `i 2033  ]
+[; ;MazeRobot.X/dc_motor.c: 141:         if ((mL->power) < 40){
+[e $ ! < -> . *U _mL 0 `i -> 40 `i 2033  ]
 {
 "142
 [; ;MazeRobot.X/dc_motor.c: 142:             mL->power += 5;
@@ -2628,8 +2628,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2033 ]
 "144
-[; ;MazeRobot.X/dc_motor.c: 144:         if ((mR->power) <25){
-[e $ ! < -> . *U _mR 0 `i -> 25 `i 2034  ]
+[; ;MazeRobot.X/dc_motor.c: 144:         if ((mR->power) < 40){
+[e $ ! < -> . *U _mR 0 `i -> 40 `i 2034  ]
 {
 "145
 [; ;MazeRobot.X/dc_motor.c: 145:             mR->power += 5;
@@ -2643,8 +2643,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2030 ]
 "140
-[; ;MazeRobot.X/dc_motor.c: 140:     while ((mL->power)<25 && (mR->power)<25){
-[e $ && < -> . *U _mL 0 `i -> 25 `i < -> . *U _mR 0 `i -> 25 `i 2031  ]
+[; ;MazeRobot.X/dc_motor.c: 140:     while ((mL->power)<40 && (mR->power)<40){
+[e $ && < -> . *U _mL 0 `i -> 40 `i < -> . *U _mR 0 `i -> 40 `i 2031  ]
 [e :U 2032 ]
 "149
 [; ;MazeRobot.X/dc_motor.c: 149:     setMotorPWM(mL);
@@ -3046,245 +3046,340 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MazeRobot.X/dc_motor.c: 296: {
 [f ]
 "298
-[; ;MazeRobot.X/dc_motor.c: 298:     turnRight(mL,mR);
-[e ( _turnRight (2 , _mL _mR ]
-"299
-[; ;MazeRobot.X/dc_motor.c: 299:     turnRight(mL,mR);
-[e ( _turnRight (2 , _mL _mR ]
-"300
-[; ;MazeRobot.X/dc_motor.c: 300:     stop(mL, mR);
+[; ;MazeRobot.X/dc_motor.c: 298:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
+"299
+[; ;MazeRobot.X/dc_motor.c: 299:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "301
-[; ;MazeRobot.X/dc_motor.c: 301: }
+[; ;MazeRobot.X/dc_motor.c: 301:     reverse(mL, mR);
+[e ( _reverse (2 , _mL _mR ]
+"302
+[; ;MazeRobot.X/dc_motor.c: 302:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"304
+[; ;MazeRobot.X/dc_motor.c: 304:     stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"306
+[; ;MazeRobot.X/dc_motor.c: 306:     mL->direction = 1;
+[e = . *U _mL 1 -> -> 1 `i `uc ]
+"307
+[; ;MazeRobot.X/dc_motor.c: 307:     mR->direction = 0;
+[e = . *U _mR 1 -> -> 0 `i `uc ]
+"309
+[; ;MazeRobot.X/dc_motor.c: 309:     mL->brakemode = 1;
+[e = . *U _mL 2 -> -> 1 `i `uc ]
+"310
+[; ;MazeRobot.X/dc_motor.c: 310:     mL->brakemode = 1;
+[e = . *U _mL 2 -> -> 1 `i `uc ]
+"312
+[; ;MazeRobot.X/dc_motor.c: 312:     while((mL->power < 80) || (mR->power < 80)){
+[e $U 2058  ]
+[e :U 2059 ]
+{
+"313
+[; ;MazeRobot.X/dc_motor.c: 313:         mL->power += 10;
+[e =+ . *U _mL 0 -> -> 10 `i `uc ]
+"314
+[; ;MazeRobot.X/dc_motor.c: 314:         mR->power += 10;
+[e =+ . *U _mR 0 -> -> 10 `i `uc ]
+"315
+[; ;MazeRobot.X/dc_motor.c: 315:         setMotorPWM(mL);
+[e ( _setMotorPWM (1 _mL ]
+"316
+[; ;MazeRobot.X/dc_motor.c: 316:         setMotorPWM(mR);
+[e ( _setMotorPWM (1 _mR ]
+"317
+[; ;MazeRobot.X/dc_motor.c: 317:     }
+}
+[e :U 2058 ]
+"312
+[; ;MazeRobot.X/dc_motor.c: 312:     while((mL->power < 80) || (mR->power < 80)){
+[e $ || < -> . *U _mL 0 `i -> 80 `i < -> . *U _mR 0 `i -> 80 `i 2059  ]
+[e :U 2060 ]
+"318
+[; ;MazeRobot.X/dc_motor.c: 318:    _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> _turning_time45 `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"320
+[; ;MazeRobot.X/dc_motor.c: 320:    stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"321
+[; ;MazeRobot.X/dc_motor.c: 321:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"323
+[; ;MazeRobot.X/dc_motor.c: 323:     mL->direction = 1;
+[e = . *U _mL 1 -> -> 1 `i `uc ]
+"324
+[; ;MazeRobot.X/dc_motor.c: 324:     mR->direction = 0;
+[e = . *U _mR 1 -> -> 0 `i `uc ]
+"326
+[; ;MazeRobot.X/dc_motor.c: 326:     mL->brakemode = 1;
+[e = . *U _mL 2 -> -> 1 `i `uc ]
+"327
+[; ;MazeRobot.X/dc_motor.c: 327:     mL->brakemode = 1;
+[e = . *U _mL 2 -> -> 1 `i `uc ]
+"329
+[; ;MazeRobot.X/dc_motor.c: 329:     while((mL->power < 80) || (mR->power < 80)){
+[e $U 2061  ]
+[e :U 2062 ]
+{
+"330
+[; ;MazeRobot.X/dc_motor.c: 330:         mL->power += 10;
+[e =+ . *U _mL 0 -> -> 10 `i `uc ]
+"331
+[; ;MazeRobot.X/dc_motor.c: 331:         mR->power += 10;
+[e =+ . *U _mR 0 -> -> 10 `i `uc ]
+"332
+[; ;MazeRobot.X/dc_motor.c: 332:         setMotorPWM(mL);
+[e ( _setMotorPWM (1 _mL ]
+"333
+[; ;MazeRobot.X/dc_motor.c: 333:         setMotorPWM(mR);
+[e ( _setMotorPWM (1 _mR ]
+"334
+[; ;MazeRobot.X/dc_motor.c: 334:     }
+}
+[e :U 2061 ]
+"329
+[; ;MazeRobot.X/dc_motor.c: 329:     while((mL->power < 80) || (mR->power < 80)){
+[e $ || < -> . *U _mL 0 `i -> 80 `i < -> . *U _mR 0 `i -> 80 `i 2062  ]
+[e :U 2063 ]
+"335
+[; ;MazeRobot.X/dc_motor.c: 335:    _delay((unsigned long)((turning_time45)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> _turning_time45 `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"337
+[; ;MazeRobot.X/dc_motor.c: 337:     stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"338
+[; ;MazeRobot.X/dc_motor.c: 338: }
 [e :UE 2057 ]
 }
-"304
-[; ;MazeRobot.X/dc_motor.c: 304: void turnRight_135(DC_motor *mL, DC_motor *mR)
+"341
+[; ;MazeRobot.X/dc_motor.c: 341: void turnRight_135(DC_motor *mL, DC_motor *mR)
 [v _turnRight_135 `(v ~T0 @X0 1 ef2`*S2015`*S2015 ]
-"305
-[; ;MazeRobot.X/dc_motor.c: 305: {
+"342
+[; ;MazeRobot.X/dc_motor.c: 342: {
 {
 [e :U _turnRight_135 ]
-"304
-[; ;MazeRobot.X/dc_motor.c: 304: void turnRight_135(DC_motor *mL, DC_motor *mR)
+"341
+[; ;MazeRobot.X/dc_motor.c: 341: void turnRight_135(DC_motor *mL, DC_motor *mR)
 [v _mL `*S2015 ~T0 @X0 1 r1 ]
 [v _mR `*S2015 ~T0 @X0 1 r2 ]
-"305
-[; ;MazeRobot.X/dc_motor.c: 305: {
-[f ]
-"306
-[; ;MazeRobot.X/dc_motor.c: 306:     stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
-"307
-[; ;MazeRobot.X/dc_motor.c: 307:     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"309
-[; ;MazeRobot.X/dc_motor.c: 309:     reverse(mL, mR);
-[e ( _reverse (2 , _mL _mR ]
-"310
-[; ;MazeRobot.X/dc_motor.c: 310:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"312
-[; ;MazeRobot.X/dc_motor.c: 312:     stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
-"314
-[; ;MazeRobot.X/dc_motor.c: 314:     mL->direction = 1;
-[e = . *U _mL 1 -> -> 1 `i `uc ]
-"315
-[; ;MazeRobot.X/dc_motor.c: 315:     mR->direction = 0;
-[e = . *U _mR 1 -> -> 0 `i `uc ]
-"317
-[; ;MazeRobot.X/dc_motor.c: 317:     mL->brakemode = 1;
-[e = . *U _mL 2 -> -> 1 `i `uc ]
-"318
-[; ;MazeRobot.X/dc_motor.c: 318:     mL->brakemode = 1;
-[e = . *U _mL 2 -> -> 1 `i `uc ]
-"320
-[; ;MazeRobot.X/dc_motor.c: 320:     while((mL->power < 80) || (mR->power < 80)){
-[e $U 2059  ]
-[e :U 2060 ]
-{
-"321
-[; ;MazeRobot.X/dc_motor.c: 321:         mL->power += 10;
-[e =+ . *U _mL 0 -> -> 10 `i `uc ]
-"322
-[; ;MazeRobot.X/dc_motor.c: 322:         mR->power += 10;
-[e =+ . *U _mR 0 -> -> 10 `i `uc ]
-"323
-[; ;MazeRobot.X/dc_motor.c: 323:         setMotorPWM(mL);
-[e ( _setMotorPWM (1 _mL ]
-"324
-[; ;MazeRobot.X/dc_motor.c: 324:         setMotorPWM(mR);
-[e ( _setMotorPWM (1 _mR ]
-"325
-[; ;MazeRobot.X/dc_motor.c: 325:     }
-}
-[e :U 2059 ]
-"320
-[; ;MazeRobot.X/dc_motor.c: 320:     while((mL->power < 80) || (mR->power < 80)){
-[e $ || < -> . *U _mL 0 `i -> 80 `i < -> . *U _mR 0 `i -> 80 `i 2060  ]
-[e :U 2061 ]
-"326
-[; ;MazeRobot.X/dc_motor.c: 326:    _delay((unsigned long)((1.5*turning_time45)*(64000000/4000.0)));
-[e ( __delay (1 -> * * .1.5 -> _turning_time45 `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"328
-[; ;MazeRobot.X/dc_motor.c: 328:     stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
-"329
-[; ;MazeRobot.X/dc_motor.c: 329: }
-[e :UE 2058 ]
-}
-"333
-[; ;MazeRobot.X/dc_motor.c: 333: void turnLeft_135(DC_motor *mL, DC_motor *mR)
-[v _turnLeft_135 `(v ~T0 @X0 1 ef2`*S2015`*S2015 ]
-"334
-[; ;MazeRobot.X/dc_motor.c: 334: {
-{
-[e :U _turnLeft_135 ]
-"333
-[; ;MazeRobot.X/dc_motor.c: 333: void turnLeft_135(DC_motor *mL, DC_motor *mR)
-[v _mL `*S2015 ~T0 @X0 1 r1 ]
-[v _mR `*S2015 ~T0 @X0 1 r2 ]
-"334
-[; ;MazeRobot.X/dc_motor.c: 334: {
-[f ]
-"336
-[; ;MazeRobot.X/dc_motor.c: 336:     stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
-"337
-[; ;MazeRobot.X/dc_motor.c: 337:     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"339
-[; ;MazeRobot.X/dc_motor.c: 339:     reverse(mL, mR);
-[e ( _reverse (2 , _mL _mR ]
-"340
-[; ;MazeRobot.X/dc_motor.c: 340:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "342
-[; ;MazeRobot.X/dc_motor.c: 342:     stop(mL, mR);
+[; ;MazeRobot.X/dc_motor.c: 342: {
+[f ]
+"343
+[; ;MazeRobot.X/dc_motor.c: 343:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
 "344
-[; ;MazeRobot.X/dc_motor.c: 344:     mL->direction = 0;
-[e = . *U _mL 1 -> -> 0 `i `uc ]
-"345
-[; ;MazeRobot.X/dc_motor.c: 345:     mR->direction = 1;
-[e = . *U _mR 1 -> -> 1 `i `uc ]
+[; ;MazeRobot.X/dc_motor.c: 344:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"346
+[; ;MazeRobot.X/dc_motor.c: 346:     reverse(mL, mR);
+[e ( _reverse (2 , _mL _mR ]
 "347
-[; ;MazeRobot.X/dc_motor.c: 347:     mL->brakemode = 1;
-[e = . *U _mL 2 -> -> 1 `i `uc ]
-"348
-[; ;MazeRobot.X/dc_motor.c: 348:     mL->brakemode = 1;
-[e = . *U _mL 2 -> -> 1 `i `uc ]
-"350
-[; ;MazeRobot.X/dc_motor.c: 350:     while((mL->power < 80) || (mR->power < 80)){
-[e $U 2063  ]
-[e :U 2064 ]
-{
-"351
-[; ;MazeRobot.X/dc_motor.c: 351:         mL->power += 10;
-[e =+ . *U _mL 0 -> -> 10 `i `uc ]
-"352
-[; ;MazeRobot.X/dc_motor.c: 352:         mR->power += 10;
-[e =+ . *U _mR 0 -> -> 10 `i `uc ]
-"353
-[; ;MazeRobot.X/dc_motor.c: 353:         setMotorPWM(mL);
-[e ( _setMotorPWM (1 _mL ]
-"354
-[; ;MazeRobot.X/dc_motor.c: 354:         setMotorPWM(mR);
-[e ( _setMotorPWM (1 _mR ]
-"355
-[; ;MazeRobot.X/dc_motor.c: 355:     }
-}
-[e :U 2063 ]
-"350
-[; ;MazeRobot.X/dc_motor.c: 350:     while((mL->power < 80) || (mR->power < 80)){
-[e $ || < -> . *U _mL 0 `i -> 80 `i < -> . *U _mR 0 `i -> 80 `i 2064  ]
-[e :U 2065 ]
-"356
-[; ;MazeRobot.X/dc_motor.c: 356:    _delay((unsigned long)((3*turning_time45)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> * -> 3 `i _turning_time45 `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"357
-[; ;MazeRobot.X/dc_motor.c: 357:     stop(mL, mR);
+[; ;MazeRobot.X/dc_motor.c: 347:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"349
+[; ;MazeRobot.X/dc_motor.c: 349:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
+"351
+[; ;MazeRobot.X/dc_motor.c: 351:     mL->direction = 1;
+[e = . *U _mL 1 -> -> 1 `i `uc ]
+"352
+[; ;MazeRobot.X/dc_motor.c: 352:     mR->direction = 0;
+[e = . *U _mR 1 -> -> 0 `i `uc ]
+"354
+[; ;MazeRobot.X/dc_motor.c: 354:     mL->brakemode = 1;
+[e = . *U _mL 2 -> -> 1 `i `uc ]
+"355
+[; ;MazeRobot.X/dc_motor.c: 355:     mL->brakemode = 1;
+[e = . *U _mL 2 -> -> 1 `i `uc ]
+"357
+[; ;MazeRobot.X/dc_motor.c: 357:     while((mL->power < 80) || (mR->power < 80)){
+[e $U 2065  ]
+[e :U 2066 ]
+{
 "358
-[; ;MazeRobot.X/dc_motor.c: 358: }
-[e :UE 2062 ]
-}
+[; ;MazeRobot.X/dc_motor.c: 358:         mL->power += 10;
+[e =+ . *U _mL 0 -> -> 10 `i `uc ]
+"359
+[; ;MazeRobot.X/dc_motor.c: 359:         mR->power += 10;
+[e =+ . *U _mR 0 -> -> 10 `i `uc ]
+"360
+[; ;MazeRobot.X/dc_motor.c: 360:         setMotorPWM(mL);
+[e ( _setMotorPWM (1 _mL ]
 "361
-[; ;MazeRobot.X/dc_motor.c: 361: void reverseSquareRight(DC_motor *mL, DC_motor *mR)
-[v _reverseSquareRight `(v ~T0 @X0 1 ef2`*S2015`*S2015 ]
+[; ;MazeRobot.X/dc_motor.c: 361:         setMotorPWM(mR);
+[e ( _setMotorPWM (1 _mR ]
 "362
-[; ;MazeRobot.X/dc_motor.c: 362: {
+[; ;MazeRobot.X/dc_motor.c: 362:     }
+}
+[e :U 2065 ]
+"357
+[; ;MazeRobot.X/dc_motor.c: 357:     while((mL->power < 80) || (mR->power < 80)){
+[e $ || < -> . *U _mL 0 `i -> 80 `i < -> . *U _mR 0 `i -> 80 `i 2066  ]
+[e :U 2067 ]
+"363
+[; ;MazeRobot.X/dc_motor.c: 363:    _delay((unsigned long)((1.5*turning_time45)*(64000000/4000.0)));
+[e ( __delay (1 -> * * .1.5 -> _turning_time45 `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"365
+[; ;MazeRobot.X/dc_motor.c: 365:     stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"366
+[; ;MazeRobot.X/dc_motor.c: 366: }
+[e :UE 2064 ]
+}
+"370
+[; ;MazeRobot.X/dc_motor.c: 370: void turnLeft_135(DC_motor *mL, DC_motor *mR)
+[v _turnLeft_135 `(v ~T0 @X0 1 ef2`*S2015`*S2015 ]
+"371
+[; ;MazeRobot.X/dc_motor.c: 371: {
+{
+[e :U _turnLeft_135 ]
+"370
+[; ;MazeRobot.X/dc_motor.c: 370: void turnLeft_135(DC_motor *mL, DC_motor *mR)
+[v _mL `*S2015 ~T0 @X0 1 r1 ]
+[v _mR `*S2015 ~T0 @X0 1 r2 ]
+"371
+[; ;MazeRobot.X/dc_motor.c: 371: {
+[f ]
+"373
+[; ;MazeRobot.X/dc_motor.c: 373:     stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"374
+[; ;MazeRobot.X/dc_motor.c: 374:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"376
+[; ;MazeRobot.X/dc_motor.c: 376:     reverse(mL, mR);
+[e ( _reverse (2 , _mL _mR ]
+"377
+[; ;MazeRobot.X/dc_motor.c: 377:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"379
+[; ;MazeRobot.X/dc_motor.c: 379:     stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"381
+[; ;MazeRobot.X/dc_motor.c: 381:     mL->direction = 0;
+[e = . *U _mL 1 -> -> 0 `i `uc ]
+"382
+[; ;MazeRobot.X/dc_motor.c: 382:     mR->direction = 1;
+[e = . *U _mR 1 -> -> 1 `i `uc ]
+"384
+[; ;MazeRobot.X/dc_motor.c: 384:     mL->brakemode = 1;
+[e = . *U _mL 2 -> -> 1 `i `uc ]
+"385
+[; ;MazeRobot.X/dc_motor.c: 385:     mL->brakemode = 1;
+[e = . *U _mL 2 -> -> 1 `i `uc ]
+"387
+[; ;MazeRobot.X/dc_motor.c: 387:     while((mL->power < 80) || (mR->power < 80)){
+[e $U 2069  ]
+[e :U 2070 ]
+{
+"388
+[; ;MazeRobot.X/dc_motor.c: 388:         mL->power += 10;
+[e =+ . *U _mL 0 -> -> 10 `i `uc ]
+"389
+[; ;MazeRobot.X/dc_motor.c: 389:         mR->power += 10;
+[e =+ . *U _mR 0 -> -> 10 `i `uc ]
+"390
+[; ;MazeRobot.X/dc_motor.c: 390:         setMotorPWM(mL);
+[e ( _setMotorPWM (1 _mL ]
+"391
+[; ;MazeRobot.X/dc_motor.c: 391:         setMotorPWM(mR);
+[e ( _setMotorPWM (1 _mR ]
+"392
+[; ;MazeRobot.X/dc_motor.c: 392:     }
+}
+[e :U 2069 ]
+"387
+[; ;MazeRobot.X/dc_motor.c: 387:     while((mL->power < 80) || (mR->power < 80)){
+[e $ || < -> . *U _mL 0 `i -> 80 `i < -> . *U _mR 0 `i -> 80 `i 2070  ]
+[e :U 2071 ]
+"393
+[; ;MazeRobot.X/dc_motor.c: 393:    _delay((unsigned long)((3*turning_time45)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> * -> 3 `i _turning_time45 `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"394
+[; ;MazeRobot.X/dc_motor.c: 394:     stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"395
+[; ;MazeRobot.X/dc_motor.c: 395: }
+[e :UE 2068 ]
+}
+"398
+[; ;MazeRobot.X/dc_motor.c: 398: void reverseSquareRight(DC_motor *mL, DC_motor *mR)
+[v _reverseSquareRight `(v ~T0 @X0 1 ef2`*S2015`*S2015 ]
+"399
+[; ;MazeRobot.X/dc_motor.c: 399: {
 {
 [e :U _reverseSquareRight ]
-"361
-[; ;MazeRobot.X/dc_motor.c: 361: void reverseSquareRight(DC_motor *mL, DC_motor *mR)
+"398
+[; ;MazeRobot.X/dc_motor.c: 398: void reverseSquareRight(DC_motor *mL, DC_motor *mR)
 [v _mL `*S2015 ~T0 @X0 1 r1 ]
 [v _mR `*S2015 ~T0 @X0 1 r2 ]
-"362
-[; ;MazeRobot.X/dc_motor.c: 362: {
+"399
+[; ;MazeRobot.X/dc_motor.c: 399: {
 [f ]
-"364
-[; ;MazeRobot.X/dc_motor.c: 364:     reverse(mL, mR);
+"401
+[; ;MazeRobot.X/dc_motor.c: 401:     reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"365
-[; ;MazeRobot.X/dc_motor.c: 365:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+"402
+[; ;MazeRobot.X/dc_motor.c: 402:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"367
-[; ;MazeRobot.X/dc_motor.c: 367:     stop(mL, mR);
+"404
+[; ;MazeRobot.X/dc_motor.c: 404:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"369
-[; ;MazeRobot.X/dc_motor.c: 369:     reverse(mL, mR);
+"406
+[; ;MazeRobot.X/dc_motor.c: 406:     reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"370
-[; ;MazeRobot.X/dc_motor.c: 370:     _delay((unsigned long)((2*reverse_time)*(64000000/4000.0)));
+"407
+[; ;MazeRobot.X/dc_motor.c: 407:     _delay((unsigned long)((2*reverse_time)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> * -> 2 `i _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"372
-[; ;MazeRobot.X/dc_motor.c: 372:     turnRight_90(mL,mR);
+"409
+[; ;MazeRobot.X/dc_motor.c: 409:     turnRight_90(mL,mR);
 [e ( _turnRight_90 (2 , _mL _mR ]
-"374
-[; ;MazeRobot.X/dc_motor.c: 374:     stop(mL, mR);
+"411
+[; ;MazeRobot.X/dc_motor.c: 411:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"375
-[; ;MazeRobot.X/dc_motor.c: 375: }
-[e :UE 2066 ]
+"412
+[; ;MazeRobot.X/dc_motor.c: 412: }
+[e :UE 2072 ]
 }
-"379
-[; ;MazeRobot.X/dc_motor.c: 379: void reverseSquareLeft(DC_motor *mL, DC_motor *mR)
+"416
+[; ;MazeRobot.X/dc_motor.c: 416: void reverseSquareLeft(DC_motor *mL, DC_motor *mR)
 [v _reverseSquareLeft `(v ~T0 @X0 1 ef2`*S2015`*S2015 ]
-"380
-[; ;MazeRobot.X/dc_motor.c: 380: {
+"417
+[; ;MazeRobot.X/dc_motor.c: 417: {
 {
 [e :U _reverseSquareLeft ]
-"379
-[; ;MazeRobot.X/dc_motor.c: 379: void reverseSquareLeft(DC_motor *mL, DC_motor *mR)
+"416
+[; ;MazeRobot.X/dc_motor.c: 416: void reverseSquareLeft(DC_motor *mL, DC_motor *mR)
 [v _mL `*S2015 ~T0 @X0 1 r1 ]
 [v _mR `*S2015 ~T0 @X0 1 r2 ]
-"380
-[; ;MazeRobot.X/dc_motor.c: 380: {
+"417
+[; ;MazeRobot.X/dc_motor.c: 417: {
 [f ]
-"381
-[; ;MazeRobot.X/dc_motor.c: 381:     reverse(mL, mR);
+"418
+[; ;MazeRobot.X/dc_motor.c: 418:     reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"382
-[; ;MazeRobot.X/dc_motor.c: 382:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
+"419
+[; ;MazeRobot.X/dc_motor.c: 419:     _delay((unsigned long)((reverse_time)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"384
-[; ;MazeRobot.X/dc_motor.c: 384:     stop(mL, mR);
+"421
+[; ;MazeRobot.X/dc_motor.c: 421:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"386
-[; ;MazeRobot.X/dc_motor.c: 386:     reverse(mL, mR);
+"423
+[; ;MazeRobot.X/dc_motor.c: 423:     reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"387
-[; ;MazeRobot.X/dc_motor.c: 387:     _delay((unsigned long)((2*reverse_time)*(64000000/4000.0)));
+"424
+[; ;MazeRobot.X/dc_motor.c: 424:     _delay((unsigned long)((2*reverse_time)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> * -> 2 `i _reverse_time `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"389
-[; ;MazeRobot.X/dc_motor.c: 389:     turnLeft_90(mL,mR);
+"426
+[; ;MazeRobot.X/dc_motor.c: 426:     turnLeft_90(mL,mR);
 [e ( _turnLeft_90 (2 , _mL _mR ]
-"391
-[; ;MazeRobot.X/dc_motor.c: 391:     stop(mL, mR);
+"428
+[; ;MazeRobot.X/dc_motor.c: 428:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"392
-[; ;MazeRobot.X/dc_motor.c: 392: }
-[e :UE 2067 ]
+"429
+[; ;MazeRobot.X/dc_motor.c: 429: }
+[e :UE 2073 ]
 }

@@ -24467,7 +24467,8 @@ typedef struct RGB {
 void getColor(RGB *v);
 void ambientCal(RGB *v);
 void whiteCal(RGB *v);
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+void return_home_turns(unsigned int *turn_history, unsigned int *counter_history, unsigned int index, DC_motor *mL, DC_motor *mR);
 # 14 "MazeRobot.X/main.c" 2
 
 # 1 "MazeRobot.X/i2c.h" 1
@@ -24630,12 +24631,6 @@ void main(void){
     ANSELFbits.ANSELF3=0;
 
     char testString[20];
-    char string1[20];
-    char string2[20];
-    char string3[20];
-    char string4[20];
-    char string5[20];
-
 
     RGB RGBVal;
     RGB ambientRGBVal;
@@ -24646,7 +24641,13 @@ void main(void){
 
     DC_motor motorLeft,motorRight;
     DCmotorsInit(&motorLeft,&motorRight);
-# 118 "MazeRobot.X/main.c"
+# 112 "MazeRobot.X/main.c"
+    unsigned int turn_history[99];
+    unsigned int counter_history[99];
+    unsigned int index = 0;
+    unsigned int forwardCount = 0;
+    unsigned int colorNum = 0;
+
     ambientCal (&ambientRGBVal);
 
     while(1){
@@ -24654,9 +24655,10 @@ void main(void){
 
         if(!PORTFbits.RF2 & !PORTFbits.RF3){
             LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
-            _delay((unsigned long)((1000)*(64000000/4000.0)));
+            _delay((unsigned long)((500)*(64000000/4000.0)));
             LATDbits.LATD7 = 0 , LATHbits.LATH3 = 0;
-            carGo = !carGo;}
+            carGo = !carGo;
+        }
 
 
         if (!PORTFbits.RF2 & PORTFbits.RF3){
@@ -24669,21 +24671,44 @@ void main(void){
 
         LATHbits.LATH3=!LATHbits.LATH3;
 
-
         whiteC = whiteRGBVal.C;
         clearRef = RGBVal.C/whiteC;
 
         if ((clearRef > 0.12) & carGo){
-            colorDetect (clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
+            turn_history[index] = 0;
+            counter_history[index] = forwardCount;
 
+            index +=1;
+            forwardCount = 0;
+
+            colorNum = colorDetect(clearRef,&ambientRGBVal,&whiteRGBVal,&motorLeft,&motorRight);
+
+            if (colorNum == 8){
+                LATDbits.LATD7 = 1 , LATHbits.LATH3 = 1;
+                return_home_turns(&turn_history, &counter_history, (index), &motorLeft, &motorRight);
+                carGo = 0;
+                colorNum = 0;
+            }
+
+            else{
+            turn_history[index] = colorNum;
+            counter_history[index] = 1;
+            colorNum = 0;
+            }
+
+            index += 1;
             _delay((unsigned long)((500)*(64000000/4000.0)));
         }
 
-        if (carGo){forward(&motorLeft,&motorRight);}
+        if (carGo){
+            forward(&motorLeft,&motorRight);
+            LATDbits.LATD4 = !LATDbits.LATD4;
+            forwardCount +=1;
+        }
 
         else{stop(&motorLeft,&motorRight);}
 
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-# 262 "MazeRobot.X/main.c"
+        _delay((unsigned long)((50)*(64000000/4000.0)));
+
     }
 }

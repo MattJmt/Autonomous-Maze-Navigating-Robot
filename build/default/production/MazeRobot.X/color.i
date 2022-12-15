@@ -24453,7 +24453,8 @@ typedef struct RGB {
 void getColor(RGB *v);
 void ambientCal(RGB *v);
 void whiteCal(RGB *v);
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR);
+void return_home_turns(unsigned int *turn_history, unsigned int *counter_history, unsigned int index, DC_motor *mL, DC_motor *mR);
 # 3 "MazeRobot.X/color.c" 2
 
 # 1 "MazeRobot.X/i2c.h" 1
@@ -24647,7 +24648,7 @@ void whiteCal (RGB *v){
 }
 
 
-void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
+unsigned int colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_motor *mL, DC_motor *mR){
 
 
         RGB RGBVal;
@@ -24666,12 +24667,7 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
         float greenPrint = (RGBVal.G-ambientG)/((whiteG-(float)ambientG)*(clearRef));
         float bluePrint = (RGBVal.B-ambientB)/((whiteB-(float)ambientB)*(clearRef));
 
-        char string1[20];
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        sprintf(string1,"R: %f G: %f B:%f \r",redPrint,greenPrint,bluePrint);
-        TxBufferedString(string1);
-        sendTxBuf();
-        _delay((unsigned long)((2)*(64000000/4000.0)));
+        unsigned int colour_ref;
 
         if ((redPrint < 0) | (redPrint > 2)) { redPrint = 0.0;}
         if ((greenPrint < 0) | (greenPrint > 2)) {greenPrint = 0.0;}
@@ -24680,51 +24676,43 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
 
         if ((redPrint > 0.9) & (greenPrint > 0.9) & (bluePrint > 0.9)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
-
+        turn_180(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        colour_ref = 8;
         }
 
 
-        if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
-            turnRight_90(mL,mR);
-            _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-
-        if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
+        else if ((redPrint > 1.5) & (redPrint - greenPrint > 0.8) & (redPrint -bluePrint > 0.8)){
         _delay((unsigned long)((2)*(64000000/4000.0)));
-        turnRight_135(mL,mR);
+        turnRight_90(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        colour_ref = 1;
 
         }
 
 
-        if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
+        else if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnLeft_90(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        colour_ref = 2;
+        }
+
+
+        else if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        turn_180(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        colour_ref = 3;
+        }
+
+
+        else if ((redPrint > 1.0) & (greenPrint > 0.8) & (bluePrint < 0.8)){
 
         _delay((unsigned long)((2)*(64000000/4000.0)));
         reverseSquareRight(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-
-        if ((bluePrint - redPrint > 0.7) & (bluePrint - greenPrint > 0.3) & (bluePrint > 0.7 )){
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        turn_180(mL,mR);
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-
-        if ((greenPrint - redPrint > 0.4 ) & (greenPrint > 1) & (greenPrint - bluePrint > 0.4 )){
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        turnLeft_90(mL,mR);
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        }
-
-
-        if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
-        _delay((unsigned long)((2)*(64000000/4000.0)));
-        turnLeft_135(mL,mR);
-        _delay((unsigned long)((2)*(64000000/4000.0)));
+        colour_ref = 4;
         }
 
 
@@ -24732,11 +24720,73 @@ void colorDetect (double clearRef, RGB *ambientRGBVal ,RGB *whiteRGBVal, DC_moto
         _delay((unsigned long)((2)*(64000000/4000.0)));
         reverseSquareLeft(mL,mR);
         _delay((unsigned long)((2)*(64000000/4000.0)));
+        colour_ref = 5;
         }
 
 
+        else if ((redPrint > 1.3) & (greenPrint > 0.5) & (bluePrint > 0.5)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnRight_135(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        colour_ref = 6;
+
+        }
 
 
+        else if ((redPrint < 0.7) & (greenPrint > 1.0)& (bluePrint > 1.0)){
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        turnLeft_135(mL,mR);
+        _delay((unsigned long)((2)*(64000000/4000.0)));
+        colour_ref = 7;
 
+        }
+
+        return colour_ref;
+}
+
+
+void return_home_turns(unsigned int *turn_history, unsigned int *counter_history, unsigned int index, DC_motor *mL, DC_motor *mR)
+{
+
+
+    for (int k = index; k >=0; k --){
+# 242 "MazeRobot.X/color.c"
+            switch (turn_history[k]){
+                case 1:
+                    turnLeft_90(mL,mR);
+                    break;
+                case 2:
+                    turnRight_90(mL,mR);
+                    break;
+                case 3:
+                    turn_180(mL,mR);
+                    break;
+                case 4:
+                    turnLeft_90(mL,mR);
+                    break;
+                case 5:
+                    turnRight_90(mL,mR);
+                    break;
+                case 6:
+                    turnLeft_135(mL,mR);
+                    break;
+                case 7:
+                    turnRight_135(mL,mR);
+                    break;
+                case 0:
+                    forward(mL,mR);
+                    int i = counter_history[k];
+                    while(i>0){
+                    i--;
+                    _delay((unsigned long)((50)*(64000000/4000.0)));
+                    }
+                    break;
+                default:
+                    break;
+# 288 "MazeRobot.X/color.c"
+            _delay((unsigned long)((50)*(64000000/4000.0)));
+        }
+
+    }
 
 }
