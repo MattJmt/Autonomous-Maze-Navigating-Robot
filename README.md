@@ -46,11 +46,11 @@ Mine courses will vary in difficulty, with the simplest requiring 4 basic moves 
 
 We tested our buggy during the testing session occuring at the end of the term. We were able to successfully complete the easy, medium and hard maze. The following videos demonstrate our buggy's performance:
 
-[Easy](https://imperiallondon-my.sharepoint.com/:v:/g/personal/mjj20_ic_ac_uk/EYCSYyPGcstHhnRjr7CTwJQBsgi4O43Rrkjp2075AjwGTQ?e=tE37bL)
+[Easy](https://www.youtube.com/shorts/ZVt_KgNvorw)
 
-[Medium](https://imperiallondon-my.sharepoint.com/:v:/g/personal/mjj20_ic_ac_uk/EVE7rPs2P89Dsa4H48nbraIBZg56B7VeUbwyD5anrjX1mg?e=UOzPo9)
+[Medium](https://youtube.com/shorts/gXaqp8xVOqs?feature=share)
 
-[Hard](https://imperiallondon-my.sharepoint.com/:v:/g/personal/mjj20_ic_ac_uk/ESl3ye4vnDRPmL6Y0xbr_04BOQT76CXb2AK6dQ1ERb71HQ?e=GxJSjH)
+[Hard](https://www.youtube.com/watch?v=QHPx16F_wd8)
 
 ## Initial Setup
 
